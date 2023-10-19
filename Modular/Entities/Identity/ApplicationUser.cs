@@ -20,8 +20,10 @@ namespace Modular.Core.Identity
 
         #region "  Properties  "
 
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public Guid ContactID { get; set; }
+
+        public virtual Contact Contact { get; set; }
+
 
         #endregion
 
