@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modular.Core.Organisation.Areas
+namespace Modular.Core.Misc
 {
-    public class Department : BaseEntity
+    public class Department : ModularBaseEntity
     {
 
         #region "  Properties  "

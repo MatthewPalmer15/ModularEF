@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Modular.Core.Helpers;
 
-namespace Modular.Core.Organisation
+namespace Modular.Core.Entity
 {
-    public class Organisation : BaseEntity
+    public class Organisation : ModularBaseEntity
     {
 
         #region "  Properties  "
@@ -42,7 +42,7 @@ namespace Modular.Core.Organisation
 
         public string Website { get; set; } = string.Empty;
 
-        public MiscUtils.StatusType Status { get; set; } = MiscUtils.StatusType.Active;
+        public ModularUtils.StatusType Status { get; set; } = ModularUtils.StatusType.Active;
 
         #endregion
 

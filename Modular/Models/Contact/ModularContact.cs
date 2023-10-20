@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modular.Core
+namespace Modular.Core.Entity
 {
-    public class Contact : BaseEntity
+    public class Contact : ModularBaseEntity
     {
 
         #region "  Enums  "

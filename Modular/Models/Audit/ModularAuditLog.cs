@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modular.Core.Entities.Audit
+namespace Modular.Core.Audit
 {
-    public class AuditLog : BaseEntity
+    public class AuditLog : ModularBaseEntity
     {
 
         public ObjectTypes.ObjectType ObjectType { get; set; } = ObjectTypes.ObjectType.Unknown;

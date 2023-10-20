@@ -1,27 +1,34 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Modular.Core.Entities.Config;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+using Modular.Core.Config;
+using Modular.Core.Entity;
 using Modular.Core.Identity;
 
 namespace Modular.Core
 {
-    public class ModularCoreDbContext : DbContext
+    public class ModularDBContext : DbContext
     {
 
         #region "  Constructors  "
 
-        public ModularCoreDbContext(DbContextOptions<ModularCoreDbContext> options) : base(options)
+        public ModularDBContext(DbContextOptions<ModularDBContext> options) : base(options)
         {
         }
 
         #endregion
 
-        #region "  DbSets  "
-
-        public DbSet<Contact> Contacts { get; set; }
-
+        #region "  DbSets  "        
+        
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public DbSet<Configuration> Configurations { get; set; }
+
+        public DbSet<Contact> Contacts { get; set; }
+
+        public DbSet<Organisation> Organisations { get; set; }
+
+
 
         #endregion
 
@@ -29,16 +36,7 @@ namespace Modular.Core
         {
             base.OnModelCreating(modelBuilder);
 
-
-            modelBuilder.Entity<Contact>()
-                .ToTable("Contact")
-                .HasKey(x => x.ID);
-
-            modelBuilder.Entity<Contact>()
-                .Property(x => x.Forename)
-                .IsRequired()
-                .HasColumnName("Forename")
-                .HasMaxLength(128);
+            ContactFactory.OnModelCreating(modelBuilder);
 
 
             modelBuilder.Entity<ApplicationUser>()
@@ -55,6 +53,9 @@ namespace Modular.Core
                 .Property(x => x.ContactID)
                 .ValueGeneratedOnAdd();
 
+            modelBuilder.Entity<ApplicationUser>()
+                .HasIndex(e => e.ContactID)
+                .IsUnique();
         }
 
     }

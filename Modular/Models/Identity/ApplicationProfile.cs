@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modular.Core.Identity
 {
-    public class ApplicationProfile : BaseEntity
+    public class ApplicationProfile : ModularBaseEntity
     {
 
         #region "  Properties  "

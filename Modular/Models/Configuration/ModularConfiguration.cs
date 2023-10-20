@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modular.Core.Entities.Config
+namespace Modular.Core.Config
 {
-    public class Configuration
+    public class Configuration : ModularBaseEntity
     {
 
         public string Key { get; set; } = string.Empty;

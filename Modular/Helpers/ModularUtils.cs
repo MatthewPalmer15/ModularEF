@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modular.Core.Helpers
 {
-    public static class MiscUtils
+    public static class ModularUtils
     {
 
         public enum StatusType

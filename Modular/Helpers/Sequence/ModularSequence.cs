@@ -4,18 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modular.Core.Organisation.Areas
+namespace Modular.Core.Helpers
 {
-    public class Occupation : BaseEntity
+    public class Sequence : ModularBaseEntity
     {
-
-        #region "  Properties  "
 
         public string Name { get; set; } = string.Empty;
 
         public string Description { get; set; } = string.Empty;
 
-        #endregion
+        public int Count { get; set; }
 
     }
 }

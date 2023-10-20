@@ -1,14 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+	<PropertyGroup>
+		<AssemblyTitle>Modular.Core</AssemblyTitle>
+		<AssemblyDescription>Core library for Modular</AssemblyDescription>
+		<Company>Matthew Palmer</Company>
+		<Authors>Matthew Palmer</Authors>
+		<Product>Modular.Core</Product>
+		<Copyright>2023 © Matthew Palmer</Copyright>
+		<Version>1.0.0.0</Version>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<NoWarn>IDE0090,IDE0063,IDE0066</NoWarn>
+	</PropertyGroup>
+	
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.12" />
