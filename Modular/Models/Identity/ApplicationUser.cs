@@ -11,13 +11,15 @@ namespace Modular.Core.Identity
     public class ApplicationUser : IdentityUser
     {
 
-        #region "  Constructors  "
-
-        public ApplicationUser()
+        public ApplicationUser(Contact contact, string userName, string password)
         {
+            this.ContactID = contact.ID;
+            this.Contact = contact;
+            this.UserName = userName;
+            this.Email = contact.Email;
+            this.PhoneNumber = contact.Mobile;
+            this.PasswordHash = password;
         }
-
-        #endregion
 
         #region "  Properties  "
 
@@ -27,11 +29,6 @@ namespace Modular.Core.Identity
 
 
         #endregion
-
-
-        /// services.AddIdentity<ApplicationUser, ApplicationRole>()
-        /// .AddEntityFrameworkStores<ApplicationDbContext>()
-        /// .AddDefaultTokenProviders();
 
     }
 }
