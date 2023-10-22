@@ -1,6 +1,6 @@
 ﻿
 
-namespace Modular.Core.Helpers
+namespace Modular.Core.Helpers.Exporter
 {
     public static class DataExporter
     {

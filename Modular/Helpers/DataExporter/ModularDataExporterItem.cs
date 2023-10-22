@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modular.Core.Helpers
+namespace Modular.Core.Helpers.Exporter
 {
     public class DataExporterItem
     {

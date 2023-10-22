@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Modular.Core.Helpers.Types;
 
 namespace Modular.Core.Audit
 {
     public class AuditLog : ModularBaseEntity
     {
 
-        public ObjectTypes.ObjectType ObjectType { get; set; } = ObjectTypes.ObjectType.Unknown;
+        public ObjectType ObjectType { get; set; } = ObjectType.Unknown;
 
         public Guid ObjectID { get; set; } = Guid.Empty;
 

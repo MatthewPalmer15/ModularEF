@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Modular.Core.Helpers;
+﻿using Modular.Core.Helpers.Types;
 
 namespace Modular.Core.Entity
 {
@@ -20,7 +15,7 @@ namespace Modular.Core.Entity
 
         public Guid OwnerID { get; set; } = Guid.Empty;
 
-        public virtual Contact Owner { get; set; }
+        public virtual Contact Owner { get; set; } = null!;
 
         public string AddressLine1 { get; set; } = string.Empty;
 
@@ -42,7 +37,7 @@ namespace Modular.Core.Entity
 
         public string Website { get; set; } = string.Empty;
 
-        public ModularUtils.StatusType Status { get; set; } = ModularUtils.StatusType.Active;
+        public StatusType Status { get; set; } = StatusType.Active;
 
         #endregion
 
