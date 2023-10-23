@@ -11,8 +11,11 @@ namespace Modular.Core.Identity
 {
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser()
+        {
+        }
 
-        public ApplicationUser(Contact contact, string userName, string password)
+        public ApplicationUser(Contact contact, string userName)
         {
             this.Id = contact.ID.ToString();
             this.ContactID = contact.ID;
@@ -20,7 +23,20 @@ namespace Modular.Core.Identity
             this.UserName = userName;
             this.Email = contact.Email;
             this.PhoneNumber = contact.Mobile;
-            this.PasswordHash = password;
+            this.IsStaff = false;
+            this.IsAdmin = false;
+        }
+
+        public ApplicationUser(Contact contact, string userName, bool isStaff, bool isAdmin)
+        {
+            this.Id = contact.ID.ToString();
+            this.ContactID = contact.ID;
+            this.Contact = contact;
+            this.UserName = userName;
+            this.Email = contact.Email;
+            this.PhoneNumber = contact.Mobile;
+            this.IsStaff = isStaff;
+            this.IsAdmin = isAdmin;
         }
 
         #region "  Properties  "
@@ -33,9 +49,6 @@ namespace Modular.Core.Identity
         public bool IsStaff { get; set; }
 
         public bool IsAdmin { get; set; }
-
-        // public virtual ICollection<Organisation> Organisations { get; set; }
-
 
         #endregion
 
