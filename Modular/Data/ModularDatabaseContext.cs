@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
-using Modular.Core.Config;
-using Modular.Core.Entity;
+using Modular.Core.Models.Config;
+using Modular.Core.Models.Entity;
 using Modular.Core.Identity;
 
 namespace Modular.Core

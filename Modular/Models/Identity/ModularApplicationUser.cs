@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using Modular.Core.Entity;
+using Modular.Core.Models.Entity;
 using System.Text.Json.Serialization;
 
 namespace Modular.Core.Identity

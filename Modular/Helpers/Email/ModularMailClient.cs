@@ -1,5 +1,4 @@
-﻿using Modular.Core.Audit;
-using System.Net;
+﻿using System.Net;
 using System.Net.Mail;
 
 namespace Modular.Core.Helpers.Email

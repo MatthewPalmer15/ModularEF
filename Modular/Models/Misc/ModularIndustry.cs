@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modular.Core.Misc
+namespace Modular.Core.Models.Misc
 {
     public class Industry : ModularBaseEntity
     {

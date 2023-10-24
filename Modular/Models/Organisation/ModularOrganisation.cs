@@ -1,6 +1,6 @@
 ﻿using Modular.Core.Helpers.Types;
 
-namespace Modular.Core.Entity
+namespace Modular.Core.Models.Entity
 {
     public class Organisation : ModularBaseEntity
     {

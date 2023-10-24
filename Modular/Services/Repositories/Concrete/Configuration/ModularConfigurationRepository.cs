@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Modular.Core.Entity;
 using Modular.Core.Interfaces;
+using Modular.Core.Models.Config;
+using Modular.Core.Services.Abstract.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;

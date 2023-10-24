@@ -1,6 +1,6 @@
 ﻿using Modular.Core.Helpers.Types;
 
-namespace Modular.Core.Audit
+namespace Modular.Core.Models.Audit
 {
     public class AuditLog : ModularBaseEntity
     {

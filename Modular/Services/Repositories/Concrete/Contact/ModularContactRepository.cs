@@ -1,5 +1,7 @@
 ﻿using Modular.Core.Interfaces;
+using Modular.Core.Models.Entity;
 using Modular.Core.Services.Abstract;
+using Modular.Core.Services.Abstract.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

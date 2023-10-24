@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Modular.Core.Config
+namespace Modular.Core.Services.Abstract.Config
 {
     public interface IConfigurationRepository
     {

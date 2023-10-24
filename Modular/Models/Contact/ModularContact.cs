@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modular.Core.Entity
+namespace Modular.Core.Models.Entity
 {
     public class Contact : ModularBaseEntity
     {
