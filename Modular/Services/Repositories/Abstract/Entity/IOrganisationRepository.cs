@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Modular.Core.Services.Abstract.Entity
 {
-    public interface IOrganisationRepository : IModularRepository<Organisation>, IDisposable
+    public interface IOrganisationRepository : IRepository<Organisation>, IDisposable
     {
     }
 }

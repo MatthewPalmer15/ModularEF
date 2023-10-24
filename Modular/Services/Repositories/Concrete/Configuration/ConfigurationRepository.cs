@@ -13,7 +13,7 @@ using System.Xml.Linq;
 
 namespace Modular.Core.Config
 {
-    public class ConfigurationRepository : IConfigurationRepository, IModularRepository<Configuration>, IDisposable
+    public class ConfigurationRepository : IConfigurationRepository, IRepository<Configuration>, IDisposable
     {
 
         #region "  Constructors  "

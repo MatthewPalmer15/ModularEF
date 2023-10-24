@@ -5,15 +5,20 @@ using Modular.Core.Identity;
 using Modular.Core.Models.Audit;
 using Modular.Core.Models.Location;
 using Modular.Core.Models.Misc;
+using Modular.Core.Models.Sequence;
 
 namespace Modular.Core
 {
-    public class ModularDBContext : DbContext
+    public class ModularDbContext : DbContext
     {
 
         #region "  Constructors  "
 
-        public ModularDBContext(DbContextOptions<ModularDBContext> options) : base(options)
+        public ModularDbContext()
+        {
+        }
+
+        public ModularDbContext(DbContextOptions<ModularDbContext> options) : base(options)
         {
         }
 
@@ -41,6 +46,8 @@ namespace Modular.Core
 
         public virtual DbSet<Occupation> Occupations { get; set; }
 
+        public virtual DbSet<Sequence> Sequences { get; set; }
+
 
         #endregion
 
@@ -51,25 +58,8 @@ namespace Modular.Core
             ConfigurationFactory.OnModelCreating(modelBuilder);
             ContactFactory.OnModelCreating(modelBuilder);
             OrganisationFactory.OnModelCreating(modelBuilder);
+            IdentityFactory.OnModelCreating(modelBuilder);
 
-
-            modelBuilder.Entity<ApplicationUser>()
-                .ToTable("ApplicationUser")
-                .HasKey(x => x.Id);
-
-            modelBuilder.Entity<ApplicationUser>()
-                .HasOne(x => x.Contact)
-                .WithOne()
-                .HasForeignKey<ApplicationUser>(x => x.ContactID);
-
-
-            modelBuilder.Entity<ApplicationUser>()
-                .Property(x => x.ContactID)
-                .ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<ApplicationUser>()
-                .HasIndex(e => e.ContactID)
-                .IsUnique();
         }
 
     }

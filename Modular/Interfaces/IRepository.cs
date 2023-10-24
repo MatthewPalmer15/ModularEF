@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modular.Core.Interfaces
 {
-    public interface IModularRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
 
         IQueryable<T> All();

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modular.Core.Helpers
+namespace Modular.Core.Models.Sequence
 {
     public class Sequence : BaseEntity
     {
