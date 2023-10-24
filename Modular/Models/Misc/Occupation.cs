@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modular.Core.Models.Misc
 {
-    public class Occupation : ModularBaseEntity
+    public class Occupation : BaseEntity
     {
 
         #region "  Properties  "

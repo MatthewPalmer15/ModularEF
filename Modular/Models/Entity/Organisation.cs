@@ -2,7 +2,7 @@
 
 namespace Modular.Core.Models.Entity
 {
-    public class Organisation : ModularBaseEntity
+    public class Organisation : BaseEntity
     {
 
         #region "  Properties  "

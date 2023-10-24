@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modular.Core.Models.Entity
 {
-    public class Contact : ModularBaseEntity
+    public class Contact : BaseEntity
     {
 
         #region "  Enums  "

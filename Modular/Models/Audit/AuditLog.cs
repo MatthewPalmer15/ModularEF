@@ -2,7 +2,7 @@
 
 namespace Modular.Core.Models.Audit
 {
-    public class AuditLog : ModularBaseEntity
+    public class AuditLog : BaseEntity
     {
 
         public ObjectType ObjectType { get; set; } = ObjectType.Unknown;

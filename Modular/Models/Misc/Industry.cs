@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modular.Core.Models.Misc
 {
-    public class Department : ModularBaseEntity
+    public class Industry : BaseEntity
     {
 
         #region "  Properties  "

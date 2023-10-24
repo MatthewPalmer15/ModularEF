@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Modular.Core.Entity
 {
-    public class ContactRepository : IContactRepository, IModularRepository<Contact>, IDisposable
+    public class ContactRepository : IContactRepository
     {
 
         #region "  Constructors  "
@@ -71,8 +71,16 @@ namespace Modular.Core.Entity
 
         public void Dispose()
         {
-            _context.Dispose();
+            Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _context.Dispose();
+            }
         }
 
         #endregion

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modular.Core.Helpers
 {
-    public class Sequence : ModularBaseEntity
+    public class Sequence : BaseEntity
     {
 
         public string Name { get; set; } = string.Empty;

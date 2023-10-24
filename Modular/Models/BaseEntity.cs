@@ -4,10 +4,10 @@ using System.Xml;
 
 namespace Modular.Core
 {
-    public class ModularBaseEntity
+    public class BaseEntity
     {
 
-        public ModularBaseEntity()
+        public BaseEntity()
         {
             SetDefaultValues();
         }
@@ -41,8 +41,6 @@ namespace Modular.Core
         }
 
         #endregion
-
-
 
         public void Update()
         {
