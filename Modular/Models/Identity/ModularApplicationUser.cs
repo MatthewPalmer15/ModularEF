@@ -41,7 +41,6 @@ namespace Modular.Core.Identity
 
         #region "  Properties  "
 
-        [JsonIgnore]
         public Guid ContactID { get; set; }
 
         public virtual Contact Contact { get; set; }

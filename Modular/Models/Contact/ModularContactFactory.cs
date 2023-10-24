@@ -37,8 +37,6 @@ namespace Modular.Core.Entity
                       .IsRequired()
                       .HasMaxLength(128);
 
-
-
             });
 
         }

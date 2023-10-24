@@ -1,4 +1,5 @@
 ﻿using Modular.Core.Interfaces;
+using Modular.Core.Services.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Modular.Core.Entity
 {
-    public class ContactRepository : IModularRepository<Contact>, IDisposable
+    public class ContactRepository : IContactRepository, IModularRepository<Contact>, IDisposable
     {
 
         #region "  Constructors  "
@@ -25,7 +26,13 @@ namespace Modular.Core.Entity
 
         #endregion
 
-        #region "  Methods  "
+        #region "  Properties  "
+
+        public bool isModified => _context.ChangeTracker.HasChanges();
+
+        #endregion
+
+        #region "  CRUD Methods  "
 
         public IQueryable<Contact> All()
         {
@@ -50,28 +57,20 @@ namespace Modular.Core.Entity
             _context.Contacts.Remove(contact);
         }
 
-        public void SaveChanges()
+        public bool Save()
         {
-            _context.SaveChanges();
+            return _context.SaveChanges() >= 0;
         }
 
         public async Task<bool> SaveAsync()
         {
-            return await _context.SaveChangesAsync() >= 0;
+            return (await _context.SaveChangesAsync()) >= 0;
         }
 
         public void Dispose()
         {
-            Dispose(true);
+            _context.Dispose();
             GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _context.Dispose();
-            }
         }
 
         #endregion

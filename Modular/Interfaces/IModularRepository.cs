@@ -17,8 +17,6 @@ namespace Modular.Core.Interfaces
 
         void Delete(T entity);
 
-        void SaveChanges();
-
         Task<bool> SaveAsync();
 
 
