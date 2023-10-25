@@ -10,6 +10,6 @@ namespace Modular.Core.Services.Repositories.Abstract.Sequence
 {
     public interface ISequenceRepository : IRepository<Models.Sequence.Sequence>, IDisposable
     {
-        public int GetValue();
+        public int GetNewValue(string sequenceName);
     }
 }

@@ -1,19 +1,17 @@
 ﻿using Modular.Core.Interfaces;
-using Modular.Core.Services.Abstract.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Modular.Core.Models.Audit;
+using Modular.Core.Models.Location;
+using Modular.Core.Services.Repositories.Abstract.Audit;
+using Modular.Core.Services.Repositories.Abstract.Location;
 
-namespace Modular.Core.Models.Entity
+namespace Modular.Core.Services.Repositories.Concrete
 {
-    public class OrganisationRepository : IOrganisationRepository
+    public class ContinentRepository : IContinentRepository
     {
 
         #region "  Constructors  "
 
-        public OrganisationRepository(ModularDbContext context)
+        public ContinentRepository(ModularDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -28,26 +26,26 @@ namespace Modular.Core.Models.Entity
 
         #region "  Methods  "
 
-        public IQueryable<Organisation> All()
+        public IQueryable<Continent> All()
         {
-            var query = from organisation in _context.Organisations select organisation;
+            var query = from continent in _context.Continents select continent;
             return query;
         }
 
-        public void Add(Organisation organisation)
+        public void Add(Continent continent)
         {
-            _context.Organisations.Add(organisation);
+            _context.Continents.Add(continent);
         }
 
-        public void Update(Organisation organisation)
+        public void Update(Continent continent)
         {
-            organisation.Update();
-            _context.Organisations.Update(organisation);
+            continent.Update();
+            _context.Continents.Update(continent);
         }
 
-        public void Delete(Organisation organisation)
+        public void Delete(Continent continent)
         {
-            _context.Organisations.Remove(organisation);
+            _context.Continents.Remove(continent);
         }
 
         public void SaveChanges()
@@ -74,8 +72,8 @@ namespace Modular.Core.Models.Entity
             }
         }
 
+
         #endregion
 
     }
 }
-

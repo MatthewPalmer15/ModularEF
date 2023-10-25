@@ -1,19 +1,16 @@
 ﻿using Modular.Core.Interfaces;
-using Modular.Core.Services.Abstract.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Modular.Core.Models.Audit;
+using Modular.Core.Models.Misc;
+using Modular.Core.Services.Repositories.Abstract.Misc;
 
-namespace Modular.Core.Models.Entity
+namespace Modular.Core.Services.Repositories.Concrete
 {
-    public class OrganisationRepository : IOrganisationRepository
+    public class OccupationRespository : IOccupationRepository
     {
 
         #region "  Constructors  "
 
-        public OrganisationRepository(ModularDbContext context)
+        public DepartmentRespository(ModularDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -28,26 +25,26 @@ namespace Modular.Core.Models.Entity
 
         #region "  Methods  "
 
-        public IQueryable<Organisation> All()
+        public IQueryable<Occupation> All()
         {
-            var query = from organisation in _context.Organisations select organisation;
+            var query = from occupation in _context.Occupations select occupation;
             return query;
         }
 
-        public void Add(Organisation organisation)
+        public void Add(Occupation occupation)
         {
-            _context.Organisations.Add(organisation);
+            _context.Occupations.Add(occupation);
         }
 
-        public void Update(Organisation organisation)
+        public void Update(Occupation occupation)
         {
-            organisation.Update();
-            _context.Organisations.Update(organisation);
+            occupation.Update();
+            _context.Occupations.Update(occupation);
         }
 
-        public void Delete(Organisation organisation)
+        public void Delete(Occupation occupation)
         {
-            _context.Organisations.Remove(organisation);
+            _context.Occupations.Remove(occupation);
         }
 
         public void SaveChanges()
@@ -74,8 +71,9 @@ namespace Modular.Core.Models.Entity
             }
         }
 
+
         #endregion
+
 
     }
 }
-
