@@ -1,4 +1,5 @@
 ﻿using Modular.Core.Helpers.Types;
+using Modular.Core.Models.Location;
 
 namespace Modular.Core.Models.Entity
 {
@@ -28,6 +29,8 @@ namespace Modular.Core.Models.Entity
         public string AddressCounty { get; set; } = string.Empty;
 
         public Guid AddressCountryID { get; set; } = Guid.Empty;
+
+        public virtual Country AddressCountry { get; set; } = null!;
 
         public string AddressPostcode { get; set; } = string.Empty;
 

@@ -21,7 +21,7 @@ namespace Modular.Core.Models.Config
         {
             modelBuilder.Entity<Configuration>(entity =>
             {
-                entity.ToTable("tbl_Configuration");
+                entity.ToTable("tblConfiguration");
                 //  ID
                 entity.HasKey(e => e.ID)
                       .IsClustered(false);
