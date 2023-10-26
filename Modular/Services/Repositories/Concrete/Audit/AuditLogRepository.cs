@@ -1,19 +1,15 @@
 ﻿using Modular.Core.Interfaces;
-using Modular.Core.Services.Abstract.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Modular.Core.Models.Audit;
+using Modular.Core.Services.Repositories.Abstract.Audit;
 
-namespace Modular.Core.Models.Entity
+namespace Modular.Core.Services.Repositories.Concrete
 {
-    public class OrganisationRepository : IOrganisationRepository
+    public class AuditLogRepository : IAuditLogRepository
     {
 
         #region "  Constructors  "
 
-        public OrganisationRepository(ModularDbContext context)
+        public AuditLogRepository(ModularDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -28,26 +24,26 @@ namespace Modular.Core.Models.Entity
 
         #region "  Methods  "
 
-        public IQueryable<Organisation> All()
+        public IQueryable<AuditLog> All()
         {
-            var query = from organisation in _context.Organisations select organisation;
+            var query = from auditLog in _context.AuditLogs select auditLog;
             return query;
         }
 
-        public void Add(Organisation organisation)
+        public void Add(AuditLog auditLog)
         {
-            _context.Organisations.Add(organisation);
+            _context.AuditLogs.Add(auditLog);
         }
 
-        public void Update(Organisation organisation)
+        public void Update(AuditLog auditLog)
         {
-            organisation.Update();
-            _context.Organisations.Update(organisation);
+            auditLog.Update();
+            _context.AuditLogs.Update(auditLog);
         }
 
-        public void Delete(Organisation organisation)
+        public void Delete(AuditLog auditLog)
         {
-            _context.Organisations.Remove(organisation);
+            _context.AuditLogs.Remove(auditLog);
         }
 
         public void SaveChanges()
@@ -74,8 +70,9 @@ namespace Modular.Core.Models.Entity
             }
         }
 
+
         #endregion
+
 
     }
 }
-

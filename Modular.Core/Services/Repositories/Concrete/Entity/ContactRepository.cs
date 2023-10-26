@@ -8,14 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modular.Core.Entity
+namespace Modular.Core.Services.Repositories.Concrete
 {
     public class ContactRepository : IContactRepository
     {
 
         #region "  Constructors  "
 
-        public ContactRepository(ModularDBContext context)
+        public ContactRepository(ModularDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -24,7 +24,7 @@ namespace Modular.Core.Entity
 
         #region "  Variables  "
 
-        private readonly ModularDBContext _context;
+        private readonly ModularDbContext _context;
 
         #endregion
 

@@ -11,14 +11,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Modular.Core.Config
+namespace Modular.Core.Services.Repositories.Concrete
 {
-    public class ConfigurationRepository : IConfigurationRepository, IRepository<Configuration>, IDisposable
+    public class ConfigurationRepository : IConfigurationRepository
     {
 
         #region "  Constructors  "
 
-        public ConfigurationRepository(ModularDBContext context)
+        public ConfigurationRepository(ModularDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -27,7 +27,7 @@ namespace Modular.Core.Config
 
         #region "  Variables  "
 
-        private readonly ModularDBContext _context;
+        private readonly ModularDbContext _context;
 
         #endregion
 
