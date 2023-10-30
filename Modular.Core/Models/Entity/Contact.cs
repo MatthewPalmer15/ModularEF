@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿#nullable disable
+
+using Modular.Core.Models.Location;
+using Modular.Core.Models.Misc;
 
 namespace Modular.Core.Models.Entity
 {
@@ -35,58 +34,65 @@ namespace Modular.Core.Models.Entity
 
         #region "  Properties  "
 
-        public TitleType Title { get; set; } = TitleType.Unknown;
+        public TitleType Title { get; set; }
 
-        public string Forename { get; set; } = string.Empty;
+        public string Forename { get; set; }
 
-        public string Surname { get; set; } = string.Empty;
+        public string Surname { get; set; }
 
-        public DateTime DateOfBirth { get; set; } = DateTime.MinValue;
+        public DateTime DateOfBirth { get; set; }
 
-        public GenderType Gender { get; set; } = GenderType.Unknown;
+        public GenderType Gender { get; set; }
 
-        public string AddressLine1 { get; set; } = string.Empty;
+        public string AddressLine1 { get; set; }
 
-        public string AddressLine2 { get; set; } = string.Empty;
+        public string AddressLine2 { get; set; }
 
-        public string AddressLine3 { get; set; } = string.Empty;
+        public string AddressLine3 { get; set; }
 
-        public string AddressCity { get; set; } = string.Empty;
+        public string AddressCity { get; set; }
 
-        public string AddressCounty { get; set; } = string.Empty;
+        public string AddressCounty { get; set; }
 
-        public Guid AddressCountryID { get; set; } = Guid.Empty;
+        public Guid AddressCountryId { get; set; }
 
-        public string AddressPostcode { get; set; } = string.Empty;
+        public virtual Country AddressCountry { get; set; }
 
+        public string AddressPostcode { get; set; }
 
-        public string Email { get; set; } = string.Empty;
+        public string Email { get; set; }
 
-        public string Phone { get; set; } = string.Empty;
+        public string Phone { get; set; }
 
-        public string Mobile { get; set; } = string.Empty;
+        public string Mobile { get; set; }
 
-        public string Fax { get; set; } = string.Empty;
+        public string Fax { get; set; }
 
-        public string FacebookLink { get; set; } = string.Empty;
+        public string FacebookLink { get; set; }
 
-        public string InstagramLink { get; set; } = string.Empty;
+        public string InstagramLink { get; set; }
 
-        public string TwitterLink { get; set; } = string.Empty;
+        public string TwitterLink { get; set; }
 
-        public string LinkedInLink { get; set; } = string.Empty;
+        public string LinkedInLink { get; set; }
 
-        public string WebsiteLink { get; set; } = string.Empty;
+        public string WebsiteLink { get; set; }
 
-        public Guid OccupationID { get; set; } = Guid.Empty;
+        public Guid OccupationId { get; set; }
 
-        public Guid DepartmentID { get; set; } = Guid.Empty;
+        public virtual Occupation Occupation { get; set; }
 
-        public Guid OrganisationID { get; set; } = Guid.Empty;
+        public Guid DepartmentId { get; set; }
 
-        public bool IsVerified { get; set; } = false;
+        public virtual Department Department { get; set; }
 
-        public bool IsBanned { get; set; } = false;
+        public Guid OrganisationId { get; set; }
+
+        public virtual Organisation Organisation { get; set; }
+
+        public bool IsVerified { get; set; }
+
+        public bool IsBanned { get; set; }
 
         #endregion
 

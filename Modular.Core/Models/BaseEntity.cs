@@ -1,6 +1,5 @@
 ﻿
 using System.Reflection;
-using System.Xml;
 
 namespace Modular.Core
 {
@@ -14,7 +13,7 @@ namespace Modular.Core
 
         #region "  Properties  "
 
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

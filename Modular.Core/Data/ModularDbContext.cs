@@ -1,11 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Modular.Core.Identity;
+using Modular.Core.Services.Factories.Audit;
+using Modular.Core.Services.Factories.Config;
+using Modular.Core.Services.Factories.Entity;
+using Modular.Core.Services.Factories.Identity;
+using Modular.Core.Services.Factories.Location;
+using Modular.Core.Services.Factories.Misc;
+using Modular.Core.Models.Audit;
 using Modular.Core.Models.Config;
 using Modular.Core.Models.Entity;
-using Modular.Core.Identity;
-using Modular.Core.Models.Audit;
 using Modular.Core.Models.Location;
 using Modular.Core.Models.Misc;
-using Modular.Core.Models.Sequence;
 
 namespace Modular.Core
 {
@@ -25,7 +30,7 @@ namespace Modular.Core
         #endregion
 
         #region "  DbSets  "
-        
+
         public virtual DbSet<AuditLog> AuditLogs { get; set; }
 
         public virtual DbSet<Configuration> Configurations { get; set; }
@@ -42,23 +47,35 @@ namespace Modular.Core
 
         public virtual DbSet<Department> Departments { get; set; }
 
-        public virtual DbSet<Industry> Industries { get; set; }
-
         public virtual DbSet<Occupation> Occupations { get; set; }
-
-        public virtual DbSet<Sequence> Sequences { get; set; }
-
 
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
+            //base.OnModelCreating(modelBuilder);
 
+            //  Audit
+            AuditFactory.OnModelCreating(modelBuilder);
+
+            //  Config
             ConfigurationFactory.OnModelCreating(modelBuilder);
+
+            //  Entity
             ContactFactory.OnModelCreating(modelBuilder);
             OrganisationFactory.OnModelCreating(modelBuilder);
+
+            //  Identity
             IdentityFactory.OnModelCreating(modelBuilder);
+
+            //  Location
+            ContinentFactory.OnModelCreating(modelBuilder);
+            CountryFactory.OnModelCreating(modelBuilder);
+
+            //  Misc
+            DepartmentFactory.OnModelCreating(modelBuilder);
+            OccupationFactory.OnModelCreating(modelBuilder);
 
         }
 

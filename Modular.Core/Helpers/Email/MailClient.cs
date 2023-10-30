@@ -1,7 +1,4 @@
-﻿using System.Net;
-using System.Net.Mail;
-
-namespace Modular.Core.Helpers.Email
+﻿namespace Modular.Core.Helpers.Email
 {
     public static class MailClient
     {
@@ -134,5 +131,6 @@ namespace Modular.Core.Helpers.Email
 
         #endregion
 
+        // rssd wuhv wdjy oixv 
     }
 }

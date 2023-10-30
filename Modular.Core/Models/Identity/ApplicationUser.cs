@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Modular.Core.Models.Entity;
-using System.Text.Json.Serialization;
 
 namespace Modular.Core.Identity
 {
@@ -17,9 +11,9 @@ namespace Modular.Core.Identity
 
         public ApplicationUser(Contact contact, string userName)
         {
-            this.Id = contact.ID.ToString();
-            this.ContactID = contact.ID;
-            this.Contact = contact;
+            this.Id = contact.Id.ToString();
+            //this.ContactID = contact.ID;
+            //this.Contact = contact;
             this.UserName = userName;
             this.Email = contact.Email;
             this.PhoneNumber = contact.Mobile;
@@ -29,8 +23,8 @@ namespace Modular.Core.Identity
 
         public ApplicationUser(Contact contact, string userName, bool isStaff, bool isAdmin)
         {
-            this.Id = contact.ID.ToString();
-            this.ContactID = contact.ID;
+            this.Id = contact.Id.ToString();
+            this.ContactID = contact.Id;
             this.Contact = contact;
             this.UserName = userName;
             this.Email = contact.Email;
@@ -41,9 +35,9 @@ namespace Modular.Core.Identity
 
         #region "  Properties  "
 
-        public Guid ContactID { get; set; }
-
-        public virtual Contact Contact { get; set; }
+         public Guid ContactID { get; set; }
+         
+         public virtual Contact Contact { get; set; }
 
         public bool IsStaff { get; set; }
 

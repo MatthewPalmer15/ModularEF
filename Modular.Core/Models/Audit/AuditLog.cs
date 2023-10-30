@@ -1,17 +1,16 @@
-﻿using Modular.Core.Helpers.Types;
+﻿
+#nullable disable
 
 namespace Modular.Core.Models.Audit
 {
     public class AuditLog : BaseEntity
     {
 
-        public ObjectType ObjectType { get; set; } = ObjectType.Unknown;
+        public string Message { get; set; }
 
-        public Guid ObjectID { get; set; } = Guid.Empty;
+        public string DeviceInformation { get; set; }
 
-        public string Message { get; set; } = string.Empty;
 
-        public string DeviceInformation { get; set; } = string.Empty;
 
     }
 }
