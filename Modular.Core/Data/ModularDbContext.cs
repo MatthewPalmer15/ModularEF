@@ -11,10 +11,12 @@ using Modular.Core.Models.Config;
 using Modular.Core.Models.Entity;
 using Modular.Core.Models.Location;
 using Modular.Core.Models.Misc;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Modular.Core
 {
-    public class ModularDbContext : DbContext
+    public class ModularDbContext : IdentityDbContext<ApplicationUser>
     {
 
         #region "  Constructors  "
@@ -40,6 +42,8 @@ namespace Modular.Core
         public virtual DbSet<Organisation> Organisations { get; set; }
 
         public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+        public virtual DbSet<ApplicationRole> ApplicationRoles { get; set; }
 
         public virtual DbSet<Continent> Continents { get; set; }
 
@@ -70,12 +74,21 @@ namespace Modular.Core
             IdentityFactory.OnModelCreating(modelBuilder);
 
             //  Location
-            ContinentFactory.OnModelCreating(modelBuilder);
-            CountryFactory.OnModelCreating(modelBuilder);
+            //ContinentFactory.OnModelCreating(modelBuilder);
+            //CountryFactory.OnModelCreating(modelBuilder);
 
             //  Misc
-            DepartmentFactory.OnModelCreating(modelBuilder);
-            OccupationFactory.OnModelCreating(modelBuilder);
+            //DepartmentFactory.OnModelCreating(modelBuilder);
+            //OccupationFactory.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(l => new { l.LoginProvider, l.ProviderKey });
+            modelBuilder.Entity<IdentityUserRole<string>>().HasKey(ur => new { ur.UserId, ur.RoleId });
+            modelBuilder.Entity<IdentityUserToken<string>>().HasKey(ut => new { ut.UserId, ut.LoginProvider, ut.Name });
+
+            modelBuilder.Ignore<Continent>();
+            modelBuilder.Ignore<Country>();
+            modelBuilder.Ignore<Department>();
+            modelBuilder.Ignore<Occupation>();
 
         }
 

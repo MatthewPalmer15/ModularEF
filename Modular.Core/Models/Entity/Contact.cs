@@ -34,7 +34,7 @@ namespace Modular.Core.Models.Entity
 
         #region "  Properties  "
 
-        public TitleType Title { get; set; }
+        public TitleType? Title { get; set; }
 
         public string Forename { get; set; }
 
@@ -42,7 +42,7 @@ namespace Modular.Core.Models.Entity
 
         public DateTime DateOfBirth { get; set; }
 
-        public GenderType Gender { get; set; }
+        public GenderType? Gender { get; set; }
 
         public string AddressLine1 { get; set; }
 
@@ -54,7 +54,7 @@ namespace Modular.Core.Models.Entity
 
         public string AddressCounty { get; set; }
 
-        public Guid AddressCountryId { get; set; }
+        public Guid? AddressCountryId { get; set; }
 
         public virtual Country AddressCountry { get; set; }
 
@@ -78,15 +78,15 @@ namespace Modular.Core.Models.Entity
 
         public string WebsiteLink { get; set; }
 
-        public Guid OccupationId { get; set; }
+        public Guid? OccupationId { get; set; }
 
         public virtual Occupation Occupation { get; set; }
 
-        public Guid DepartmentId { get; set; }
+        public Guid? DepartmentId { get; set; }
 
         public virtual Department Department { get; set; }
 
-        public Guid OrganisationId { get; set; }
+        public Guid? OrganisationId { get; set; }
 
         public virtual Organisation Organisation { get; set; }
 

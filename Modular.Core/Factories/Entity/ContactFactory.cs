@@ -11,6 +11,23 @@ namespace Modular.Core.Services.Factories.Entity
             return new Contact();
         }
 
+        public static Contact Construct(string Forename, string Surname, string Email)
+        {
+            return new Contact()
+            {
+
+                Id = Guid.NewGuid(),
+                CreatedDate = DateTime.Now,
+                CreatedBy = Guid.Empty,
+                ModifiedDate = DateTime.Now,
+                ModifiedBy = Guid.Empty,
+                Forename = Forename,
+                Surname = Surname,
+                Email = Email
+            };
+            
+        }
+
         public static void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Contact>(entity =>
@@ -85,8 +102,8 @@ namespace Modular.Core.Services.Factories.Entity
                 entity.Property(e => e.DateOfBirth)
                       .HasColumnName("DateOfBirth")
                       .HasColumnType("date")
-                      .IsRequired(false)
-                      .HasDefaultValue(DateOnly.MinValue);
+                      .IsRequired(true)
+                      .HasDefaultValue(DateTime.MinValue);
 
                 //  Gender
                 entity.Property(e => e.Gender)
@@ -136,15 +153,15 @@ namespace Modular.Core.Services.Factories.Entity
                       .HasMaxLength(128);
 
                 //  Address Country
-                entity.Property(e => e.AddressCountryId)
-                      .HasColumnName("AddressCountryID")
-                      .HasColumnType("uniqueidentifier")
-                      .HasDefaultValue(Guid.Empty)
-                      .IsRequired(false);
-
-                entity.HasOne(e => e.AddressCountry)
-                      .WithOne()
-                      .HasForeignKey<Contact>(e => e.AddressCountryId);
+                //entity.Property(e => e.AddressCountryId)
+                //      .HasColumnName("AddressCountryID")
+                //      .HasColumnType("uniqueidentifier")
+                //      .HasDefaultValue(Guid.Empty)
+                //      .IsRequired(false);
+                //
+                //entity.HasOne(e => e.AddressCountry)
+                //      .WithOne()
+                //      .HasForeignKey<Contact>(e => e.AddressCountryId);
 
                 //  Address Postcode
                 entity.Property(e => e.AddressPostcode)
@@ -227,37 +244,37 @@ namespace Modular.Core.Services.Factories.Entity
                       .HasMaxLength(2048);
 
                 //  Occupation
-                entity.Property(e => e.OccupationId)
-                      .HasColumnName("OccupationID")
-                      .HasColumnType("uniqueidentifier")
-                      .HasDefaultValue(Guid.Empty)
-                      .IsRequired(false);
-
-                entity.HasOne(e => e.Occupation)
-                      .WithOne()
-                      .HasForeignKey<Contact>(e => e.OccupationId);
+                //entity.Property(e => e.OccupationId)
+                //      .HasColumnName("OccupationID")
+                //      .HasColumnType("uniqueidentifier")
+                //      .HasDefaultValue(Guid.Empty)
+                //      .IsRequired(false);
+                //
+                //entity.HasOne(e => e.Occupation)
+                //      .WithOne()
+                //      .HasForeignKey<Contact>(e => e.OccupationId);
 
                 //  Department
-                entity.Property(e => e.DepartmentId)
-                      .HasColumnName("DepartmentID")
-                      .HasColumnType("uniqueidentifier")
-                      .HasDefaultValue(Guid.Empty)
-                      .IsRequired(false);
-
-                entity.HasOne(e => e.Department)
-                      .WithOne()
-                      .HasForeignKey<Contact>(e => e.DepartmentId);
+                //entity.Property(e => e.DepartmentId)
+                //      .HasColumnName("DepartmentID")
+                //      .HasColumnType("uniqueidentifier")
+                //      .HasDefaultValue(Guid.Empty)
+                //      .IsRequired(false);
+                //
+                //entity.HasOne(e => e.Department)
+                //      .WithOne()
+                //      .HasForeignKey<Contact>(e => e.DepartmentId);
 
                 //  Organisation
-                entity.Property(e => e.OrganisationId)
-                      .HasColumnName("OrganisationID")
-                      .HasColumnType("uniqueidentifier")
-                      .HasDefaultValue(Guid.Empty)
-                      .IsRequired(false);
-
-                entity.HasOne(e => e.Organisation)
-                      .WithOne()
-                      .HasForeignKey<Contact>(e => e.OrganisationId);
+                //entity.Property(e => e.OrganisationId)
+                //      .HasColumnName("OrganisationID")
+                //      .HasColumnType("uniqueidentifier")
+                //      .HasDefaultValue(Guid.Empty)
+                //      .IsRequired(false);
+                //
+                //entity.HasOne(e => e.Organisation)
+                //      .WithOne()
+                //     .HasForeignKey<Contact>(e => e.OrganisationId);
 
                 //  Is Verified
                 entity.Property(e => e.IsVerified)
@@ -272,8 +289,6 @@ namespace Modular.Core.Services.Factories.Entity
                       .HasColumnType("bit")
                       .HasDefaultValue(false)
                       .IsRequired(true);
-
-
 
             });
 

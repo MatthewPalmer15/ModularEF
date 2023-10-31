@@ -16,9 +16,9 @@ namespace Modular.Core.Models.Entity
 
         public string RegistrationNumber { get; set; }
 
-        public Guid ContactId { get; set; }
+        public Guid OwnerId { get; set; }
 
-        public virtual Contact Contact { get; set; }
+        public virtual Contact Owner { get; set; }
 
         public string AddressLine1 { get; set; } 
 
@@ -30,7 +30,7 @@ namespace Modular.Core.Models.Entity
 
         public string AddressCounty { get; set; }
 
-        public Guid AddressCountryID { get; set; }
+        public Guid? AddressCountryId { get; set; }
 
         public virtual Country AddressCountry { get; set; }
 
@@ -38,7 +38,7 @@ namespace Modular.Core.Models.Entity
 
         public string Email { get; set; }
 
-        public string Telephone { get; set; }
+        public string Phone { get; set; }
 
         public string Website { get; set; }
 

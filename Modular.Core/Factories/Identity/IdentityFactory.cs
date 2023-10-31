@@ -1,14 +1,28 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Modular.Core.Identity;
+using Modular.Core.Models.Entity;
 
 namespace Modular.Core.Services.Factories.Identity
 {
     public static class IdentityFactory
     {
 
-        public static ApplicationUser Construct()
+        public static ApplicationUser Construct(Contact contact, string username, bool isStaff = false, bool isAdmin = false)
         {
-            return new ApplicationUser();
+            return new ApplicationUser()
+            {
+                CreatedDate = DateTime.Now,
+                CreatedBy = Guid.Empty,
+                ModifiedDate = DateTime.Now,
+                ModifiedBy = Guid.Empty,
+                ContactId = contact.Id,
+                Contact = contact,
+                UserName = username,
+                Email = contact.Email,
+                PhoneNumber = contact.Phone,
+                IsStaff = isStaff,
+                IsAdmin = isAdmin
+            };
         }
 
         public static void OnModelCreating(ModelBuilder modelBuilder)
@@ -18,89 +32,170 @@ namespace Modular.Core.Services.Factories.Identity
             {
                 entity.ToTable("tblApplicationUser");
 
-                entity.HasKey(e => e.Id)
+                //  ID
+                entity.HasKey(e => e.ContactId)
                       .IsClustered(false);
 
+                entity.HasIndex(e => e.ContactId)
+                      .IsUnique(true);
 
                 entity.Property(e => e.Id)
                       .HasColumnName("ID")
-                      .ValueGeneratedNever()
-                      .IsRequired();
+                      .HasColumnType("nvarchar(max)")
+                      .ValueGeneratedOnAdd()
+                      .IsRequired(true);
 
+                //  Created Date
+                entity.Property(e => e.CreatedDate)
+                      .HasColumnName("CreatedDate")
+                      .HasColumnType("datetime")
+                      .HasDefaultValue(DateTime.MinValue)
+                      .IsRequired(true);
 
-                entity.Property(x => x.UserName)
+                //  Created By
+                entity.Property(e => e.CreatedBy)
+                      .HasColumnName("CreatedBy")
+                      .HasColumnType("uniqueidentifier")
+                      .HasDefaultValue(Guid.Empty)
+                      .IsRequired(true);
+
+                //  Modified Date
+                entity.Property(e => e.ModifiedDate)
+                      .HasColumnName("ModifiedDate")
+                      .HasColumnType("datetime")
+                      .HasDefaultValue(DateTime.MinValue)
+                      .IsRequired(true);
+
+                //  Modified By
+                entity.Property(e => e.ModifiedBy)
+                      .HasColumnName("ModifiedBy")
+                      .HasColumnType("uniqueidentifier")
+                      .HasDefaultValue(Guid.Empty)
+                      .IsRequired(true);
+
+                //  Username
+                entity.Property(e => e.UserName)
                       .HasColumnName("Username")
-                      .IsRequired()
+                      .HasColumnType("nvarchar(64)")
+                      .IsRequired(true)
+                      .HasDefaultValue(string.Empty)
                       .HasMaxLength(64);
 
-                entity.Property(x => x.NormalizedUserName)
+                entity.Property(e => e.NormalizedUserName)
                       .HasColumnName("NormalizedUsername")
+                      .HasColumnType("nvarchar(64)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
                       .HasMaxLength(64);
 
-                entity.Property(x => x.Email)
+                //  Email
+                entity.Property(e => e.Email)
                       .HasColumnName("Email")
-                      .IsRequired()
+                      .HasColumnType("nvarchar(256)")
+                      .IsRequired(true)
+                      .HasDefaultValue(string.Empty)
                       .HasMaxLength(256);
 
-                entity.Property(x => x.NormalizedEmail)
+                entity.Property(e => e.NormalizedEmail)
                       .HasColumnName("NormalizedEmail")
+                      .HasColumnType("nvarchar(256)")
+                      .IsRequired(true)
+                      .HasDefaultValue(string.Empty)
                       .HasMaxLength(256);
 
-                entity.Property(x => x.PhoneNumber)
-                      .HasColumnName("PhoneNumber")
-                      .HasMaxLength(32);
+                //  Phone Number
+                entity.Property(e => e.PhoneNumber)
+                      .HasColumnName("Phone")
+                      .HasColumnType("nvarchar(64)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
+                      .HasMaxLength(64);
 
-                entity.Property(x => x.PasswordHash)
+                //  Password Hash
+                entity.Property(e => e.PasswordHash)
                       .HasColumnName("PasswordHash")
-                      .IsRequired();
+                      .HasColumnType("nvarchar(max)")
+                      .IsRequired(true);
 
-                entity.Property(x => x.EmailConfirmed)
-                      .HasColumnName("EmailConfirmed");
+                //  Email Confirmed
+                entity.Property(e => e.EmailConfirmed)
+                      .HasColumnName("EmailConfirmed")
+                      .HasColumnType("bit")
+                      .HasDefaultValue(false)
+                      .IsRequired(true);
 
-                entity.Property(x => x.PhoneNumberConfirmed)
-                      .HasColumnName("PhoneNumberConfirmed");
+                //  Phone Number Confirmed
+                entity.Property(e => e.PhoneNumberConfirmed)
+                      .HasColumnName("PhoneNumberConfirmed")
+                      .HasColumnType("bit")
+                      .HasDefaultValue(false)
+                      .IsRequired(true);
 
-                entity.Property(x => x.TwoFactorEnabled)
-                      .HasColumnName("TwoFactorEnabled");
+                //  Two Factor Enabled
+                entity.Property(e => e.TwoFactorEnabled)
+                      .HasColumnName("TwoFactorEnabled")
+                      .HasColumnType("bit")
+                      .HasDefaultValue(false)
+                      .IsRequired(true);
 
-                entity.Property(x => x.LockoutEnabled)
-                      .HasColumnName("LockoutEnabled");
+                //  Lockout Enabled
+                entity.Property(e => e.LockoutEnabled)
+                      .HasColumnName("LockoutEnabled")
+                      .HasColumnType("bit")
+                      .HasDefaultValue(false)
+                      .IsRequired(true);
 
-                entity.Property(x => x.LockoutEnd)
-                      .HasColumnName("LockoutEnd");
+                //  Lockout End
+                entity.Property(e => e.LockoutEnd)
+                      .HasColumnName("LockoutEnd")
+                      .IsRequired(false);
 
-                entity.Property(x => x.AccessFailedCount)
-                      .HasColumnName("AccessFailedCount");
+                //  Access Failed Count
+                entity.Property(e => e.AccessFailedCount)
+                      .HasColumnName("AccessFailedCount")
+                      .HasColumnType("int")
+                      .HasDefaultValue(0)
+                      .IsRequired(true);
 
-                entity.Property(x => x.SecurityStamp)
-                      .HasColumnName("SecurityStamp");
+                //  Security Stamp
+                entity.Property(e => e.SecurityStamp)
+                      .HasColumnName("SecurityStamp")
+                      .HasColumnType("nvarchar(max)")
+                      .IsRequired(false);
 
-                entity.Property(x => x.ConcurrencyStamp)
-                      .HasColumnName("ConcurrencyStamp");
+                //  Concurrency Stamp
+                entity.Property(e => e.ConcurrencyStamp)
+                      .HasColumnName("ConcurrencyStamp")
+                      .HasColumnType("nvarchar(max)")
+                      .IsRequired(false);
 
-                entity.Property(x => x.IsStaff)
-                      .HasColumnName("IsStaff");
+                //  Is Staff
+                entity.Property(e => e.IsStaff)
+                      .HasColumnName("IsStaff")
+                      .HasColumnType("bit")
+                      .HasDefaultValue(false)
+                      .IsRequired(true);
 
-                entity.Property(x => x.IsAdmin)
-                      .HasColumnName("IsAdmin");
+                //  Is Admin
+                entity.Property(e => e.IsAdmin)
+                      .HasColumnName("IsAdmin")
+                      .HasColumnType("bit")
+                      .HasDefaultValue(false)
+                      .IsRequired(true);
 
-                entity.Property(x => x.ContactID)
-                    .HasColumnName("ContactID")
-                    .ValueGeneratedOnAdd();
-                
-                entity.HasOne(x => x.Contact)
+                //  Contact
+                entity.Property(e => e.ContactId)
+                      .HasColumnName("ContactID")
+                      .HasColumnType("uniqueidentifier")
+                      .HasDefaultValue(Guid.Empty)
+                      .IsRequired(true);
+
+                entity.HasOne(e => e.Contact)
                       .WithOne()
-                      .HasForeignKey<ApplicationUser>(x => x.ContactID);
-                
-                entity.HasIndex(e => e.ContactID)
-                      .IsUnique();
-                
-                entity.Property(x => x.IsStaff)
-                      .HasColumnName("IsStaff");
-                
-                entity.Property(x => x.IsAdmin)
-                      .HasColumnName("IsAdmin");
+                      .HasForeignKey<ApplicationUser>(e => e.ContactId);
 
+                entity.HasIndex(e => e.ContactId)
+                      .IsUnique(true);
 
             });
 

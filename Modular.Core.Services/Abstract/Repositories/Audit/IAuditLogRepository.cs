@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Modular.Core.Services.Repositories.Abstract.Audit
 {
-    public interface IAuditLogRepository : IRepository<ErrorLog>, IDisposable
+    public interface IAuditLogRepository : IRepository<AuditLog>, IDisposable
     {
     }
 }

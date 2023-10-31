@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Modular.Core.Helpers.Types;
 using Modular.Core.Identity;
 using Modular.Core.Models.Entity;
 
@@ -18,109 +19,175 @@ namespace Modular.Core.Services.Factories.Entity
             {
                 entity.ToTable("tblOrganisation");
 
+                //  ID
                 entity.HasKey(e => e.Id)
                       .IsClustered(false);
 
+                entity.HasIndex(e => e.Id)
+                      .IsUnique(true);
+
                 entity.Property(e => e.Id)
                       .HasColumnName("ID")
-                      .ValueGeneratedNever()
-                      .IsRequired();
+                      .HasColumnType("uniqueidentifier")
+                      .ValueGeneratedOnAdd()
+                      .IsRequired(true);
 
-
-                entity.Property(x => x.CreatedDate)
+                //  Created Date
+                entity.Property(e => e.CreatedDate)
                       .HasColumnName("CreatedDate")
-                      //.ValueGeneratedOnAdd()
-                      .IsRequired();
+                      .HasColumnType("datetime")
+                      .HasDefaultValue(DateTime.MinValue)
+                      .IsRequired(true);
 
-                entity.Property(x => x.CreatedBy)
+                //  Created By
+                entity.Property(e => e.CreatedBy)
                       .HasColumnName("CreatedBy")
-                      //.ValueGeneratedOnAdd()
-                      .IsRequired();
+                      .HasColumnType("uniqueidentifier")
+                      .HasDefaultValue(Guid.Empty)
+                      .IsRequired(true);
 
-                entity.Property(x => x.ModifiedDate)
+                //  Modified Date
+                entity.Property(e => e.ModifiedDate)
                       .HasColumnName("ModifiedDate")
-                      //.ValueGeneratedOnUpdate()
-                      .IsRequired();
+                      .HasColumnType("datetime")
+                      .HasDefaultValue(DateTime.MinValue)
+                      .IsRequired(true);
 
-                entity.Property(x => x.ModifiedBy)
+                //  Modified By
+                entity.Property(e => e.ModifiedBy)
                       .HasColumnName("ModifiedBy")
-                      //.ValueGeneratedOnUpdate()
-                      .IsRequired();
+                      .HasColumnType("uniqueidentifier")
+                      .HasDefaultValue(Guid.Empty)
+                      .IsRequired(true);
 
+                //  Name
                 entity.Property(x => x.Name)
                       .HasColumnName("Name")
-                      .IsRequired()
+                      .HasColumnType("nvarchar(128)")
+                      .IsRequired(true)
+                      .HasDefaultValue(string.Empty)
                       .HasMaxLength(128);
 
+                //  Description
                 entity.Property(x => x.Description)
                       .HasColumnName("Description")
-                      .HasMaxLength(256);
+                      .HasColumnType("nvarchar(512)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
+                      .HasMaxLength(512);
 
+                //  Registration Number
                 entity.Property(x => x.RegistrationNumber)
                       .HasColumnName("RegistrationNumber")
-                      .HasMaxLength(128);
+                      .HasColumnType("nvarchar(64)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
+                      .HasMaxLength(64);
 
-                entity.Property(x => x.ContactId)
+                //  Owner
+                entity.Property(e => e.OwnerId)
                       .HasColumnName("OwnerID")
-                      .IsRequired();
+                      .HasColumnType("uniqueidentifier")
+                      .HasDefaultValue(Guid.Empty)
+                      .IsRequired(true);
 
-                entity.HasOne(x => x.Contact)
+                entity.HasOne(e => e.Owner)
                       .WithOne()
-                      .HasForeignKey<Organisation>(x => x.ContactId);
+                      .HasForeignKey<Organisation>(e => e.OwnerId);
 
-                entity.HasIndex(e => e.ContactId)
-                      .IsUnique();
+                entity.HasIndex(e => e.OwnerId)
+                      .IsUnique(false);
 
-                entity.Property(x => x.AddressLine1)
+                //  Address Line 1
+                entity.Property(e => e.AddressLine1)
                       .HasColumnName("AddressLine1")
+                      .HasColumnType("nvarchar(128)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
                       .HasMaxLength(128);
 
-                entity.Property(x => x.AddressLine2)
+                //  Address Line 2
+                entity.Property(e => e.AddressLine2)
                       .HasColumnName("AddressLine2")
+                      .HasColumnType("nvarchar(128)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
                       .HasMaxLength(128);
 
-                entity.Property(x => x.AddressLine3)
+                //  Address Line 3
+                entity.Property(e => e.AddressLine3)
                       .HasColumnName("AddressLine3")
+                      .HasColumnType("nvarchar(128)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
                       .HasMaxLength(128);
 
-                entity.Property(x => x.AddressCity)
+                //  Address City
+                entity.Property(e => e.AddressCity)
                       .HasColumnName("AddressCity")
+                      .HasColumnType("nvarchar(128)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
                       .HasMaxLength(128);
 
-                entity.Property(x => x.AddressCounty)
+                //  Address County
+                entity.Property(e => e.AddressCounty)
                       .HasColumnName("AddressCounty")
+                      .HasColumnType("nvarchar(128)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
                       .HasMaxLength(128);
 
-                entity.Property(x => x.AddressCountryID)
-                      .HasColumnName("AddressCountryID");
+                //  Address Country
+                entity.Property(e => e.AddressCountryId)
+                      .HasColumnName("AddressCountryID")
+                      .HasColumnType("uniqueidentifier")
+                      .HasDefaultValue(Guid.Empty)
+                      .IsRequired(false);
 
-                entity.HasOne(x => x.AddressCountry)
+                entity.HasOne(e => e.AddressCountry)
                       .WithOne()
-                      .HasForeignKey<Organisation>(x => x.AddressCountryID);
+                      .HasForeignKey<Organisation>(e => e.AddressCountryId);
 
-                entity.HasIndex(e => e.AddressCountryID)
-                      .IsUnique();
-
-                entity.Property(x => x.AddressPostcode)
+                //  Address Postcode
+                entity.Property(e => e.AddressPostcode)
                       .HasColumnName("AddressPostcode")
+                      .HasColumnType("nvarchar(128)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
                       .HasMaxLength(128);
 
-                entity.Property(x => x.Email)
+                //  Email
+                entity.Property(e => e.Email)
                       .HasColumnName("Email")
-                      .HasMaxLength(128);
+                      .HasColumnType("nvarchar(256)")
+                      .IsRequired(true)
+                      .HasDefaultValue(string.Empty)
+                      .HasMaxLength(256);
 
-                entity.Property(x => x.Telephone)
-                      .HasColumnName("Telephone")
-                      .HasMaxLength(128);
 
-                entity.Property(x => x.Website)
+                //  Phone
+                entity.Property(e => e.Phone)
+                      .HasColumnName("Phone")
+                      .HasColumnType("nvarchar(64)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
+                      .HasMaxLength(64);
+
+                //  Website Link
+                entity.Property(e => e.Website)
                       .HasColumnName("Website")
-                      .HasMaxLength(128);
+                      .HasColumnType("nvarchar(2048)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
+                      .HasMaxLength(2048);
 
-                entity.Property(x => x.Status)
+                //  Status
+                entity.Property(e => e.Status)
                       .HasColumnName("Status")
                       .HasColumnType("int")
-                      .IsRequired();
+                      .HasDefaultValue(StatusType.Unknown)
+                      .IsRequired(true);
 
             });
 

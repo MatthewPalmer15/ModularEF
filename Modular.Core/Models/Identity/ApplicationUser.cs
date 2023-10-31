@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Modular.Core.Models.Entity;
 
+#nullable disable
+
 namespace Modular.Core.Identity
 {
     public class ApplicationUser : IdentityUser
@@ -9,41 +11,34 @@ namespace Modular.Core.Identity
         {
         }
 
-        public ApplicationUser(Contact contact, string userName)
-        {
-            this.Id = contact.Id.ToString();
-            //this.ContactID = contact.ID;
-            //this.Contact = contact;
-            this.UserName = userName;
-            this.Email = contact.Email;
-            this.PhoneNumber = contact.Mobile;
-            this.IsStaff = false;
-            this.IsAdmin = false;
-        }
-
-        public ApplicationUser(Contact contact, string userName, bool isStaff, bool isAdmin)
-        {
-            this.Id = contact.Id.ToString();
-            this.ContactID = contact.Id;
-            this.Contact = contact;
-            this.UserName = userName;
-            this.Email = contact.Email;
-            this.PhoneNumber = contact.Mobile;
-            this.IsStaff = isStaff;
-            this.IsAdmin = isAdmin;
-        }
-
         #region "  Properties  "
 
-         public Guid ContactID { get; set; }
+        public DateTime CreatedDate { get; set; }
+
+        public Guid CreatedBy { get; set; }
+
+        public DateTime ModifiedDate { get; set; }
+
+        public Guid ModifiedBy { get; set; }
+
+        public Guid ContactId { get; set; }
          
-         public virtual Contact Contact { get; set; }
+        public virtual Contact Contact { get; set; }
 
         public bool IsStaff { get; set; }
 
         public bool IsAdmin { get; set; }
 
+        public Guid ProfileId { get; set; }
+
+        //public virtual ApplicationProfile Profile { get; set; }
+
         #endregion
 
+        public void Update()
+        {
+            ModifiedDate = DateTime.Now;
+            ModifiedBy = Guid.Empty;
+        }
     }
 }

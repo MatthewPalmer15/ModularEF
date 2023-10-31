@@ -23,24 +23,24 @@ namespace Modular.Core.Services.Repositories.Concrete.Audit
 
         #region "  Methods  "
 
-        public IQueryable<ErrorLog> All()
+        public IQueryable<AuditLog> All()
         {
             var query = from auditLog in _context.AuditLogs select auditLog;
             return query;
         }
 
-        public void Add(ErrorLog auditLog)
+        public void Add(AuditLog auditLog)
         {
             _context.AuditLogs.Add(auditLog);
         }
 
-        public void Update(ErrorLog auditLog)
+        public void Update(AuditLog auditLog)
         {
             auditLog.Update();
             _context.AuditLogs.Update(auditLog);
         }
 
-        public void Delete(ErrorLog auditLog)
+        public void Delete(AuditLog auditLog)
         {
             _context.AuditLogs.Remove(auditLog);
         }
