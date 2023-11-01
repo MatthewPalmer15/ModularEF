@@ -23,7 +23,7 @@ namespace Modular.Core.Identity
 
         public Guid ContactId { get; set; }
          
-        public virtual Contact Contact { get; set; }
+        public Contact Contact { get; set; }
 
         public bool IsStaff { get; set; }
 

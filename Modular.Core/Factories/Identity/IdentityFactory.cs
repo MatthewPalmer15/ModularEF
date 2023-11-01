@@ -197,6 +197,8 @@ namespace Modular.Core.Services.Factories.Identity
                 entity.HasIndex(e => e.ContactId)
                       .IsUnique(true);
 
+                entity.Navigation(e => e.Contact).AutoInclude();
+
             });
 
         }
