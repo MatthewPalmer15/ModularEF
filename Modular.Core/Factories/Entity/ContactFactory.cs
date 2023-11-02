@@ -17,10 +17,6 @@ namespace Modular.Core.Services.Factories.Entity
             {
 
                 Id = Guid.NewGuid(),
-                CreatedDate = DateTime.Now,
-                CreatedBy = Guid.Empty,
-                ModifiedDate = DateTime.Now,
-                ModifiedBy = Guid.Empty,
                 Forename = Forename,
                 Surname = Surname,
                 Email = Email
@@ -45,34 +41,6 @@ namespace Modular.Core.Services.Factories.Entity
                       .HasColumnName("ID")
                       .HasColumnType("uniqueidentifier")
                       .ValueGeneratedOnAdd()
-                      .IsRequired(true);
-
-                //  Created Date
-                entity.Property(e => e.CreatedDate)
-                      .HasColumnName("CreatedDate")
-                      .HasColumnType("datetime")
-                      .HasDefaultValue(DateTime.MinValue)
-                      .IsRequired(true);
-
-                //  Created By
-                entity.Property(e => e.CreatedBy)
-                      .HasColumnName("CreatedBy")
-                      .HasColumnType("uniqueidentifier")
-                      .HasDefaultValue(Guid.Empty)
-                      .IsRequired(true);
-
-                //  Modified Date
-                entity.Property(e => e.ModifiedDate)
-                      .HasColumnName("ModifiedDate")
-                      .HasColumnType("datetime")
-                      .HasDefaultValue(DateTime.MinValue)
-                      .IsRequired(true);
-
-                //  Modified By
-                entity.Property(e => e.ModifiedBy)
-                      .HasColumnName("ModifiedBy")
-                      .HasColumnType("uniqueidentifier")
-                      .HasDefaultValue(Guid.Empty)
                       .IsRequired(true);
 
                 //  Title
@@ -194,54 +162,6 @@ namespace Modular.Core.Services.Factories.Entity
                       .IsRequired(false)
                       .HasDefaultValue(string.Empty)
                       .HasMaxLength(64);
-                
-                //  Fax
-                entity.Property(e => e.Fax)
-                      .HasColumnName("Fax")
-                      .HasColumnType("nvarchar(64)")
-                      .IsRequired(false)
-                      .HasDefaultValue(string.Empty)
-                      .HasMaxLength(64);
-                
-                //  Facebook Link
-                entity.Property(e => e.FacebookLink)
-                      .HasColumnName("FacebookLink")
-                      .HasColumnType("nvarchar(2048)")
-                      .IsRequired(false)
-                      .HasDefaultValue(string.Empty)
-                      .HasMaxLength(2048);
-
-                //  Instagram Link
-                entity.Property(e => e.InstagramLink)
-                      .HasColumnName("InstagramLink")
-                      .HasColumnType("nvarchar(2048)")
-                      .IsRequired(false)
-                      .HasDefaultValue(string.Empty)
-                      .HasMaxLength(2048);
-
-                //  Twitter Link
-                entity.Property(e => e.TwitterLink)
-                      .HasColumnName("TwitterLink")
-                      .HasColumnType("nvarchar(2048)")
-                      .IsRequired(false)
-                      .HasDefaultValue(string.Empty)
-                      .HasMaxLength(2048);
-
-                //  LinkedIn Link
-                entity.Property(e => e.LinkedInLink)
-                      .HasColumnName("LinkedInLink")
-                      .HasColumnType("nvarchar(2048)")
-                      .IsRequired(false)
-                      .HasDefaultValue(string.Empty)
-                      .HasMaxLength(2048);
-
-                //  Website Link
-                entity.Property(e => e.WebsiteLink)
-                      .HasColumnName("WebsiteLink")
-                      .HasColumnType("nvarchar(2048)")
-                      .IsRequired(false)
-                      .HasDefaultValue(string.Empty)
-                      .HasMaxLength(2048);
 
                 //  Occupation
                 //entity.Property(e => e.OccupationId)

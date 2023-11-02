@@ -1,9 +1,9 @@
-﻿
+﻿using Modular.Core.Interfaces;
 using System.Reflection;
 
 namespace Modular.Core
 {
-    public class BaseEntity
+    public class BaseEntity : IBaseEntity
     {
 
         public BaseEntity()
@@ -15,13 +15,15 @@ namespace Modular.Core
 
         public Guid Id { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        // public DateTime CreatedDate { get; set; }
+        // 
+        // public Guid CreatedBy { get; set; }
+        // 
+        // public DateTime ModifiedDate { get; set; }
+        // 
+        // public Guid ModifiedBy { get; set; }
 
-        public Guid CreatedBy { get; set; }
-
-        public DateTime ModifiedDate { get; set; }
-
-        public Guid ModifiedBy { get; set; }
+        public Guid AuditTrailId { get; set; }
 
         public bool IsDeleted { get; set; }
 
@@ -40,18 +42,6 @@ namespace Modular.Core
         }
 
         #endregion
-
-        public void Update()
-        {
-            ModifiedDate = DateTime.Now;
-            ModifiedBy = Guid.Empty;
-        }
-
-        public void Delete()
-        {
-            IsDeleted = true;
-            Update();
-        }
 
     }
 }

@@ -47,7 +47,6 @@ namespace Modular.Core.Services.Repositories.Concrete.Config
 
         public void Update(Configuration configuration)
         {
-            configuration.Update();
             _context.Configurations.Update(configuration);
         }
 

@@ -66,18 +66,6 @@ namespace Modular.Core.Models.Entity
 
         public string Mobile { get; set; }
 
-        public string Fax { get; set; }
-
-        public string FacebookLink { get; set; }
-
-        public string InstagramLink { get; set; }
-
-        public string TwitterLink { get; set; }
-
-        public string LinkedInLink { get; set; }
-
-        public string WebsiteLink { get; set; }
-
         public Guid? OccupationId { get; set; }
 
         public virtual Occupation Occupation { get; set; }

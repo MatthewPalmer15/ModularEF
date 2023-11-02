@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Modular.Core.Identity;
 using Modular.Core.Models.Entity;
 
@@ -11,10 +12,6 @@ namespace Modular.Core.Services.Factories.Identity
         {
             return new ApplicationUser()
             {
-                CreatedDate = DateTime.Now,
-                CreatedBy = Guid.Empty,
-                ModifiedDate = DateTime.Now,
-                ModifiedBy = Guid.Empty,
                 ContactId = contact.Id,
                 Contact = contact,
                 UserName = username,
@@ -33,45 +30,45 @@ namespace Modular.Core.Services.Factories.Identity
                 entity.ToTable("tblApplicationUser");
 
                 //  ID
-                entity.HasKey(e => e.ContactId)
+                entity.HasKey(e => e.Id)
                       .IsClustered(false);
 
-                entity.HasIndex(e => e.ContactId)
+                entity.HasIndex(e => e.Id)
                       .IsUnique(true);
 
                 entity.Property(e => e.Id)
                       .HasColumnName("ID")
-                      .HasColumnType("nvarchar(max)")
+                      .HasColumnType("uniqueidentifier")
                       .ValueGeneratedOnAdd()
                       .IsRequired(true);
 
-                //  Created Date
-                entity.Property(e => e.CreatedDate)
-                      .HasColumnName("CreatedDate")
-                      .HasColumnType("datetime")
-                      .HasDefaultValue(DateTime.MinValue)
-                      .IsRequired(true);
-
-                //  Created By
-                entity.Property(e => e.CreatedBy)
-                      .HasColumnName("CreatedBy")
-                      .HasColumnType("uniqueidentifier")
-                      .HasDefaultValue(Guid.Empty)
-                      .IsRequired(true);
-
-                //  Modified Date
-                entity.Property(e => e.ModifiedDate)
-                      .HasColumnName("ModifiedDate")
-                      .HasColumnType("datetime")
-                      .HasDefaultValue(DateTime.MinValue)
-                      .IsRequired(true);
-
-                //  Modified By
-                entity.Property(e => e.ModifiedBy)
-                      .HasColumnName("ModifiedBy")
-                      .HasColumnType("uniqueidentifier")
-                      .HasDefaultValue(Guid.Empty)
-                      .IsRequired(true);
+                ////  Created Date
+                //entity.Property(e => e.CreatedDate)
+                //      .HasColumnName("CreatedDate")
+                //      .HasColumnType("datetime")
+                //      .HasDefaultValue(DateTime.MinValue)
+                //      .IsRequired(true);
+                //
+                ////  Created By
+                //entity.Property(e => e.CreatedBy)
+                //      .HasColumnName("CreatedBy")
+                //      .HasColumnType("uniqueidentifier")
+                //      .HasDefaultValue(Guid.Empty)
+                //      .IsRequired(true);
+                //
+                ////  Modified Date
+                //entity.Property(e => e.ModifiedDate)
+                //      .HasColumnName("ModifiedDate")
+                //      .HasColumnType("datetime")
+                //      .HasDefaultValue(DateTime.MinValue)
+                //      .IsRequired(true);
+                //
+                ////  Modified By
+                //entity.Property(e => e.ModifiedBy)
+                //      .HasColumnName("ModifiedBy")
+                //      .HasColumnType("uniqueidentifier")
+                //      .HasDefaultValue(Guid.Empty)
+                //      .IsRequired(true);
 
                 //  Username
                 entity.Property(e => e.UserName)
@@ -192,7 +189,8 @@ namespace Modular.Core.Services.Factories.Identity
 
                 entity.HasOne(e => e.Contact)
                       .WithOne()
-                      .HasForeignKey<ApplicationUser>(e => e.ContactId);
+                      .HasForeignKey<ApplicationUser>(e => e.ContactId)
+                      .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasIndex(e => e.ContactId)
                       .IsUnique(true);
@@ -201,6 +199,85 @@ namespace Modular.Core.Services.Factories.Identity
 
             });
 
+            modelBuilder.Entity<ApplicationUserProfile>(entity =>
+            {
+                entity.ToTable("tblApplicationUserProfile");
+
+                //  Facebook Link
+                entity.Property(e => e.FacebookLink)
+                      .HasColumnName("FacebookLink")
+                      .HasColumnType("nvarchar(2048)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
+                      .HasMaxLength(2048);
+
+                //  Instagram Link
+                entity.Property(e => e.InstagramLink)
+                      .HasColumnName("InstagramLink")
+                      .HasColumnType("nvarchar(2048)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
+                      .HasMaxLength(2048);
+
+                //  Twitter Link
+                entity.Property(e => e.TwitterLink)
+                      .HasColumnName("TwitterLink")
+                      .HasColumnType("nvarchar(2048)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
+                      .HasMaxLength(2048);
+
+                //  LinkedIn Link
+                entity.Property(e => e.LinkedInLink)
+                      .HasColumnName("LinkedInLink")
+                      .HasColumnType("nvarchar(2048)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
+                      .HasMaxLength(2048);
+
+                //  Website Link
+                entity.Property(e => e.WebsiteLink)
+                      .HasColumnName("WebsiteLink")
+                      .HasColumnType("nvarchar(2048)")
+                      .IsRequired(false)
+                      .HasDefaultValue(string.Empty)
+                      .HasMaxLength(2048);
+            });
+
+            modelBuilder.Entity<ApplicationRole>(entity =>
+            {
+                entity.ToTable("tblApplicationRole");
+            });
+
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>(entity =>
+            {
+                entity.ToTable("tblApplicationRoleClaim");
+            });
+
+            modelBuilder.Entity<IdentityUserLogin<Guid>>(entity =>
+            {
+                entity.ToTable("tblApplicationUserLogin");
+                entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
+            });
+
+            modelBuilder.Entity<IdentityUserRole<Guid>>(entity =>
+            {
+                entity.ToTable("tblApplicationUserRole");
+                entity.HasKey(e => new { e.UserId, e.RoleId });
+            });
+
+            modelBuilder.Entity<IdentityUserToken<Guid>>(entity =>
+            {
+                entity.ToTable("tblApplicationUserToken");
+                entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
+            });
+
+            modelBuilder.Entity<IdentityUserClaim<Guid>>(entity =>
+            {
+                entity.ToTable("tblApplicationUserClaim");
+                entity.HasKey(e => new { e.UserId, e.Id });
+            });
         }
+
     }
 }

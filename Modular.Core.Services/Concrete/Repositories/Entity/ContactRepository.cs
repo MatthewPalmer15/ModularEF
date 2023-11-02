@@ -43,7 +43,6 @@ namespace Modular.Core.Services.Repositories.Concrete.Entity
 
         public void Update(Contact contact)
         {
-            contact.Update();
             _context.Contacts.Update(contact);
         }
 

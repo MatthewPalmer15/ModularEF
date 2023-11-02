@@ -36,7 +36,6 @@ namespace Modular.Core.Services.Repositories.Concrete.Misc
 
         public void Update(Occupation occupation)
         {
-            occupation.Update();
             _context.Occupations.Update(occupation);
         }
 

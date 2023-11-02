@@ -36,7 +36,6 @@ namespace Modular.Core.Services.Repositories.Concrete.Entity
 
         public void Update(Organisation organisation)
         {
-            organisation.Update();
             _context.Organisations.Update(organisation);
         }
 

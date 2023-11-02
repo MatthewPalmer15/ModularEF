@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Modular.Core
 {
-    public class ModularDbContext : IdentityDbContext<ApplicationUser>
+    public class ModularDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
 
         #region "  Constructors  "
@@ -80,10 +80,6 @@ namespace Modular.Core
             //  Misc
             //DepartmentFactory.OnModelCreating(modelBuilder);
             //OccupationFactory.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(l => new { l.LoginProvider, l.ProviderKey });
-            modelBuilder.Entity<IdentityUserRole<string>>().HasKey(ur => new { ur.UserId, ur.RoleId });
-            modelBuilder.Entity<IdentityUserToken<string>>().HasKey(ut => new { ut.UserId, ut.LoginProvider, ut.Name });
 
             modelBuilder.Ignore<Continent>();
             modelBuilder.Ignore<Country>();

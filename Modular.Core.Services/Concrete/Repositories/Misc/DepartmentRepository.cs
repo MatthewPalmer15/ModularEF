@@ -36,7 +36,6 @@ namespace Modular.Core.Services.Repositories.Concrete.Misc
 
         public void Update(Department department)
         {
-            department.Update();
             _context.Departments.Update(department);
         }
 

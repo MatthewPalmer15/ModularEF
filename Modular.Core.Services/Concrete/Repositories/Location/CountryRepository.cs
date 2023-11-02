@@ -36,7 +36,6 @@ namespace Modular.Core.Services.Repositories.Concrete.Location
 
         public void Update(Country country)
         {
-            country.Update();
             _context.Countries.Update(country);
         }
 

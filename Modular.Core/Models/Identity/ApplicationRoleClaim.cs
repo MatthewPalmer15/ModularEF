@@ -2,7 +2,7 @@
 
 namespace Modular.Core.Identity
 {
-    public class ApplicationRole : IdentityRole<Guid>
+    public class ApplicationRoleClaim : IdentityRoleClaim<Guid>
     {
 
     }

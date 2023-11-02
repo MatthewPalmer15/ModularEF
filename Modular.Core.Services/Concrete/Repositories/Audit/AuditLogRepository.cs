@@ -36,7 +36,6 @@ namespace Modular.Core.Services.Repositories.Concrete.Audit
 
         public void Update(AuditLog auditLog)
         {
-            auditLog.Update();
             _context.AuditLogs.Update(auditLog);
         }
 

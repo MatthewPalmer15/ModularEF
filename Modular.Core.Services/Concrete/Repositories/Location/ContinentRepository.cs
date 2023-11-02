@@ -36,7 +36,6 @@ namespace Modular.Core.Services.Repositories.Concrete.Location
 
         public void Update(Continent continent)
         {
-            continent.Update();
             _context.Continents.Update(continent);
         }
 

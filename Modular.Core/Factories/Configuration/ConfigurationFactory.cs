@@ -30,30 +30,6 @@ namespace Modular.Core.Services.Factories.Config
                       .ValueGeneratedOnAdd()
                       .IsRequired(true);
 
-                //  Created Date
-                entity.Property(e => e.CreatedDate)
-                      .HasColumnName("CreatedDate")
-                      .HasColumnType("datetime")
-                      .IsRequired(true);
-
-                //  Created By
-                entity.Property(e => e.CreatedBy)
-                      .HasColumnName("CreatedBy")
-                      .HasColumnType("uniqueidentifier")
-                      .IsRequired(true);
-
-                //  Modified Date
-                entity.Property(e => e.ModifiedDate)
-                      .HasColumnName("ModifiedDate")
-                      .HasColumnType("datetime")
-                      .IsRequired(true);
-
-                //  Modified By
-                entity.Property(e => e.ModifiedBy)
-                      .HasColumnName("ModifiedBy")
-                      .HasColumnType("uniqueidentifier")
-                      .IsRequired(true);
-
                 //  Key
                 entity.Property(x => x.Key)
                       .HasColumnName("Key")
