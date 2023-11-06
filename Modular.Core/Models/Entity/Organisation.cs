@@ -1,6 +1,8 @@
 ﻿using Modular.Core.Helpers.Types;
 using Modular.Core.Models.Location;
 
+#nullable disable
+
 namespace Modular.Core.Models.Entity
 {
     public class Organisation : BaseEntity
@@ -8,39 +10,39 @@ namespace Modular.Core.Models.Entity
 
         #region "  Properties  "
 
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; }
 
-        public string Description { get; set; } = string.Empty;
+        public string Description { get; set; }
 
-        public string RegistrationNumber { get; set; } = string.Empty;
+        public string RegistrationNumber { get; set; }
 
-        public Guid OwnerID { get; set; } = Guid.Empty;
+        public Guid OwnerId { get; set; }
 
-        public virtual Contact Owner { get; set; } = null!;
+        public virtual Contact Owner { get; set; }
 
-        public string AddressLine1 { get; set; } = string.Empty;
+        public string AddressLine1 { get; set; } 
 
-        public string AddressLine2 { get; set; } = string.Empty;
+        public string AddressLine2 { get; set; }
 
-        public string AddressLine3 { get; set; } = string.Empty;
+        public string AddressLine3 { get; set; }
 
-        public string AddressCity { get; set; } = string.Empty;
+        public string AddressCity { get; set; }
 
-        public string AddressCounty { get; set; } = string.Empty;
+        public string AddressCounty { get; set; }
 
-        public Guid AddressCountryID { get; set; } = Guid.Empty;
+        public Guid? AddressCountryId { get; set; }
 
-        public virtual Country AddressCountry { get; set; } = null!;
+        public virtual Country AddressCountry { get; set; }
 
-        public string AddressPostcode { get; set; } = string.Empty;
+        public string AddressPostcode { get; set; }
 
-        public string Email { get; set; } = string.Empty;
+        public string Email { get; set; }
 
-        public string Telephone { get; set; } = string.Empty;
+        public string Phone { get; set; }
 
-        public string Website { get; set; } = string.Empty;
+        public string Website { get; set; }
 
-        public StatusType Status { get; set; } = StatusType.Active;
+        public StatusType Status { get; set; }
 
         #endregion
 

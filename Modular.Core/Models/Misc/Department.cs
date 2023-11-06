@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+#nullable disable
 
 namespace Modular.Core.Models.Misc
 {
@@ -11,9 +8,9 @@ namespace Modular.Core.Models.Misc
 
         #region "  Properties  "
 
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; }
 
-        public string Description { get; set; } = string.Empty;
+        public string Description { get; set; }
 
         #endregion
 
