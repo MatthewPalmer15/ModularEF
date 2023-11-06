@@ -35,6 +35,10 @@ namespace Modular.Core.Services.Repositories.Concrete.Entity
             return query;
         }
 
+        public Contact? Get(Guid id)
+        {
+            return _context.Contacts.Where(e => e.Id.Equals(id)).SingleOrDefault();
+        }
 
         public void Add(Contact contact)
         {

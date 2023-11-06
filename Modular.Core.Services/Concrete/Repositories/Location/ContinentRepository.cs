@@ -1,4 +1,5 @@
-﻿using Modular.Core.Models.Location;
+﻿using Modular.Core.Models.Audit;
+using Modular.Core.Models.Location;
 using Modular.Core.Services.Repositories.Abstract.Location;
 
 namespace Modular.Core.Services.Repositories.Concrete.Location
@@ -27,6 +28,11 @@ namespace Modular.Core.Services.Repositories.Concrete.Location
         {
             var query = from continent in _context.Continents select continent;
             return query;
+        }
+
+        public Continent? Get(Guid id)
+        {
+            return _context.Continents.Where(e => e.Id.Equals(id)).SingleOrDefault();
         }
 
         public void Add(Continent continent)

@@ -39,6 +39,10 @@ namespace Modular.Core.Services.Repositories.Concrete.Config
             return config != null ? config.Value : string.Empty;
         }
 
+        public Configuration? Get(Guid id)
+        {
+            return _context.Configurations.Where(e => e.Id.Equals(id)).SingleOrDefault();
+        }
 
         public void Add(Configuration configuration)
         {

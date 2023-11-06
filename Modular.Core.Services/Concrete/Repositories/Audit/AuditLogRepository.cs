@@ -1,4 +1,5 @@
 ﻿using Modular.Core.Models.Audit;
+using Modular.Core.Models.Config;
 using Modular.Core.Services.Repositories.Abstract.Audit;
 
 namespace Modular.Core.Services.Repositories.Concrete.Audit
@@ -27,6 +28,11 @@ namespace Modular.Core.Services.Repositories.Concrete.Audit
         {
             var query = from auditLog in _context.AuditLogs select auditLog;
             return query;
+        }
+
+        public AuditLog? Get(Guid id)
+        {
+            return _context.AuditLogs.Where(e => e.Id.Equals(id)).SingleOrDefault();
         }
 
         public void Add(AuditLog auditLog)

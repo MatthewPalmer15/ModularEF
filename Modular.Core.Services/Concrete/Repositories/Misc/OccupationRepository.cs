@@ -29,6 +29,11 @@ namespace Modular.Core.Services.Repositories.Concrete.Misc
             return query;
         }
 
+        public Occupation? Get(Guid id)
+        {
+            return _context.Occupations.Where(e => e.Id.Equals(id)).SingleOrDefault();
+        }
+
         public void Add(Occupation occupation)
         {
             _context.Occupations.Add(occupation);

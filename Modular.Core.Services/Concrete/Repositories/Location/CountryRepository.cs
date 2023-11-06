@@ -29,6 +29,11 @@ namespace Modular.Core.Services.Repositories.Concrete.Location
             return query;
         }
 
+        public Country? Get(Guid id)
+        {
+            return _context.Countries.Where(e => e.Id.Equals(id)).SingleOrDefault();
+        }
+
         public void Add(Country country)
         {
             _context.Countries.Add(country);

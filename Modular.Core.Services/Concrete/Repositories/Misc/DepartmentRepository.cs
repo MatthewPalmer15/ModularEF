@@ -1,4 +1,5 @@
-﻿using Modular.Core.Models.Misc;
+﻿using Modular.Core.Models.Location;
+using Modular.Core.Models.Misc;
 using Modular.Core.Services.Repositories.Abstract.Misc;
 
 namespace Modular.Core.Services.Repositories.Concrete.Misc
@@ -27,6 +28,11 @@ namespace Modular.Core.Services.Repositories.Concrete.Misc
         {
             var query = from department in _context.Departments select department;
             return query;
+        }
+
+        public Department? Get(Guid id)
+        {
+            return _context.Departments.Where(e => e.Id.Equals(id)).SingleOrDefault();
         }
 
         public void Add(Department department)

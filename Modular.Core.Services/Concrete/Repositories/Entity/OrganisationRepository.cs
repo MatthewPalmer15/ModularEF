@@ -29,6 +29,11 @@ namespace Modular.Core.Services.Repositories.Concrete.Entity
             return query;
         }
 
+        public Organisation? Get(Guid id)
+        {
+            return _context.Organisations.Where(e => e.Id.Equals(id)).SingleOrDefault();
+        }
+
         public void Add(Organisation organisation)
         {
             _context.Organisations.Add(organisation);

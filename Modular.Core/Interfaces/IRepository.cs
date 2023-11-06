@@ -5,6 +5,8 @@
 
         IQueryable<T> All();
 
+        T? Get(Guid id);
+
         void Add(T entity);
 
         void Update(T entity);
