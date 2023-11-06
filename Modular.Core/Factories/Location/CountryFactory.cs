@@ -56,20 +56,6 @@ namespace Modular.Core.Services.Factories.Location
                       .HasDefaultValue(string.Empty)
                       .HasMaxLength(16);
 
-                //  Continent
-                entity.Property(e => e.ContinentId)
-                      .HasColumnName("ContinentID")
-                      .HasColumnType("uniqueidentifier")
-                      .HasDefaultValue(Guid.Empty)
-                      .IsRequired(false);
-
-                entity.HasOne(e => e.Continent)
-                      .WithOne()
-                      .HasForeignKey<Country>(e => e.ContinentId);
-
-                entity.HasIndex(e => e.ContinentId)
-                      .IsUnique(false);
-
             });
 
         }

@@ -56,7 +56,7 @@ namespace Modular.Core.Models.Entity
 
         public Guid? AddressCountryId { get; set; }
 
-        public virtual Country AddressCountry { get; set; }
+        public virtual Country? AddressCountry { get; set; }
 
         public string AddressPostcode { get; set; }
 
@@ -68,15 +68,15 @@ namespace Modular.Core.Models.Entity
 
         public Guid? OccupationId { get; set; }
 
-        public virtual Occupation Occupation { get; set; }
+        public virtual Occupation? Occupation { get; set; }
 
         public Guid? DepartmentId { get; set; }
 
-        public virtual Department Department { get; set; }
+        public virtual Department? Department { get; set; }
 
         public Guid? OrganisationId { get; set; }
 
-        public virtual Organisation Organisation { get; set; }
+        public virtual Organisation? Organisation { get; set; }
 
         public bool IsVerified { get; set; }
 

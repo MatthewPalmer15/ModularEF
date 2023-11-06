@@ -37,7 +37,9 @@ namespace Modular.Core.Services.Repositories.Concrete.Entity
 
         public Contact? Get(Guid id)
         {
-            return _context.Contacts.Where(e => e.Id.Equals(id)).SingleOrDefault();
+            IQueryable<Contact> query = this.All();
+            query = query.Where(e => e.Id.Equals(id));
+            return query.Count() > 0 ? query.Take(1).SingleOrDefault() : null;
         }
 
         public void Add(Contact contact)

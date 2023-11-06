@@ -11,9 +11,5 @@ namespace Modular.Core.Models.Location
 
         public string Code { get; set; }
 
-        public Guid? ContinentId { get; set; }
-
-        public virtual Continent Continent { get; set; }
-
     }
 }
