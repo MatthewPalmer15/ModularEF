@@ -164,37 +164,37 @@ namespace Modular.Core.Services.Factories.Entity
                       .HasMaxLength(64);
 
                 //  Occupation
-                //entity.Property(e => e.OccupationId)
-                //      .HasColumnName("OccupationID")
-                //      .HasColumnType("uniqueidentifier")
-                //      .HasDefaultValue(Guid.Empty)
-                //      .IsRequired(false);
-                //
-                //entity.HasOne(e => e.Occupation)
-                //      .WithOne()
-                //      .HasForeignKey<Contact>(e => e.OccupationId);
+                entity.Property(e => e.OccupationId)
+                      .HasColumnName("OccupationID")
+                      .HasColumnType("uniqueidentifier")
+                      .HasDefaultValue(null)
+                      .IsRequired(false);
+                
+                entity.HasOne(e => e.Occupation)
+                      .WithOne()
+                      .HasForeignKey<Contact>(e => e.OccupationId);
 
                 //  Department
-                //entity.Property(e => e.DepartmentId)
-                //      .HasColumnName("DepartmentID")
-                //      .HasColumnType("uniqueidentifier")
-                //      .HasDefaultValue(Guid.Empty)
-                //      .IsRequired(false);
-                //
-                //entity.HasOne(e => e.Department)
-                //      .WithOne()
-                //      .HasForeignKey<Contact>(e => e.DepartmentId);
+                entity.Property(e => e.DepartmentId)
+                      .HasColumnName("DepartmentID")
+                      .HasColumnType("uniqueidentifier")
+                      .HasDefaultValue(null)
+                      .IsRequired(false);
+                
+                entity.HasOne(e => e.Department)
+                      .WithOne()
+                      .HasForeignKey<Contact>(e => e.DepartmentId);
 
                 //  Organisation
-                //entity.Property(e => e.OrganisationId)
-                //      .HasColumnName("OrganisationID")
-                //      .HasColumnType("uniqueidentifier")
-                //      .HasDefaultValue(Guid.Empty)
-                //      .IsRequired(false);
-                //
-                //entity.HasOne(e => e.Organisation)
-                //      .WithOne()
-                //     .HasForeignKey<Contact>(e => e.OrganisationId);
+                entity.Property(e => e.OrganisationId)
+                      .HasColumnName("OrganisationID")
+                      .HasColumnType("uniqueidentifier")
+                      .HasDefaultValue(null)
+                      .IsRequired(false);
+                
+                entity.HasOne(e => e.Organisation)
+                      .WithOne()
+                     .HasForeignKey<Contact>(e => e.OrganisationId);
 
                 //  Is Verified
                 entity.Property(e => e.IsVerified)
