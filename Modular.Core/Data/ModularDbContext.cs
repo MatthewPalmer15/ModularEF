@@ -45,8 +45,6 @@ namespace Modular.Core
 
         public virtual DbSet<ApplicationRole> ApplicationRoles { get; set; }
 
-        public virtual DbSet<Continent> Continents { get; set; }
-
         public virtual DbSet<Country> Countries { get; set; }
 
         public virtual DbSet<Department> Departments { get; set; }
@@ -74,17 +72,11 @@ namespace Modular.Core
             IdentityFactory.OnModelCreating(modelBuilder);
 
             //  Location
-            //ContinentFactory.OnModelCreating(modelBuilder);
-            //CountryFactory.OnModelCreating(modelBuilder);
+            CountryFactory.OnModelCreating(modelBuilder);
 
             //  Misc
-            //DepartmentFactory.OnModelCreating(modelBuilder);
-            //OccupationFactory.OnModelCreating(modelBuilder);
-
-            modelBuilder.Ignore<Continent>();
-            modelBuilder.Ignore<Country>();
-            modelBuilder.Ignore<Department>();
-            modelBuilder.Ignore<Occupation>();
+            DepartmentFactory.OnModelCreating(modelBuilder);
+            OccupationFactory.OnModelCreating(modelBuilder);
 
         }
 
