@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.DataEncryption;
 using Modular.Core.Models.Config;
 
 namespace Modular.Core.Services.Factories.Config
@@ -44,10 +45,10 @@ namespace Modular.Core.Services.Factories.Config
                 entity.Property(x => x.Value)
                       .HasColumnName("Value")
                       .HasColumnType("nvarchar(max)")
-                      .IsRequired(true);
+                      .IsRequired(true)
+                      .IsEncrypted();
 
             });
-
         }
     }
 }
