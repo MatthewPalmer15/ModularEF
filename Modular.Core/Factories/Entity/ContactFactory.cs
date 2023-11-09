@@ -121,15 +121,15 @@ namespace Modular.Core.Services.Factories.Entity
                       .HasMaxLength(128);
 
                 //  Address Country
-                //entity.Property(e => e.AddressCountryId)
-                //      .HasColumnName("AddressCountryID")
-                //      .HasColumnType("uniqueidentifier")
-                //      .HasDefaultValue(Guid.Empty)
-                //      .IsRequired(false);
-                //
-                //entity.HasOne(e => e.AddressCountry)
-                //      .WithOne()
-                //      .HasForeignKey<Contact>(e => e.AddressCountryId);
+                entity.Property(e => e.AddressCountryId)
+                      .HasColumnName("AddressCountryID")
+                      .HasColumnType("uniqueidentifier")
+                      .HasDefaultValue(null)
+                      .IsRequired(false);
+                
+                entity.HasOne(e => e.AddressCountry)
+                      .WithOne()
+                      .HasForeignKey<Contact>(e => e.AddressCountryId);
 
                 //  Address Postcode
                 entity.Property(e => e.AddressPostcode)
