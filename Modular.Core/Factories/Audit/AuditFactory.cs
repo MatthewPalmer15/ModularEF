@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Modular.Core.Identity;
+using Modular.Core.Interfaces;
 using Modular.Core.Models.Audit;
 
 namespace Modular.Core.Services.Factories.Audit
@@ -11,7 +11,7 @@ namespace Modular.Core.Services.Factories.Audit
             return new AuditLog();
         }
 
-        public static void OnModelCreating(ModelBuilder modelBuilder)
+        internal static void OnModelCreating(ModelBuilder modelBuilder)
         {
 
             modelBuilder.Entity<AuditTrail>(entity =>

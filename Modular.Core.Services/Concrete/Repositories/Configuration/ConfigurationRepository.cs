@@ -1,5 +1,4 @@
-﻿using Modular.Core.Models.Audit;
-using Modular.Core.Models.Config;
+﻿using Modular.Core.Models.Config;
 using Modular.Core.Services.Repositories.Abstract.Config;
 using Newtonsoft.Json;
 

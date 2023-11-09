@@ -20,7 +20,7 @@ namespace Modular.Core.Models.Entity
 
         public virtual Contact Owner { get; set; }
 
-        public string AddressLine1 { get; set; } 
+        public string AddressLine1 { get; set; }
 
         public string AddressLine2 { get; set; }
 

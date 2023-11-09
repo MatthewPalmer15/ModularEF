@@ -11,7 +11,7 @@ namespace Modular.Core.Services.Factories.Config
             return new Configuration();
         }
 
-        public static void OnModelCreating(ModelBuilder modelBuilder)
+        internal static void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Configuration>(entity =>
             {

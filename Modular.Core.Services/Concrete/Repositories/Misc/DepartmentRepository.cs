@@ -1,5 +1,4 @@
-﻿using Modular.Core.Models.Location;
-using Modular.Core.Models.Misc;
+﻿using Modular.Core.Models.Misc;
 using Modular.Core.Services.Repositories.Abstract.Misc;
 using Newtonsoft.Json;
 

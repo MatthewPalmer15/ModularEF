@@ -1,18 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Modular.Core.Identity;
+using Modular.Core.Models.Audit;
+using Modular.Core.Models.Config;
+using Modular.Core.Models.Entity;
+using Modular.Core.Models.Location;
+using Modular.Core.Models.Misc;
 using Modular.Core.Services.Factories.Audit;
 using Modular.Core.Services.Factories.Config;
 using Modular.Core.Services.Factories.Entity;
 using Modular.Core.Services.Factories.Identity;
 using Modular.Core.Services.Factories.Location;
 using Modular.Core.Services.Factories.Misc;
-using Modular.Core.Models.Audit;
-using Modular.Core.Models.Config;
-using Modular.Core.Models.Entity;
-using Modular.Core.Models.Location;
-using Modular.Core.Models.Misc;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 
 namespace Modular.Core
 {

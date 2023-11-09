@@ -1,5 +1,5 @@
-﻿using Modular.Core.Services.Repositories.Abstract.Entity;
-using Modular.Core.Models.Entity;
+﻿using Modular.Core.Models.Entity;
+using Modular.Core.Services.Repositories.Abstract.Entity;
 using Newtonsoft.Json;
 
 namespace Modular.Core.Services.Repositories.Concrete.Entity
