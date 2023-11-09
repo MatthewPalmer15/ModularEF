@@ -1,5 +1,7 @@
-﻿using Modular.Core.Models.Config;
+﻿using Modular.Core.Models.Audit;
+using Modular.Core.Models.Config;
 using Modular.Core.Services.Repositories.Abstract.Config;
+using Newtonsoft.Json;
 
 namespace Modular.Core.Services.Repositories.Concrete.Config
 {
@@ -83,6 +85,22 @@ namespace Modular.Core.Services.Repositories.Concrete.Config
             }
         }
 
+        public string SerializeToJson(Configuration configuration)
+        {
+            return JsonConvert.SerializeObject(configuration, Formatting.Indented);
+        }
+
+        public Configuration? DeserializeFromJson(string json)
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<Configuration>(json);
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
         #endregion
 

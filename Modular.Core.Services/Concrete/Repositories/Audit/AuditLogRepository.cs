@@ -1,6 +1,7 @@
 ﻿using Modular.Core.Models.Audit;
 using Modular.Core.Models.Config;
 using Modular.Core.Services.Repositories.Abstract.Audit;
+using Newtonsoft.Json;
 
 namespace Modular.Core.Services.Repositories.Concrete.Audit
 {
@@ -74,6 +75,22 @@ namespace Modular.Core.Services.Repositories.Concrete.Audit
             }
         }
 
+        public string SerializeToJson(AuditLog auditLog)
+        {
+            return JsonConvert.SerializeObject(auditLog, Formatting.Indented);
+        }
+
+        public AuditLog? DeserializeFromJson(string json)
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<AuditLog>(json);
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
         #endregion
 

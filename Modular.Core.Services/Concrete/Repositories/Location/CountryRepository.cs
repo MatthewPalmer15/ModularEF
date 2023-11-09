@@ -1,5 +1,7 @@
-﻿using Modular.Core.Models.Location;
+﻿using Modular.Core.Models.Config;
+using Modular.Core.Models.Location;
 using Modular.Core.Services.Repositories.Abstract.Location;
+using Newtonsoft.Json;
 
 namespace Modular.Core.Services.Repositories.Concrete.Location
 {
@@ -73,9 +75,24 @@ namespace Modular.Core.Services.Repositories.Concrete.Location
             }
         }
 
+        public string SerializeToJson(Country country)
+        {
+            return JsonConvert.SerializeObject(country, Formatting.Indented);
+        }
+
+        public Country? DeserializeFromJson(string json)
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<Country>(json);
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
         #endregion
-
 
     }
 }

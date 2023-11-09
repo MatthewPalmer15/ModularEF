@@ -23,8 +23,6 @@ namespace Modular.Core
         // 
         // public Guid ModifiedBy { get; set; }
 
-        public Guid AuditTrailId { get; set; }
-
         public bool IsDeleted { get; set; }
 
         #endregion

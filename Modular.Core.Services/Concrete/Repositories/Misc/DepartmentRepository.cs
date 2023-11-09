@@ -1,6 +1,7 @@
 ﻿using Modular.Core.Models.Location;
 using Modular.Core.Models.Misc;
 using Modular.Core.Services.Repositories.Abstract.Misc;
+using Newtonsoft.Json;
 
 namespace Modular.Core.Services.Repositories.Concrete.Misc
 {
@@ -74,6 +75,22 @@ namespace Modular.Core.Services.Repositories.Concrete.Misc
             }
         }
 
+        public string SerializeToJson(Department department)
+        {
+            return JsonConvert.SerializeObject(department, Formatting.Indented);
+        }
+
+        public Department? DeserializeFromJson(string json)
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<Department>(json);
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
         #endregion
 

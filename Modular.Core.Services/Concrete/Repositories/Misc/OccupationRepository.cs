@@ -1,5 +1,6 @@
 ﻿using Modular.Core.Models.Misc;
 using Modular.Core.Services.Repositories.Abstract.Misc;
+using Newtonsoft.Json;
 
 namespace Modular.Core.Services.Repositories.Concrete.Misc
 {
@@ -73,6 +74,22 @@ namespace Modular.Core.Services.Repositories.Concrete.Misc
             }
         }
 
+        public string SerializeToJson(Occupation occupation)
+        {
+            return JsonConvert.SerializeObject(occupation, Formatting.Indented);
+        }
+
+        public Occupation? DeserializeFromJson(string json)
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<Occupation>(json);
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
         #endregion
 
