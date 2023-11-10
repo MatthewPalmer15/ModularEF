@@ -29,7 +29,7 @@ namespace Modular.Core.Models.Audit
 
         public string EntityName { get; set; }
 
-        public Dictionary<string, object> Changes { get; set; }
+        public Dictionary<string, object> EntityObject { get; set; }
 
         [NotMapped]
         public List<PropertyEntry> TempProperties { get; set; }

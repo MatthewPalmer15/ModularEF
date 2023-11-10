@@ -81,7 +81,7 @@ namespace Modular.Core
             {
                 entity.ToTable("tblAuditEntry");
 
-                entity.Property(ae => ae.Changes).HasConversion(
+                entity.Property(e => e.EntityObject).HasConversion(
                     value => JsonConvert.SerializeObject(value),
                     serializedValue => JsonConvert.DeserializeObject<Dictionary<string, object>>(serializedValue) ?? new Dictionary<string, object>()
                 );
@@ -127,7 +127,7 @@ namespace Modular.Core
                         Action = actionType,
                         EntityId = entry.Properties.Single(p => p.Metadata.IsPrimaryKey()).CurrentValue?.ToString() ?? "",
                         EntityName = entry.Metadata.ClrType.Name,
-                        Changes = entry.Properties.Select(p => new { p.Metadata.Name, p.CurrentValue }).ToDictionary(i => i.Name, i => i.CurrentValue),
+                        EntityObject = entry.Properties.Select(p => new { p.Metadata.Name, p.CurrentValue }).ToDictionary(i => i.Name, i => i.CurrentValue),
 
                         // TempProperties are properties that are only generated on save, e.g. ID's
                         // These properties will be set correctly after the audited entity has been saved
@@ -166,11 +166,11 @@ namespace Modular.Core
                         if (prop.Metadata.IsPrimaryKey())
                         {
                             entry.EntityId = prop.CurrentValue?.ToString() ?? "";
-                            entry.Changes[prop.Metadata.Name] = prop.CurrentValue;
+                            entry.EntityObject[prop.Metadata.Name] = prop.CurrentValue;
                         }
                         else
                         {
-                            entry.Changes[prop.Metadata.Name] = prop.CurrentValue;
+                            entry.EntityObject[prop.Metadata.Name] = prop.CurrentValue;
                         }
                     }
                 }
