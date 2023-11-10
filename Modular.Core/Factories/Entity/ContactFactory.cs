@@ -21,10 +21,10 @@ namespace Modular.Core.Services.Factories.Entity
                 Surname = Surname,
                 Email = Email
             };
-            
+
         }
 
-        public static void OnModelCreating(ModelBuilder modelBuilder)
+        internal static void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Contact>(entity =>
             {
@@ -121,15 +121,15 @@ namespace Modular.Core.Services.Factories.Entity
                       .HasMaxLength(128);
 
                 //  Address Country
-                //entity.Property(e => e.AddressCountryId)
-                //      .HasColumnName("AddressCountryID")
-                //      .HasColumnType("uniqueidentifier")
-                //      .HasDefaultValue(Guid.Empty)
-                //      .IsRequired(false);
-                //
-                //entity.HasOne(e => e.AddressCountry)
-                //      .WithOne()
-                //      .HasForeignKey<Contact>(e => e.AddressCountryId);
+                entity.Property(e => e.AddressCountryId)
+                      .HasColumnName("AddressCountryID")
+                      .HasColumnType("uniqueidentifier")
+                      .HasDefaultValue(null)
+                      .IsRequired(false);
+                
+                entity.HasOne(e => e.AddressCountry)
+                      .WithOne()
+                      .HasForeignKey<Contact>(e => e.AddressCountryId);
 
                 //  Address Postcode
                 entity.Property(e => e.AddressPostcode)
@@ -154,7 +154,7 @@ namespace Modular.Core.Services.Factories.Entity
                       .IsRequired(false)
                       .HasDefaultValue(string.Empty)
                       .HasMaxLength(64);
-                
+
                 //  Mobile
                 entity.Property(e => e.Mobile)
                       .HasColumnName("Mobile")
@@ -169,7 +169,7 @@ namespace Modular.Core.Services.Factories.Entity
                       .HasColumnType("uniqueidentifier")
                       .HasDefaultValue(null)
                       .IsRequired(false);
-                
+
                 entity.HasOne(e => e.Occupation)
                       .WithOne()
                       .HasForeignKey<Contact>(e => e.OccupationId);
@@ -180,7 +180,7 @@ namespace Modular.Core.Services.Factories.Entity
                       .HasColumnType("uniqueidentifier")
                       .HasDefaultValue(null)
                       .IsRequired(false);
-                
+
                 entity.HasOne(e => e.Department)
                       .WithOne()
                       .HasForeignKey<Contact>(e => e.DepartmentId);
@@ -191,7 +191,7 @@ namespace Modular.Core.Services.Factories.Entity
                       .HasColumnType("uniqueidentifier")
                       .HasDefaultValue(null)
                       .IsRequired(false);
-                
+
                 entity.HasOne(e => e.Organisation)
                       .WithOne()
                      .HasForeignKey<Contact>(e => e.OrganisationId);

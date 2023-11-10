@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Modular.Core.Models.Entity;
 using Modular.Core.Models.Location;
 
 namespace Modular.Core.Services.Factories.Location
@@ -12,8 +11,7 @@ namespace Modular.Core.Services.Factories.Location
             return new Country();
         }
 
-
-        public static void OnModelCreating(ModelBuilder modelBuilder)
+        internal static void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Country>(entity =>
             {

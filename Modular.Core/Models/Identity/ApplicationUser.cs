@@ -11,7 +11,7 @@ namespace Modular.Core.Identity
         #region "  Properties  "
 
         public Guid ContactId { get; set; }
-         
+
         public Contact Contact { get; set; }
 
         public bool IsStaff { get; set; }

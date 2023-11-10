@@ -22,7 +22,7 @@ namespace Modular.Core.Services.Factories.Identity
             };
         }
 
-        public static void OnModelCreating(ModelBuilder modelBuilder)
+        internal static void OnModelCreating(ModelBuilder modelBuilder)
         {
 
             modelBuilder.Entity<ApplicationUser>(entity =>

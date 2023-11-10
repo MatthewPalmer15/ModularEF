@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Modular.Core.Models.Location;
 using Modular.Core.Models.Misc;
 
 namespace Modular.Core.Services.Factories.Misc
@@ -13,7 +12,7 @@ namespace Modular.Core.Services.Factories.Misc
         }
 
 
-        public static void OnModelCreating(ModelBuilder modelBuilder)
+        internal static void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Department>(entity =>
             {

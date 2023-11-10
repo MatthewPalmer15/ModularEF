@@ -1,5 +1,6 @@
-﻿using Modular.Core.Services.Repositories.Abstract.Entity;
-using Modular.Core.Models.Entity;
+﻿using Modular.Core.Models.Entity;
+using Modular.Core.Services.Repositories.Abstract.Entity;
+using Newtonsoft.Json;
 
 namespace Modular.Core.Services.Repositories.Concrete.Entity
 {
@@ -73,6 +74,22 @@ namespace Modular.Core.Services.Repositories.Concrete.Entity
             }
         }
 
+        public string SerializeToJson(Organisation organisation)
+        {
+            return JsonConvert.SerializeObject(organisation, Formatting.Indented);
+        }
+
+        public Organisation? DeserializeFromJson(string json)
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<Organisation>(json);
+            }
+            catch
+            {
+                return null;
+            }
+        }
         #endregion
 
     }

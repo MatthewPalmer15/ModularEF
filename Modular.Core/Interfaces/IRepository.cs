@@ -15,6 +15,10 @@
 
         Task<bool> SaveAsync();
 
+        string SerializeToJson(T entity);
+
+        T? DeserializeFromJson(string json);
+
 
 
     }

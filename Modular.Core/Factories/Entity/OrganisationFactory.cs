@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Modular.Core.Helpers.Types;
-using Modular.Core.Identity;
 using Modular.Core.Models.Entity;
 
 namespace Modular.Core.Services.Factories.Entity
@@ -13,7 +12,7 @@ namespace Modular.Core.Services.Factories.Entity
             return new Organisation();
         }
 
-        public static void OnModelCreating(ModelBuilder modelBuilder)
+        internal static void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Organisation>(entity =>
             {
