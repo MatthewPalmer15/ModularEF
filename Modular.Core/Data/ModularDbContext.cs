@@ -37,6 +37,8 @@ namespace Modular.Core
 
         public virtual DbSet<AuditEntry> AuditEntries { get; set; }
 
+        public virtual DbSet<AuditRequestLog> AuditRequestLogs { get; set; }
+
         public virtual DbSet<Configuration> Configurations { get; set; }
 
         public virtual DbSet<Contact> Contacts { get; set; }
@@ -87,6 +89,10 @@ namespace Modular.Core
                 );
             });
 
+            modelBuilder.Entity<AuditRequestLog>(entity =>
+            {
+                entity.ToTable("tblAuditRequestLog");
+            });
         }
 
         private List<AuditEntry> BeforeSaveChanges()
