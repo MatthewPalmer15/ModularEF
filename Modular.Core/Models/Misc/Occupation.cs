@@ -1,9 +1,10 @@
 ﻿#nullable disable
 
+using Modular.Core.Interfaces;
 
 namespace Modular.Core.Models.Misc
 {
-    public class Occupation : BaseEntity
+    public class Occupation : BaseEntity<Guid>, IAuditable
     {
 
         #region "  Properties  "

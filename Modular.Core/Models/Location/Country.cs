@@ -1,8 +1,10 @@
 ﻿#nullable disable
 
+using Modular.Core.Interfaces;
+
 namespace Modular.Core.Models.Location
 {
-    public class Country : BaseEntity
+    public class Country : BaseEntity<Guid>, IAuditable
     {
 
         public string Name { get; set; }

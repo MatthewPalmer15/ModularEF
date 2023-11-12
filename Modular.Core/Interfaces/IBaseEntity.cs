@@ -1,9 +1,9 @@
 ﻿namespace Modular.Core.Interfaces
 {
-    public interface IBaseEntity
+    public interface IBaseEntity<T>
     {
 
-        public Guid Id { get; set; }
+        public T Id { get; set; }
 
     }
 }

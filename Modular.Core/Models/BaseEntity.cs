@@ -1,9 +1,11 @@
-﻿using Modular.Core.Interfaces;
+﻿#nullable disable
+
+using Modular.Core.Interfaces;
 using System.Reflection;
 
 namespace Modular.Core
 {
-    public class BaseEntity : IBaseEntity
+    public class BaseEntity<T> : IBaseEntity<T>
     {
 
         public BaseEntity()
@@ -13,7 +15,7 @@ namespace Modular.Core
 
         #region "  Properties  "
 
-        public Guid Id { get; set; }
+        public T Id { get; set; }
 
         #endregion
 
@@ -24,7 +26,7 @@ namespace Modular.Core
             PropertyInfo[] properties = this.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
             foreach (PropertyInfo property in properties)
             {
-                object? defaultValue = property.PropertyType.IsValueType ? Activator.CreateInstance(property.PropertyType) : null;
+                object defaultValue = property.PropertyType.IsValueType ? Activator.CreateInstance(property.PropertyType) : null;
                 property.SetValue(this, defaultValue);
             }
         }

@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Modular.Core.Interfaces;
 using Modular.Core.Models.Entity;
 
 #nullable disable
 
 namespace Modular.Core.Identity
 {
-    public class ApplicationUser : IdentityUser<Guid>
+    public class ApplicationUser : IdentityUser<Guid>, IAuditable
     {
 
         #region "  Properties  "
