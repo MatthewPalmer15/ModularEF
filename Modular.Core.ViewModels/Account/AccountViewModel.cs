@@ -3,7 +3,7 @@ using Modular.Core.Models.Entity;
 using Modular.Core.Models.Misc;
 using System.ComponentModel.DataAnnotations;
 
-namespace matthewpalmer.dev.Models.Account
+namespace Modular.Core.ViewModels.Identity
 {
     public class AccountViewModel
     {

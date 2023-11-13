@@ -1,8 +1,7 @@
 ﻿
-using Modular.Core.Models.Location;
 using System.ComponentModel.DataAnnotations;
 
-namespace matthewpalmer.dev.Models.Country
+namespace Modular.Core.ViewModels.Country
 {
     public class CountryEditModel
     {
@@ -29,7 +28,7 @@ namespace matthewpalmer.dev.Models.Country
             Code = string.Empty;
         }
 
-        public CountryEditModel(Modular.Core.Models.Location.Country country)
+        public CountryEditModel(Models.Location.Country country)
         {
             Name = country.Name;
             Description = country.Description;

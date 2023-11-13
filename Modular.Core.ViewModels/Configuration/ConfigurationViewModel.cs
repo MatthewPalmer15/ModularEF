@@ -1,11 +1,6 @@
-﻿using Modular.Core;
-using Modular.Core.Models.Config;
-using Modular.Core.Models.Entity;
-using Modular.Core.Models.Location;
-using Modular.Core.Models.Misc;
-using static Modular.Core.Models.Entity.Contact;
+﻿using Modular.Core.Models.Config;
 
-namespace matthewpalmer.dev.Models.Contact
+namespace Modular.Core.ViewModels.Configuration
 {
     public class ConfigurationViewModel
     {
@@ -20,7 +15,7 @@ namespace matthewpalmer.dev.Models.Contact
 
         #region "  Constructors  "
 
-        public ConfigurationViewModel(Configuration configuration)
+        public ConfigurationViewModel(Models.Config.Configuration configuration)
         {
             Key = configuration.Key;
             Value = configuration.Value;

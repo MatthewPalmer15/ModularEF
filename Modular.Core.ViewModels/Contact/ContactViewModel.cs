@@ -1,17 +1,13 @@
-﻿using Modular.Core;
-using Modular.Core.Models.Entity;
-using Modular.Core.Models.Location;
-using Modular.Core.Models.Misc;
-using static Modular.Core.Models.Entity.Contact;
+﻿using Modular.Core.Models.Misc;
 
-namespace matthewpalmer.dev.Models.Contact
+namespace Modular.Core.ViewModels.Entity
 {
     public class ContactViewModel
     {
 
         #region "  Properties  "
 
-        public TitleType? Title { get; set; }
+        public Models.Entity.Contact.TitleType? Title { get; set; }
 
         public string Forename { get; set; }
 
@@ -19,7 +15,7 @@ namespace matthewpalmer.dev.Models.Contact
 
         public DateOnly DateOfBirth { get; set; }
 
-        public GenderType? Gender { get; set; }
+        public Models.Entity.Contact.GenderType? Gender { get; set; }
 
         public string AddressLine1 { get; set; }
 
@@ -33,7 +29,7 @@ namespace matthewpalmer.dev.Models.Contact
 
         public Guid? AddressCountryId { get; set; }
 
-        public Modular.Core.Models.Location.Country? AddressCountry { get; set; }
+        public Models.Location.Country? AddressCountry { get; set; }
 
         public string AddressPostcode { get; set; }
 
@@ -61,7 +57,7 @@ namespace matthewpalmer.dev.Models.Contact
 
         #region "  Constructors  "
 
-        public ContactViewModel(Modular.Core.Models.Entity.Contact contact)
+        public ContactViewModel(Models.Entity.Contact contact)
         {
             Title = contact.Title;
             Forename = contact.Forename;

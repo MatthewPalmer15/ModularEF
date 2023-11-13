@@ -1,12 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Modular.Core;
 using Modular.Core.Helpers.Types;
-using Modular.Core.Models.Entity;
-using Modular.Core.Models.Location;
-using Modular.Core.Models.Misc;
 using System.ComponentModel.DataAnnotations;
 
-namespace matthewpalmer.dev.Models.Organisation
+namespace Modular.Core.ViewModels.Organisation
 {
     public class OrganisationEditModel
     {

@@ -1,12 +1,7 @@
-﻿using Modular.Core;
-using Modular.Core.Helpers.Types;
-using Modular.Core.Models.Entity;
-using Modular.Core.Models.Location;
-using Modular.Core.Models.Misc;
+﻿using Modular.Core.Helpers.Types;
 using System.ComponentModel.DataAnnotations;
-using static Modular.Core.Models.Entity.Contact;
 
-namespace matthewpalmer.dev.Models.Contact
+namespace Modular.Core.ViewModels.Organisation
 {
     public class AllOrganisationViewModel
     {

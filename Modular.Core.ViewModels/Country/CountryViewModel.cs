@@ -1,12 +1,6 @@
-﻿using Modular.Core;
-using Modular.Core.Models.Config;
-using Modular.Core.Models.Entity;
-using Modular.Core.Models.Location;
-using Modular.Core.Models.Misc;
-using System.ComponentModel.DataAnnotations;
-using static Modular.Core.Models.Entity.Contact;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace matthewpalmer.dev.Models.Country
+namespace Modular.Core.ViewModels.Country
 {
     public class CountryViewModel
     {

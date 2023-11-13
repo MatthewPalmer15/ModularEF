@@ -1,12 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Modular.Core;
-using Modular.Core.Models.Entity;
-using Modular.Core.Models.Location;
+﻿using Modular.Core;
 using Modular.Core.Models.Misc;
 using System.ComponentModel.DataAnnotations;
-using static Modular.Core.Models.Entity.Contact;
 
-namespace matthewpalmer.dev.Models.Contact
+namespace Modular.Core.ViewModels.Entity
 {
     public class ContactEditModel
     {

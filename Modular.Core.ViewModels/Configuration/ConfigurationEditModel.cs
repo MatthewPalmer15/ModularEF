@@ -1,12 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Modular.Core;
-using Modular.Core.Models.Config;
-using Modular.Core.Models.Entity;
-using Modular.Core.Models.Location;
-using Modular.Core.Models.Misc;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace matthewpalmer.dev.Models.Contact
+namespace Modular.Core.ViewModels.Configuration
 {
     public class ConfigurationEditModel
     {
@@ -29,7 +23,7 @@ namespace matthewpalmer.dev.Models.Contact
             Value = string.Empty;
         }
 
-        public ConfigurationEditModel(Configuration configuration)
+        public ConfigurationEditModel(Models.Config.Configuration configuration)
         {
             Key = configuration.Key;
             Value = configuration.Value;
