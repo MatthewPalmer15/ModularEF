@@ -23,13 +23,14 @@ using System.Text;
 
 namespace Modular.Core
 {
-    public class ModularDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
+    public class ModularDbContext : DbContext
     {
 
         #region "  Constructors  "
 
         public ModularDbContext()
         {
+            _encryptionProvider = new AesProvider(EncryptionKey, EncryptionIV);
         }
 
         public ModularDbContext(DbContextOptions<ModularDbContext> options) : base(options)
@@ -61,10 +62,6 @@ namespace Modular.Core
 
         public virtual DbSet<Organisation> Organisations { get; set; }
 
-        public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; }
-
-        public virtual DbSet<ApplicationRole> ApplicationRoles { get; set; }
-
         public virtual DbSet<Country> Countries { get; set; }
 
         public virtual DbSet<Department> Departments { get; set; }
@@ -84,9 +81,6 @@ namespace Modular.Core
             //  Entity
             ContactFactory.OnModelCreating(modelBuilder);
             OrganisationFactory.OnModelCreating(modelBuilder);
-
-            //  Identity
-            IdentityFactory.OnModelCreating(modelBuilder);
 
             //  Location
             CountryFactory.OnModelCreating(modelBuilder);
