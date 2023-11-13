@@ -14,6 +14,8 @@ namespace Modular.Core.Identity
 
         public Contact Contact { get; set; }
 
+        public string ApiToken { get; set; }
+
         public bool IsStaff { get; set; }
 
         public bool IsAdmin { get; set; }
