@@ -73,7 +73,9 @@ namespace Modular.Core
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
-            //base.OnModelCreating(modelBuilder);
+            modelBuilder.HasDefaultSchema("dbo");
+            modelBuilder.UseEncryption(_encryptionProvider);
+
 
             //  Config
             ConfigurationFactory.OnModelCreating(modelBuilder);
@@ -104,7 +106,6 @@ namespace Modular.Core
                 entity.ToTable("tblAuditRequestLog");
             });
             
-            modelBuilder.UseEncryption(_encryptionProvider);
         }
 
         private List<AuditEntry> BeforeSaveChanges()
