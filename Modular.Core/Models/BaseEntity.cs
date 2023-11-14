@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Modular.Core
 {
-    public class BaseEntity : IBaseEntity
+    public class BaseEntity<T>
     {
 
         public BaseEntity()
@@ -13,7 +13,7 @@ namespace Modular.Core
 
         #region "  Properties  "
 
-        public Guid Id { get; set; }
+        public T Id { get; set; }
 
         public DateTime Created { get; set; }
 

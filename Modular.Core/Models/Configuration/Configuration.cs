@@ -5,7 +5,7 @@ using Modular.Core.Interfaces;
 
 namespace Modular.Core.Models.Config
 {
-    public class Configuration : BaseEntity, IAuditable
+    public class Configuration : BaseEntity<Guid>, IAuditable
     {
 
         public string Key { get; set; }

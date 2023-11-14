@@ -2,7 +2,7 @@
 
 namespace Modular.Core.Models.Location
 {
-    public class Country : BaseEntity
+    public class Country : BaseEntity<Guid>
     {
 
         public string Name { get; set; }

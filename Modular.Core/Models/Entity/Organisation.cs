@@ -5,7 +5,7 @@ using Modular.Core.Models.Location;
 
 namespace Modular.Core.Models.Entity
 {
-    public class Organisation : BaseEntity
+    public class Organisation : BaseEntity<Guid>
     {
 
         #region "  Properties  "

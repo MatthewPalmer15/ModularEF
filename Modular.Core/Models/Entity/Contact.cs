@@ -5,7 +5,7 @@ using Modular.Core.Models.Misc;
 
 namespace Modular.Core.Models.Entity
 {
-    public class Contact : BaseEntity
+    public class Contact : BaseEntity<Guid>
     {
 
         #region "  Enums  "

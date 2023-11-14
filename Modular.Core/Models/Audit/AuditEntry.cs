@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Modular.Core.Models.Audit
 {
-    public class AuditEntry
+    public class AuditEntry : BaseEntity<Guid>
     {
 
         public enum ActionType
@@ -16,8 +16,6 @@ namespace Modular.Core.Models.Audit
             Update,
             Delete
         }
-
-        public Guid Id { get; set; }
 
         public DateTime Timestamp { get; set; }
 

@@ -3,7 +3,7 @@
 
 namespace Modular.Core.Models.Misc
 {
-    public class Department : BaseEntity
+    public class Department : BaseEntity<Guid>
     {
 
         #region "  Properties  "

@@ -3,7 +3,7 @@
 
 namespace Modular.Core.Identity
 {
-    public class ApplicationUserProfile : BaseEntity
+    public class ApplicationUserProfile : BaseEntity<Guid>
     {
 
         public string Bio { get; set; }

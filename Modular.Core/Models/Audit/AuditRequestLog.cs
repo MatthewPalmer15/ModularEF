@@ -6,10 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Modular.Core.Models.Audit
 {
-    public class AuditRequestLog
+    public class AuditRequestLog : BaseEntity<int>
     {
-
-       public int Id { get; set; }
 
         public DateTime Timestamp { get; set; }
 
