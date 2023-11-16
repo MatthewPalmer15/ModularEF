@@ -19,7 +19,7 @@ namespace Modular.Core.ViewModels.Organisation
         public string RegistrationNumber { get; set; }
 
         [Display(Name = "Owner")]
-        public Guid? OwnerId { get; set; }
+        public Guid OwnerId { get; set; }
         public IEnumerable<Modular.Core.Models.Entity.Contact>? Contacts { get; set; }
 
         [Display(Name = "Address Line 1")]
@@ -62,7 +62,7 @@ namespace Modular.Core.ViewModels.Organisation
             Name = string.Empty;
             Description = string.Empty;
             RegistrationNumber = string.Empty;
-            OwnerId = null;
+            OwnerId = Guid.Empty;
             AddressLine1 = string.Empty;
             AddressLine2 = string.Empty;
             AddressLine3 = string.Empty;
@@ -80,7 +80,7 @@ namespace Modular.Core.ViewModels.Organisation
             Name = string.Empty;
             Description = string.Empty;
             RegistrationNumber = string.Empty;
-            OwnerId = null;
+            OwnerId = Guid.Empty;
             AddressLine1 = string.Empty;
             AddressLine2 = string.Empty;
             AddressLine3 = string.Empty;
@@ -118,5 +118,32 @@ namespace Modular.Core.ViewModels.Organisation
         }
 
         #endregion
+
+        #region "  Public Methods  "
+
+        public Models.Entity.Organisation Convert()
+        {
+            return new Models.Entity.Organisation()
+            {
+                Name = Name,
+                Description = Description,
+                RegistrationNumber = RegistrationNumber,
+                OwnerId = OwnerId,
+                AddressLine1 = AddressLine1,
+                AddressLine2 = AddressLine2,
+                AddressLine3 = AddressLine3,
+                AddressCity = AddressCity,
+                AddressCounty = AddressCounty,
+                AddressCountryId = AddressCountryId,
+                Email = Email,
+                Phone = Phone,
+                Website = Website,
+                Status = Status
+            };
+        }
+
+
+        #endregion
+
     }
 }

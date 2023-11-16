@@ -1,4 +1,5 @@
 ﻿using Modular.Core;
+using Modular.Core.Models.Entity;
 using Modular.Core.Models.Misc;
 using System.ComponentModel.DataAnnotations;
 
@@ -109,7 +110,7 @@ namespace Modular.Core.ViewModels.Entity
             Organisations = context.Organisations.ToList();
         }
 
-        public ContactEditModel(ModularDbContext context, Modular.Core.Models.Entity.Contact contact)
+        public ContactEditModel(ModularDbContext context, Models.Entity.Contact contact)
         {
             Forename = contact.Forename;
             Surname = contact.Surname;
@@ -135,6 +136,36 @@ namespace Modular.Core.ViewModels.Entity
             Occupations = context.Occupations.ToList();
             Organisations = context.Organisations.ToList();
         }
+
+        #endregion
+
+        #region "  Public Methods  "
+
+        public Contact Convert()
+        {
+            return new Contact()
+            {
+                Forename = Forename,
+                Surname = Surname,
+                DateOfBirth = DateOfBirth.ToDateTime(new TimeOnly(0)),
+                AddressLine1 = AddressLine1,
+                AddressLine2 = AddressLine2,
+                AddressLine3 = AddressLine3,
+                AddressCity = AddressCity,
+                AddressCounty = AddressCounty,
+                AddressCountryId = AddressCountryId,
+                AddressPostcode = AddressPostcode,
+                Email = Email,
+                Phone = Phone,
+                Mobile = Mobile,
+                OccupationId = OccupationId,
+                DepartmentId = DepartmentId,
+                OrganisationId = OrganisationId,
+                IsVerified = IsVerified,
+                IsBanned = IsBanned
+            };
+        }
+
 
         #endregion
     }

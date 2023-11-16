@@ -126,7 +126,7 @@ namespace Modular.Core.Services.Factories.Entity
                       .HasColumnType("uniqueidentifier")
                       .HasDefaultValue(null)
                       .IsRequired(false);
-                
+
                 entity.HasOne(e => e.AddressCountry)
                       .WithOne()
                       .HasForeignKey<Contact>(e => e.AddressCountryId);

@@ -31,5 +31,18 @@ namespace Modular.Core.ViewModels.Configuration
 
         #endregion
 
+        #region "  Public Methods  "
+
+        public Models.Config.Configuration Convert()
+        {
+            return new Models.Config.Configuration
+            {
+                Key = Key,
+                Value = Value
+            };
+        }
+
+        #endregion
+
     }
 }

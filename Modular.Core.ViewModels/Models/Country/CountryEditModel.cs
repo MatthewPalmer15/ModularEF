@@ -37,5 +37,19 @@ namespace Modular.Core.ViewModels.Country
 
         #endregion
 
+        #region "  Public Methods  "
+
+        public Models.Location.Country Convert()
+        {
+            return new Models.Location.Country
+            {
+                Name = Name,
+                Description = Description,
+                Code = Code
+            };
+        }
+
+        #endregion
+
     }
 }
