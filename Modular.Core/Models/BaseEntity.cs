@@ -25,8 +25,12 @@ namespace Modular.Core
             PropertyInfo[] properties = this.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
             foreach (PropertyInfo property in properties)
             {
-                object? defaultValue = property.PropertyType.IsValueType ? Activator.CreateInstance(property.PropertyType) : null;
-                property.SetValue(this, defaultValue);
+                if (property.CanWrite)
+                {
+                    object? defaultValue = property.PropertyType.IsValueType ? Activator.CreateInstance(property.PropertyType) : null;
+                    property.SetValue(this, defaultValue);
+                }
+
             }
         }
 

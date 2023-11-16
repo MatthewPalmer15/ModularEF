@@ -7,6 +7,8 @@ namespace Modular.Core.ViewModels.Configuration
 
         #region "  Properties  "
 
+        public Guid Id { get; private set; }
+
         [Display(Name = "Key")]
         public string Key { get; set; }
 
@@ -19,12 +21,14 @@ namespace Modular.Core.ViewModels.Configuration
 
         public ConfigurationEditModel()
         {
+            Id = Guid.Empty;
             Key = string.Empty; 
             Value = string.Empty;
         }
 
         public ConfigurationEditModel(Models.Config.Configuration configuration)
         {
+            Id = configuration.Id;
             Key = configuration.Key;
             Value = configuration.Value;
         }
