@@ -1,22 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Modular.Core.Identity;
-using Modular.Core.Interfaces;
 using Modular.Core.Models.Audit;
-using Modular.Core.Models.Config;
-using Modular.Core.Models.Entity;
-using Modular.Core.Models.Location;
-using Modular.Core.Models.Misc;
-using Modular.Core.Services.Factories.Config;
-using Modular.Core.Services.Factories.Entity;
 using Modular.Core.Services.Factories.Identity;
-using Modular.Core.Services.Factories.Location;
-using Modular.Core.Services.Factories.Misc;
 using Newtonsoft.Json;
-using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.DataEncryption;
 using Microsoft.EntityFrameworkCore.DataEncryption.Providers;
 using System.Text;
@@ -33,7 +20,7 @@ namespace Modular.Core
             _encryptionProvider = new AesProvider(EncryptionKey, EncryptionIV);
         }
 
-        public ModularIdentityDbContext(DbContextOptions<ModularDbContext> options) : base(options)
+        public ModularIdentityDbContext(DbContextOptions<ModularIdentityDbContext> options) : base(options)
         {
             _encryptionProvider = new AesProvider(EncryptionKey, EncryptionIV);
         }
