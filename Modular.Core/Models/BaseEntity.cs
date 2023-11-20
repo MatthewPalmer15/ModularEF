@@ -17,6 +17,8 @@ namespace Modular.Core
 
         public T Id { get; set; }
 
+        public DateTime Created { get; set; }
+
         #endregion
 
         #region "  Methods  "

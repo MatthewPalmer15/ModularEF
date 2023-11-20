@@ -63,26 +63,26 @@ namespace Modular.Core
 
         #endregion
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
             modelBuilder.HasDefaultSchema("dbo");
 
             //  Config
-            ConfigurationFactory.OnModelCreating(builder);
+            ConfigurationFactory.OnModelCreating(modelBuilder);
 
             //  Entity
-            ContactFactory.OnModelCreating(builder);
-            OrganisationFactory.OnModelCreating(builder);
+            ContactFactory.OnModelCreating(modelBuilder);
+            OrganisationFactory.OnModelCreating(modelBuilder);
             
             //  Location
-            CountryFactory.OnModelCreating(builder);
+            CountryFactory.OnModelCreating(modelBuilder);
 
             //  Misc
-            DepartmentFactory.OnModelCreating(builder);
-            OccupationFactory.OnModelCreating(builder);
+            DepartmentFactory.OnModelCreating(modelBuilder);
+            OccupationFactory.OnModelCreating(modelBuilder);
 
-            builder.Entity<AuditEntry>(entity =>
+            modelBuilder.Entity<AuditEntry>(entity =>
             {
                 entity.ToTable("tblAuditEntry");
 
@@ -92,12 +92,12 @@ namespace Modular.Core
                 );
             });
 
-            builder.Entity<AuditRequestLog>(entity =>
+            modelBuilder.Entity<AuditRequestLog>(entity =>
             {
                 entity.ToTable("tblAuditRequestLog");
             });
 
-            builder.UseEncryption(_encryptionProvider);
+            modelBuilder.UseEncryption(_encryptionProvider);
         }
 
         private List<AuditEntry> BeforeSaveChanges()
