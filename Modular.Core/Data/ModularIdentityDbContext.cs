@@ -61,9 +61,9 @@ namespace Modular.Core
                 );
             });
 
-            builder.Entity<AuditRequestLog>(entity =>
+            builder.Entity<AuditLog>(entity =>
             {
-                entity.ToTable("tblAuditRequestLog");
+                entity.ToTable("tblAuditLog");
             });
 
             builder.UseEncryption(_encryptionProvider);

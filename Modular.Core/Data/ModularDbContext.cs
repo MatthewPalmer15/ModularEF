@@ -47,7 +47,7 @@ namespace Modular.Core
 
         public virtual DbSet<AuditEntry> AuditEntries { get; set; }
 
-        public virtual DbSet<AuditRequestLog> AuditRequestLogs { get; set; }
+        public virtual DbSet<AuditLog> AuditRequestLogs { get; set; }
 
         public virtual DbSet<Configuration> Configurations { get; set; }
 
@@ -92,9 +92,9 @@ namespace Modular.Core
                 );
             });
 
-            modelBuilder.Entity<AuditRequestLog>(entity =>
+            modelBuilder.Entity<AuditLog>(entity =>
             {
-                entity.ToTable("tblAuditRequestLog");
+                entity.ToTable("tblAuditLog");
             });
 
             modelBuilder.UseEncryption(_encryptionProvider);

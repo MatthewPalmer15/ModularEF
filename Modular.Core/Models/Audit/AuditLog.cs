@@ -3,7 +3,7 @@
 
 namespace Modular.Core.Models.Audit
 {
-    public class AuditRequestLog : BaseEntity<int>
+    public class AuditLog : BaseEntity<int>
     {
 
         public DateTime Timestamp { get; set; }
