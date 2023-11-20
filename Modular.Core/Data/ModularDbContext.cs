@@ -16,6 +16,10 @@ using Newtonsoft.Json;
 
 namespace Modular.Core
 {
+
+    /// <summary>
+    /// Modular DB Context without ASP.NET Identity
+    /// </summary>
     public class ModularDbContext : DbContext
     {
 
@@ -60,6 +64,8 @@ namespace Modular.Core
         public virtual DbSet<Department> Departments { get; set; }
 
         public virtual DbSet<Occupation> Occupations { get; set; }
+
+
 
         #endregion
 
