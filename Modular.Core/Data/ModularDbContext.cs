@@ -27,12 +27,12 @@ namespace Modular.Core
 
         public ModularDbContext()
         {
-            _encryptionProvider = new AesProvider(EncryptionKey, EncryptionIV);
+            _encryptionProvider = SystemUtils.GetEncryptionProvider();
         }
 
         public ModularDbContext(DbContextOptions<ModularDbContext> options) : base(options)
         {
-            _encryptionProvider = new AesProvider(EncryptionKey, EncryptionIV);
+            _encryptionProvider = SystemUtils.GetEncryptionProvider();
         }
 
         #endregion
