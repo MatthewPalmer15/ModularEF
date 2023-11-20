@@ -1,9 +1,10 @@
-﻿
+﻿using Modular.Core.Interfaces;
+
 #nullable disable
 
 namespace Modular.Core.Identity
 {
-    public class ApplicationUserProfile : BaseEntity<Guid>
+    public class ApplicationUserProfile : BaseEntity<Guid>, IAuditable
     {
 
         public string Bio { get; set; }

@@ -1,11 +1,12 @@
 ﻿#nullable disable
 
+using Modular.Core.Interfaces;
 using Modular.Core.Models.Location;
 using Modular.Core.Models.Misc;
 
 namespace Modular.Core.Models.Entity
 {
-    public class Contact : BaseEntity<Guid>
+    public class Contact : BaseEntity<Guid>, IAuditable
     {
 
         #region "  Enums  "
@@ -56,7 +57,7 @@ namespace Modular.Core.Models.Entity
 
         public Guid? AddressCountryId { get; set; }
 
-        public virtual Country? AddressCountry { get; set; }
+        public Country? AddressCountry { get; set; }
 
         public string AddressPostcode { get; set; }
 

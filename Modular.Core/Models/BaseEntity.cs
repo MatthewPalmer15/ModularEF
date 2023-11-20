@@ -1,8 +1,11 @@
-﻿using System.Reflection;
+﻿#nullable disable
+
+using Modular.Core.Interfaces;
+using System.Reflection;
 
 namespace Modular.Core
 {
-    public class BaseEntity<T>
+    public class BaseEntity<T> : IBaseEntity<T>
     {
 
         public BaseEntity()
@@ -13,8 +16,6 @@ namespace Modular.Core
         #region "  Properties  "
 
         public T Id { get; set; }
-
-        // public DateTime Created { get; set; }
 
         #endregion
 
@@ -30,7 +31,6 @@ namespace Modular.Core
                     object? defaultValue = property.PropertyType.IsValueType ? Activator.CreateInstance(property.PropertyType) : null;
                     property.SetValue(this, defaultValue);
                 }
-
             }
         }
 

@@ -1,7 +1,5 @@
 ﻿using FluentValidation;
-using Microsoft.EntityFrameworkCore;
 using Modular.Core.Models.Config;
-using Modular.Core.Models.Entity;
 
 namespace Modular.Core.Validation.Entity
 {

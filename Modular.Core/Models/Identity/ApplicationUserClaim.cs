@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Modular.Core.Interfaces;
 
 namespace Modular.Core.Identity
 {
-    public class ApplicationUserClaim : IdentityUserClaim<Guid>
+    public class ApplicationUserClaim : IdentityUserClaim<Guid>, IAuditable
     {
     }
 }
