@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.DataEncryption;
 using Microsoft.EntityFrameworkCore.DataEncryption.Providers;
-using Modular.Core.Identity;
 using Modular.Core.Interfaces;
 using Modular.Core.Models.Audit;
 using Modular.Core.Models.Config;
@@ -12,14 +10,13 @@ using Modular.Core.Models.Location;
 using Modular.Core.Models.Misc;
 using Modular.Core.Services.Factories.Config;
 using Modular.Core.Services.Factories.Entity;
-using Modular.Core.Services.Factories.Identity;
 using Modular.Core.Services.Factories.Location;
 using Modular.Core.Services.Factories.Misc;
 using Newtonsoft.Json;
 
 namespace Modular.Core
 {
-    public class ModularDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
+    public class ModularDbContext : DbContext
     {
 
         #region "  Constructors  "
@@ -58,10 +55,6 @@ namespace Modular.Core
 
         public virtual DbSet<Organisation> Organisations { get; set; }
 
-        public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; }
-
-        public virtual DbSet<ApplicationRole> ApplicationRoles { get; set; }
-
         public virtual DbSet<Country> Countries { get; set; }
 
         public virtual DbSet<Department> Departments { get; set; }
@@ -72,7 +65,8 @@ namespace Modular.Core
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
+            modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
+            modelBuilder.HasDefaultSchema("dbo");
 
             //  Config
             ConfigurationFactory.OnModelCreating(builder);
@@ -80,10 +74,7 @@ namespace Modular.Core
             //  Entity
             ContactFactory.OnModelCreating(builder);
             OrganisationFactory.OnModelCreating(builder);
-
-            //  Identity
-            IdentityFactory.OnModelCreating(builder);
-
+            
             //  Location
             CountryFactory.OnModelCreating(builder);
 

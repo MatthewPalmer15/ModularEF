@@ -5,5 +5,7 @@
 
         public T Id { get; set; }
 
+        public DateTime Created { get; set; }
+
     }
 }
