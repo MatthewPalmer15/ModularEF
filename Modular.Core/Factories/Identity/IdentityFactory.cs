@@ -194,8 +194,24 @@ namespace Modular.Core.Services.Factories.Identity
 
                 entity.HasIndex(e => e.ContactId)
                       .IsUnique(true);
+                
+                //  Contact
+                entity.Property(e => e.ProfileId)
+                      .HasColumnName("ProfileID")
+                      .HasColumnType("uniqueidentifier")
+                      .HasDefaultValue(Guid.Empty)
+                      .IsRequired(true);
+
+                entity.HasOne(e => e.Profile)
+                      .WithOne()
+                      .HasForeignKey<ApplicationUser>(e => e.ProfileId)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasIndex(e => e.ProfileId)
+                      .IsUnique(true);
 
                 entity.Navigation(e => e.Contact).AutoInclude();
+                entity.Navigation(e => e.Profile).AutoInclude();
 
             });
 

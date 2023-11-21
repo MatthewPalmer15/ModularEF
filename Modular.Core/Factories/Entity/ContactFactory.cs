@@ -170,9 +170,9 @@ namespace Modular.Core.Services.Factories.Entity
                       .HasDefaultValue(null)
                       .IsRequired(false);
 
-                // entity.HasOne(e => e.Organisation)
-                //       .WithOne()
-                //      .HasForeignKey<Contact>(e => e.OrganisationId);
+                entity.HasOne(e => e.Organisation)
+                      .WithOne()
+                     .HasForeignKey<Contact>(e => e.OrganisationId);
 
                 //  Is Verified
                 entity.Property(e => e.IsVerified)

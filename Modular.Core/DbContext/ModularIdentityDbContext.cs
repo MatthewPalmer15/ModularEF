@@ -48,7 +48,7 @@ namespace Modular.Core
 
         public virtual DbSet<AuditEntry> AuditEntries { get; set; }
 
-        public virtual DbSet<AuditLog> AuditRequestLogs { get; set; }
+        public virtual DbSet<AuditLog> AuditLogs { get; set; }
 
         public virtual DbSet<Configuration> Configurations { get; set; }
 
@@ -61,6 +61,8 @@ namespace Modular.Core
         public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public virtual DbSet<ApplicationRole> ApplicationRoles { get; set; }
+
+        public virtual DbSet<ApplicationUserProfile> ApplicationUserProfiles { get; set; }
 
         #endregion
 

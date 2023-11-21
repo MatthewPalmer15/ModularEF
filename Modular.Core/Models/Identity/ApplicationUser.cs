@@ -21,7 +21,7 @@ namespace Modular.Core.Identity
 
         public Guid ProfileId { get; set; }
 
-        //public virtual ApplicationProfile Profile { get; set; }
+        public virtual ApplicationUserProfile Profile { get; set; }
 
     }
 }
