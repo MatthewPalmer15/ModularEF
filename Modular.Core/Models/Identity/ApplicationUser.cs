@@ -9,8 +9,6 @@ namespace Modular.Core.Identity
     public class ApplicationUser : IdentityUser<Guid>, IAuditable
     {
 
-        #region "  Properties  "
-
         public Guid ContactId { get; set; }
 
         public Contact Contact { get; set; }
@@ -25,6 +23,5 @@ namespace Modular.Core.Identity
 
         //public virtual ApplicationProfile Profile { get; set; }
 
-        #endregion
     }
 }

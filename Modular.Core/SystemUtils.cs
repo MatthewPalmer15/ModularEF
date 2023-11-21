@@ -1,10 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.DataEncryption;
-using Microsoft.EntityFrameworkCore.DataEncryption.Providers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore.DataEncryption.Providers;
 
 namespace Modular.Core
 {

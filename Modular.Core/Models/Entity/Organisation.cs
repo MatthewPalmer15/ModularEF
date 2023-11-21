@@ -9,8 +9,6 @@ namespace Modular.Core.Models.Entity
     public class Organisation : BaseEntity<Guid>, IAuditable
     {
 
-        #region "  Properties  "
-
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -44,8 +42,6 @@ namespace Modular.Core.Models.Entity
         public string Website { get; set; }
 
         public StatusType Status { get; set; }
-
-        #endregion
 
     }
 }

@@ -1,6 +1,4 @@
 ﻿using Modular.Core.Identity;
-using Modular.Core.Models.Entity;
-using Modular.Core.Models.Misc;
 using System.ComponentModel.DataAnnotations;
 
 namespace Modular.Core.ViewModels.Identity
@@ -33,7 +31,7 @@ namespace Modular.Core.ViewModels.Identity
             //this.TwitterLink = applicationUser.Contact.TwitterLink;
             //this.LinkedInLink = applicationUser.Contact.LinkedInLink;
             //this.WebsiteLink = applicationUser.Contact.WebsiteLink;
-            
+
             this.OrganisationName = applicationUser.Contact.Organisation?.Name ?? "None";
             this.IsVerified = applicationUser.Contact.IsVerified;
 

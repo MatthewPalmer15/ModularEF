@@ -1,6 +1,4 @@
-﻿using Modular.Core.Models.Config;
-
-namespace Modular.Core.ViewModels.Configuration
+﻿namespace Modular.Core.ViewModels.Configuration
 {
     public class ConfigurationViewModel
     {

@@ -22,7 +22,7 @@ namespace Modular.Core.ViewModels.Configuration
         public ConfigurationEditModel()
         {
             Id = Guid.Empty;
-            Key = string.Empty; 
+            Key = string.Empty;
             Value = string.Empty;
         }
 
