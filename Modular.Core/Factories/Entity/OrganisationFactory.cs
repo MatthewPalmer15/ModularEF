@@ -59,7 +59,6 @@ namespace Modular.Core.Services.Factories.Entity
                 entity.Property(e => e.OwnerId)
                       .HasColumnName("OwnerID")
                       .HasColumnType("uniqueidentifier")
-                      .HasDefaultValue(Guid.Empty)
                       .IsRequired(true);
 
                 entity.HasOne(e => e.Owner)

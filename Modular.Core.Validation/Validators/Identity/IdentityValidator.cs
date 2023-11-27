@@ -1,7 +1,5 @@
 ﻿using FluentValidation;
 using Modular.Core.Identity;
-using Modular.Core.Models.Config;
-using Modular.Core.Models.Location;
 using System.Text.RegularExpressions;
 
 namespace Modular.Core.Validaton.Location

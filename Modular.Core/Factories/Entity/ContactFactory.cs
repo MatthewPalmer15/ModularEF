@@ -163,28 +163,6 @@ namespace Modular.Core.Services.Factories.Entity
                       .HasDefaultValue(string.Empty)
                       .HasMaxLength(64);
 
-                //  Occupation
-                entity.Property(e => e.OccupationId)
-                      .HasColumnName("OccupationID")
-                      .HasColumnType("uniqueidentifier")
-                      .HasDefaultValue(null)
-                      .IsRequired(false);
-
-                entity.HasOne(e => e.Occupation)
-                      .WithOne()
-                      .HasForeignKey<Contact>(e => e.OccupationId);
-
-                //  Department
-                entity.Property(e => e.DepartmentId)
-                      .HasColumnName("DepartmentID")
-                      .HasColumnType("uniqueidentifier")
-                      .HasDefaultValue(null)
-                      .IsRequired(false);
-
-                entity.HasOne(e => e.Department)
-                      .WithOne()
-                      .HasForeignKey<Contact>(e => e.DepartmentId);
-
                 //  Organisation
                 entity.Property(e => e.OrganisationId)
                       .HasColumnName("OrganisationID")

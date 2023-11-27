@@ -1,6 +1,4 @@
-﻿using Modular.Core;
-using Modular.Core.Models.Entity;
-using Modular.Core.Models.Misc;
+﻿using Modular.Core.Models.Entity;
 using System.ComponentModel.DataAnnotations;
 
 namespace Modular.Core.ViewModels.Entity
@@ -49,12 +47,6 @@ namespace Modular.Core.ViewModels.Entity
 
         [Display(Name = "Mobile")]
         public string Mobile { get; set; }
-
-        public Guid? OccupationId { get; set; }
-        public IEnumerable<Occupation>? Occupations { get; set; }
-
-        public Guid? DepartmentId { get; set; }
-        public IEnumerable<Department>? Departments { get; set; }
 
         public Guid? OrganisationId { get; set; }
         public IEnumerable<Modular.Core.Models.Entity.Organisation>? Organisations { get; set; }
@@ -105,8 +97,6 @@ namespace Modular.Core.ViewModels.Entity
             IsBanned = false;
 
             Countries = context.Countries.ToList();
-            Departments = context.Departments.ToList();
-            Occupations = context.Occupations.ToList();
             Organisations = context.Organisations.ToList();
         }
 
@@ -125,15 +115,11 @@ namespace Modular.Core.ViewModels.Entity
             Email = contact.Email;
             Phone = contact.Phone;
             Mobile = contact.Mobile;
-            OccupationId = contact.OccupationId;
-            DepartmentId = contact.DepartmentId;
             OrganisationId = contact.OrganisationId;
             IsBanned = contact.IsBanned;
             IsVerified = contact.IsVerified;
 
             Countries = context.Countries.ToList();
-            Departments = context.Departments.ToList();
-            Occupations = context.Occupations.ToList();
             Organisations = context.Organisations.ToList();
         }
 
@@ -158,8 +144,6 @@ namespace Modular.Core.ViewModels.Entity
                 Email = Email,
                 Phone = Phone,
                 Mobile = Mobile,
-                OccupationId = OccupationId,
-                DepartmentId = DepartmentId,
                 OrganisationId = OrganisationId,
                 IsVerified = IsVerified,
                 IsBanned = IsBanned

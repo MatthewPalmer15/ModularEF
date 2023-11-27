@@ -2,19 +2,16 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.DataEncryption;
-using Microsoft.EntityFrameworkCore.DataEncryption.Providers;
 using Modular.Core.Identity;
 using Modular.Core.Interfaces;
 using Modular.Core.Models.Audit;
 using Modular.Core.Models.Config;
 using Modular.Core.Models.Entity;
 using Modular.Core.Models.Location;
-using Modular.Core.Models.Misc;
 using Modular.Core.Services.Factories.Config;
 using Modular.Core.Services.Factories.Entity;
 using Modular.Core.Services.Factories.Identity;
 using Modular.Core.Services.Factories.Location;
-using Modular.Core.Services.Factories.Misc;
 using Newtonsoft.Json;
 
 namespace Modular.Core
@@ -51,7 +48,7 @@ namespace Modular.Core
 
         public virtual DbSet<AuditEntry> AuditEntries { get; set; }
 
-        public virtual DbSet<AuditLog> AuditRequestLogs { get; set; }
+        public virtual DbSet<AuditLog> AuditLogs { get; set; }
 
         public virtual DbSet<Configuration> Configurations { get; set; }
 
@@ -61,13 +58,11 @@ namespace Modular.Core
 
         public virtual DbSet<Country> Countries { get; set; }
 
-        public virtual DbSet<Department> Departments { get; set; }
-
-        public virtual DbSet<Occupation> Occupations { get; set; }
-
         public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public virtual DbSet<ApplicationRole> ApplicationRoles { get; set; }
+
+        public virtual DbSet<ApplicationUserProfile> ApplicationUserProfiles { get; set; }
 
         #endregion
 
@@ -88,10 +83,6 @@ namespace Modular.Core
 
             //  Location
             CountryFactory.OnModelCreating(builder);
-
-            //  Misc
-            DepartmentFactory.OnModelCreating(builder);
-            OccupationFactory.OnModelCreating(builder);
 
             builder.Entity<AuditEntry>(entity =>
             {

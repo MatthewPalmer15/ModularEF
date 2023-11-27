@@ -1,6 +1,4 @@
-﻿using Modular.Core.Models.Misc;
-
-namespace Modular.Core.ViewModels.Entity
+﻿namespace Modular.Core.ViewModels.Entity
 {
     public class ContactViewModel
     {
@@ -39,15 +37,8 @@ namespace Modular.Core.ViewModels.Entity
 
         public string Mobile { get; set; }
 
-        public Guid? OccupationId { get; set; }
-
-        public Occupation? Occupation { get; set; }
-
-        public Guid? DepartmentId { get; set; }
-        public Department? Department { get; set; }
-
         public Guid? OrganisationId { get; set; }
-        public Modular.Core.Models.Entity.Organisation? Organisation { get; set; }
+        public Models.Entity.Organisation? Organisation { get; set; }
 
         public bool IsVerified { get; set; }
 
@@ -75,10 +66,6 @@ namespace Modular.Core.ViewModels.Entity
             Email = contact.Email;
             Phone = contact.Phone;
             Mobile = contact.Mobile;
-            OccupationId = contact.OccupationId;
-            Occupation = contact.Occupation;
-            DepartmentId = contact.DepartmentId;
-            Department = contact.Department;
             OrganisationId = contact.OrganisationId;
             Organisation = contact.Organisation;
             IsBanned = contact.IsBanned;

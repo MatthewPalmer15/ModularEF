@@ -2,14 +2,11 @@
 
 using Modular.Core.Interfaces;
 using Modular.Core.Models.Location;
-using Modular.Core.Models.Misc;
 
 namespace Modular.Core.Models.Entity
 {
     public class Contact : BaseEntity<Guid>, IAuditable
     {
-
-        #region "  Enums  "
 
         public enum GenderType
         {
@@ -30,10 +27,6 @@ namespace Modular.Core.Models.Entity
             Miss = 4,
             Dr = 5
         }
-
-        #endregion
-
-        #region "  Properties  "
 
         public TitleType? Title { get; set; }
 
@@ -67,23 +60,13 @@ namespace Modular.Core.Models.Entity
 
         public string Mobile { get; set; }
 
-        public Guid? OccupationId { get; set; }
-
-        public virtual Occupation? Occupation { get; set; }
-
-        public Guid? DepartmentId { get; set; }
-
-        public virtual Department? Department { get; set; }
-
         public Guid? OrganisationId { get; set; }
 
-        public virtual Organisation? Organisation { get; set; }
+        public Organisation? Organisation { get; set; }
 
         public bool IsVerified { get; set; }
 
         public bool IsBanned { get; set; }
-
-        #endregion
 
     }
 }

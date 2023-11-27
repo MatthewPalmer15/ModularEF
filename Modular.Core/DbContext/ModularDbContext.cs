@@ -1,17 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.DataEncryption;
-using Microsoft.EntityFrameworkCore.DataEncryption.Providers;
 using Modular.Core.Interfaces;
 using Modular.Core.Models.Audit;
 using Modular.Core.Models.Config;
 using Modular.Core.Models.Entity;
 using Modular.Core.Models.Location;
-using Modular.Core.Models.Misc;
 using Modular.Core.Services.Factories.Config;
 using Modular.Core.Services.Factories.Entity;
 using Modular.Core.Services.Factories.Location;
-using Modular.Core.Services.Factories.Misc;
 using Newtonsoft.Json;
 
 namespace Modular.Core
@@ -51,7 +48,7 @@ namespace Modular.Core
 
         public virtual DbSet<AuditEntry> AuditEntries { get; set; }
 
-        public virtual DbSet<AuditLog> AuditRequestLogs { get; set; }
+        public virtual DbSet<AuditLog> AuditLogs { get; set; }
 
         public virtual DbSet<Configuration> Configurations { get; set; }
 
@@ -60,12 +57,6 @@ namespace Modular.Core
         public virtual DbSet<Organisation> Organisations { get; set; }
 
         public virtual DbSet<Country> Countries { get; set; }
-
-        public virtual DbSet<Department> Departments { get; set; }
-
-        public virtual DbSet<Occupation> Occupations { get; set; }
-
-
 
         #endregion
 
@@ -80,13 +71,9 @@ namespace Modular.Core
             //  Entity
             ContactFactory.OnModelCreating(modelBuilder);
             OrganisationFactory.OnModelCreating(modelBuilder);
-            
+
             //  Location
             CountryFactory.OnModelCreating(modelBuilder);
-
-            //  Misc
-            DepartmentFactory.OnModelCreating(modelBuilder);
-            OccupationFactory.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<AuditEntry>(entity =>
             {

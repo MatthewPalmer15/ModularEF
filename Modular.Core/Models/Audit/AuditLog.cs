@@ -14,13 +14,5 @@ namespace Modular.Core.Models.Audit
 
         public string? Exception { get; set; }
 
-        public bool HasException
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(Exception);
-            }
-        }
-
     }
 }
