@@ -1,7 +1,8 @@
 ﻿using Modular.Core.Identity;
+using Modular.Core.Models.Entity;
 using System.ComponentModel.DataAnnotations;
 
-namespace Modular.Core.ViewModels.Identity
+namespace matthewpalmer.dev.Models.Account
 {
     public class AccountViewModel
     {
@@ -31,7 +32,7 @@ namespace Modular.Core.ViewModels.Identity
             //this.TwitterLink = applicationUser.Contact.TwitterLink;
             //this.LinkedInLink = applicationUser.Contact.LinkedInLink;
             //this.WebsiteLink = applicationUser.Contact.WebsiteLink;
-            this.Profile = applicationUser.Profile;
+            
             this.OrganisationName = applicationUser.Contact.Organisation?.Name ?? "None";
             this.IsVerified = applicationUser.Contact.IsVerified;
 
@@ -93,8 +94,6 @@ namespace Modular.Core.ViewModels.Identity
 
         [Display(Name = "Organisation")]
         public string OrganisationName { get; set; }
-
-        public ApplicationUserProfile Profile { get; set; }
 
         public bool IsVerified { get; set; }
 
