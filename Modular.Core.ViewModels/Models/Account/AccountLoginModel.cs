@@ -1,12 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+#nullable disable
 
 namespace Modular.Core.ViewModels.Identity
 {
-    public class AccountLoginModel
+
+    public class AccountUsernameLoginModel
     {
 
         [Required]
+        [Display(Name = "Username")]
         public string Username { get; set; }
 
 
@@ -15,11 +18,11 @@ namespace Modular.Core.ViewModels.Identity
         public string Password { get; set; }
 
     }
-
-    public class LoginViewModel2
+    public class AccountEmailLoginModel
     {
 
         [Required]
+        [Display(Name = "Username")]
         public string Email { get; set; }
 
 
