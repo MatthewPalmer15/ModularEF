@@ -1,12 +1,12 @@
-﻿using Modular.Core.Helpers.Types;
+﻿#nullable disable
+
+using Modular.Core.Helpers.Types;
 using System.ComponentModel.DataAnnotations;
 
 namespace Modular.Core.ViewModels.Organisation
 {
     public class AllOrganisationViewModel
     {
-
-        #region "  Properties  "
 
         [Display(Name = "Name")]
         public string Name { get; set; }
@@ -53,32 +53,6 @@ namespace Modular.Core.ViewModels.Organisation
 
         [Display(Name = "Status")]
         public StatusType Status { get; set; }
-
-        #endregion
-
-        #region "  Constructors  "
-
-        public AllOrganisationViewModel(Modular.Core.Models.Entity.Organisation organisation)
-        {
-            Name = organisation.Name;
-            Description = organisation.Description;
-            RegistrationNumber = organisation.RegistrationNumber;
-            OwnerId = organisation.OwnerId;
-            Owner = organisation.Owner;
-            AddressLine1 = organisation.AddressLine1;
-            AddressLine2 = organisation.AddressLine2;
-            AddressLine3 = organisation.AddressLine3;
-            AddressCity = organisation.AddressCity;
-            AddressCounty = organisation.AddressCounty;
-            AddressCountryId = organisation.AddressCountryId;
-            AddressCountry = organisation.AddressCountry;
-            Email = organisation.Email;
-            Phone = organisation.Phone;
-            Website = organisation.Website;
-            Status = organisation.Status;
-        }
-
-        #endregion
 
     }
 }

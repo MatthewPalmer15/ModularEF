@@ -1,4 +1,5 @@
-﻿using Modular.Core.Models.Entity;
+﻿#nullable disable
+
 using System.ComponentModel.DataAnnotations;
 
 namespace Modular.Core.ViewModels.Entity
@@ -6,7 +7,7 @@ namespace Modular.Core.ViewModels.Entity
     public class ContactEditModel
     {
 
-        #region "  Properties  "
+        public Guid Id { get; set; }
 
         [Display(Name = "Forename")]
         public string Forename { get; set; }
@@ -57,100 +58,5 @@ namespace Modular.Core.ViewModels.Entity
         [Display(Name = "Is Banned")]
         public bool IsBanned { get; set; }
 
-        #endregion
-
-        #region "  Constructors  "
-
-        public ContactEditModel()
-        {
-            Forename = string.Empty;
-            Surname = string.Empty;
-            DateOfBirth = DateOnly.MinValue;
-            AddressLine1 = string.Empty;
-            AddressLine2 = string.Empty;
-            AddressLine3 = string.Empty;
-            AddressCity = string.Empty;
-            AddressCounty = string.Empty;
-            AddressPostcode = string.Empty;
-            Email = string.Empty;
-            Phone = string.Empty;
-            Mobile = string.Empty;
-            IsVerified = false;
-            IsBanned = false;
-        }
-
-        public ContactEditModel(ModularDbContext context)
-        {
-            Forename = string.Empty;
-            Surname = string.Empty;
-            DateOfBirth = DateOnly.MinValue;
-            AddressLine1 = string.Empty;
-            AddressLine2 = string.Empty;
-            AddressLine3 = string.Empty;
-            AddressCity = string.Empty;
-            AddressCounty = string.Empty;
-            AddressPostcode = string.Empty;
-            Email = string.Empty;
-            Phone = string.Empty;
-            Mobile = string.Empty;
-            IsVerified = false;
-            IsBanned = false;
-
-            Countries = context.Countries.ToList();
-            Organisations = context.Organisations.ToList();
-        }
-
-        public ContactEditModel(ModularDbContext context, Models.Entity.Contact contact)
-        {
-            Forename = contact.Forename;
-            Surname = contact.Surname;
-            DateOfBirth = DateOnly.FromDateTime(contact.DateOfBirth);
-            AddressLine1 = contact.AddressLine1;
-            AddressLine2 = contact.AddressLine2;
-            AddressLine3 = contact.AddressLine3;
-            AddressCity = contact.AddressCity;
-            AddressCounty = contact.AddressCounty;
-            AddressCountryId = contact.AddressCountryId;
-            AddressPostcode = contact.AddressPostcode;
-            Email = contact.Email;
-            Phone = contact.Phone;
-            Mobile = contact.Mobile;
-            OrganisationId = contact.OrganisationId;
-            IsBanned = contact.IsBanned;
-            IsVerified = contact.IsVerified;
-
-            Countries = context.Countries.ToList();
-            Organisations = context.Organisations.ToList();
-        }
-
-        #endregion
-
-        #region "  Public Methods  "
-
-        public Contact Convert()
-        {
-            return new Contact()
-            {
-                Forename = Forename,
-                Surname = Surname,
-                DateOfBirth = DateOfBirth.ToDateTime(new TimeOnly(0)),
-                AddressLine1 = AddressLine1,
-                AddressLine2 = AddressLine2,
-                AddressLine3 = AddressLine3,
-                AddressCity = AddressCity,
-                AddressCounty = AddressCounty,
-                AddressCountryId = AddressCountryId,
-                AddressPostcode = AddressPostcode,
-                Email = Email,
-                Phone = Phone,
-                Mobile = Mobile,
-                OrganisationId = OrganisationId,
-                IsVerified = IsVerified,
-                IsBanned = IsBanned
-            };
-        }
-
-
-        #endregion
     }
 }

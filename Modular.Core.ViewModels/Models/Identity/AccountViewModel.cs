@@ -1,42 +1,11 @@
-﻿using Modular.Core.Identity;
-using Modular.Core.Models.Entity;
+﻿#nullable disable
+
 using System.ComponentModel.DataAnnotations;
 
 namespace matthewpalmer.dev.Models.Account
 {
     public class AccountViewModel
     {
-
-        public AccountViewModel(ApplicationUser applicationUser)
-        {
-
-            this.Forename = applicationUser.Contact.Forename;
-            this.Surname = applicationUser.Contact.Surname;
-
-            this.Username = applicationUser.UserName ?? "";
-            this.Email = applicationUser.Email ?? "";
-            this.Phone = applicationUser.PhoneNumber ?? "";
-
-            this.DateOfBirth = DateOnly.FromDateTime(applicationUser.Contact.DateOfBirth);
-
-            this.AddressLine1 = applicationUser.Contact.AddressLine1;
-            this.AddressLine2 = applicationUser.Contact.AddressLine2;
-            this.AddressLine3 = applicationUser.Contact.AddressLine3;
-            this.AddressCity = applicationUser.Contact.AddressCity;
-            this.AddressCounty = applicationUser.Contact.AddressCounty;
-            this.AddressCountry = applicationUser.Contact.AddressCountry?.Name ?? "Unknown";
-            this.AddressPostcode = applicationUser.Contact.AddressPostcode;
-
-            //this.FacebookLink = applicationUser.Contact.FacebookLink;
-            //this.InstagramLink = applicationUser.Contact.InstagramLink;
-            //this.TwitterLink = applicationUser.Contact.TwitterLink;
-            //this.LinkedInLink = applicationUser.Contact.LinkedInLink;
-            //this.WebsiteLink = applicationUser.Contact.WebsiteLink;
-            
-            this.OrganisationName = applicationUser.Contact.Organisation?.Name ?? "None";
-            this.IsVerified = applicationUser.Contact.IsVerified;
-
-        }
 
         [Display(Name = "Forename")]
         public string Forename { get; set; }
@@ -96,7 +65,6 @@ namespace matthewpalmer.dev.Models.Account
         public string OrganisationName { get; set; }
 
         public bool IsVerified { get; set; }
-
 
     }
 }

@@ -1,9 +1,11 @@
-﻿namespace Modular.Core.ViewModels.Entity
+﻿#nullable disable
+
+namespace Modular.Core.ViewModels.Entity
 {
     public class ContactViewModel
     {
 
-        #region "  Properties  "
+        public Guid Id { get; set; }
 
         public Models.Entity.Contact.TitleType? Title { get; set; }
 
@@ -43,41 +45,6 @@
         public bool IsVerified { get; set; }
 
         public bool IsBanned { get; set; }
-
-        #endregion
-
-        #region "  Constructors  "
-
-        public ContactViewModel()
-        {
-
-        }
-
-        public ContactViewModel(Models.Entity.Contact contact)
-        {
-            Title = contact.Title;
-            Forename = contact.Forename;
-            Surname = contact.Surname;
-            DateOfBirth = DateOnly.FromDateTime(contact.DateOfBirth);
-            Gender = contact.Gender;
-            AddressLine1 = contact.AddressLine1;
-            AddressLine2 = contact.AddressLine2;
-            AddressLine3 = contact.AddressLine3;
-            AddressCity = contact.AddressCity;
-            AddressCounty = contact.AddressCounty;
-            AddressCountryId = contact.AddressCountryId;
-            AddressCountry = contact.AddressCountry;
-            AddressPostcode = contact.AddressPostcode;
-            Email = contact.Email;
-            Phone = contact.Phone;
-            Mobile = contact.Mobile;
-            OrganisationId = contact.OrganisationId;
-            Organisation = contact.Organisation;
-            IsBanned = contact.IsBanned;
-            IsVerified = contact.IsVerified;
-        }
-
-        #endregion
 
     }
 }
