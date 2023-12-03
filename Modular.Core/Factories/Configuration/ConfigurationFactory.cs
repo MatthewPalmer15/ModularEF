@@ -31,6 +31,13 @@ namespace Modular.Core.Services.Factories.Config
                       .ValueGeneratedOnAdd()
                       .IsRequired(true);
 
+                //  Created
+                entity.Property(e => e.Created)
+                      .HasColumnName("Created")
+                      .HasColumnType("datetime")
+                      .HasDefaultValue(DateTime.Now)
+                      .IsRequired(true);
+
                 //  Key
                 entity.Property(x => x.Key)
                       .HasColumnName("Key")

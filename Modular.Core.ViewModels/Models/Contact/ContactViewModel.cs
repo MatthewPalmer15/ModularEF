@@ -48,6 +48,11 @@
 
         #region "  Constructors  "
 
+        public ContactViewModel()
+        {
+
+        }
+
         public ContactViewModel(Models.Entity.Contact contact)
         {
             Title = contact.Title;
