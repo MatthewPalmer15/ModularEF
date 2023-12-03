@@ -8,11 +8,8 @@ using Modular.Core.Models.Audit;
 using Modular.Core.Models.Config;
 using Modular.Core.Models.Entity;
 using Modular.Core.Models.Location;
-using Modular.Core.Services.Factories.Config;
-using Modular.Core.Services.Factories.Entity;
-using Modular.Core.Services.Factories.Identity;
-using Modular.Core.Services.Factories.Location;
 using Newtonsoft.Json;
+using System.Reflection.Emit;
 
 namespace Modular.Core
 {
@@ -71,33 +68,21 @@ namespace Modular.Core
             builder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
             builder.HasDefaultSchema("dbo");
 
+            //  Audit
+            DbContextFactory.Audit.OnModelCreating(builder);
+
             //  Config
-            ConfigurationFactory.OnModelCreating(builder);
+            DbContextFactory.Configuration.OnModelCreating(builder);
 
             //  Entity
-            ContactFactory.OnModelCreating(builder);
-            OrganisationFactory.OnModelCreating(builder);
+            DbContextFactory.Contact.OnModelCreating(builder);
+            DbContextFactory.Organisation.OnModelCreating(builder);
 
             //  Identity
-            IdentityFactory.OnModelCreating(builder);
+            DbContextFactory.Identity.OnModelCreating(builder);
 
             //  Location
-            CountryFactory.OnModelCreating(builder);
-
-            builder.Entity<AuditEntry>(entity =>
-            {
-                entity.ToTable("tblAuditEntry");
-
-                entity.Property(e => e.EntityObject).HasConversion(
-                    value => JsonConvert.SerializeObject(value),
-                    serializedValue => JsonConvert.DeserializeObject<Dictionary<string, object>>(serializedValue) ?? new Dictionary<string, object>()
-                );
-            });
-
-            builder.Entity<AuditLog>(entity =>
-            {
-                entity.ToTable("tblAuditLog");
-            });
+            DbContextFactory.Country.OnModelCreating(builder);
 
             builder.UseEncryption(_encryptionProvider);
         }

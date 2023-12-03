@@ -6,9 +6,6 @@ using Modular.Core.Models.Audit;
 using Modular.Core.Models.Config;
 using Modular.Core.Models.Entity;
 using Modular.Core.Models.Location;
-using Modular.Core.Services.Factories.Config;
-using Modular.Core.Services.Factories.Entity;
-using Modular.Core.Services.Factories.Location;
 using Newtonsoft.Json;
 
 namespace Modular.Core
@@ -65,30 +62,18 @@ namespace Modular.Core
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
             modelBuilder.HasDefaultSchema("dbo");
 
+            //  Audit
+            DbContextFactory.Audit.OnModelCreating(modelBuilder);
+
             //  Config
-            ConfigurationFactory.OnModelCreating(modelBuilder);
+            DbContextFactory.Configuration.OnModelCreating(modelBuilder);
 
             //  Entity
-            ContactFactory.OnModelCreating(modelBuilder);
-            OrganisationFactory.OnModelCreating(modelBuilder);
+            DbContextFactory.Contact.OnModelCreating(modelBuilder);
+            DbContextFactory.Organisation.OnModelCreating(modelBuilder);
 
             //  Location
-            CountryFactory.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<AuditEntry>(entity =>
-            {
-                entity.ToTable("tblAuditEntry");
-
-                entity.Property(e => e.EntityObject).HasConversion(
-                    value => JsonConvert.SerializeObject(value),
-                    serializedValue => JsonConvert.DeserializeObject<Dictionary<string, object>>(serializedValue) ?? new Dictionary<string, object>()
-                );
-            });
-
-            modelBuilder.Entity<AuditLog>(entity =>
-            {
-                entity.ToTable("tblAuditLog");
-            });
+            DbContextFactory.Country.OnModelCreating(modelBuilder);
 
             modelBuilder.UseEncryption(_encryptionProvider);
         }
