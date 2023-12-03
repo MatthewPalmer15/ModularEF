@@ -5,8 +5,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Modular.Core.ViewModels.Organisation
 {
-    public class AllOrganisationViewModel
+    public class OrganisationViewModel
     {
+
+        public Guid Id { get; set; }
 
         [Display(Name = "Name")]
         public string Name { get; set; }
@@ -18,10 +20,9 @@ namespace Modular.Core.ViewModels.Organisation
         public string RegistrationNumber { get; set; }
 
         [Display(Name = "Owner")]
-        public Guid? OwnerId { get; set; }
+        public Guid OwnerId { get; set; }
 
-        [Display(Name = "Owner")]
-        public Modular.Core.Models.Entity.Contact? Owner { get; set; }
+        public Models.Entity.Contact Owner { get; set; }
 
         [Display(Name = "Address Line 1")]
         public string AddressLine1 { get; set; }
@@ -40,7 +41,8 @@ namespace Modular.Core.ViewModels.Organisation
 
         [Display(Name = "Country")]
         public Guid? AddressCountryId { get; set; }
-        public Modular.Core.Models.Location.Country? AddressCountry { get; set; }
+
+        public Models.Location.Country? AddressCountry { get; set; }
 
         [Display(Name = "Email")]
         public string Email { get; set; }

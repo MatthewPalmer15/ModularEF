@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace matthewpalmer.dev.Models.Account
+namespace Modular.Core.ViewModels.Identity
 {
     public class AccountRegisterModel
     {

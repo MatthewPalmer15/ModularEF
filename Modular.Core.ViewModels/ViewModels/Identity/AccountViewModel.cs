@@ -1,8 +1,9 @@
 ﻿#nullable disable
 
+using Modular.Core.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace matthewpalmer.dev.Models.Account
+namespace Modular.Core.ViewModels.Identity
 {
     public class AccountViewModel
     {
@@ -60,6 +61,9 @@ namespace matthewpalmer.dev.Models.Account
 
         [Display(Name = "Website")]
         public string WebsiteLink { get; set; }
+
+        public Guid ProfileId { get; set; }
+        public ApplicationUserProfile Profile { get; set; }
 
         [Display(Name = "Organisation")]
         public string OrganisationName { get; set; }

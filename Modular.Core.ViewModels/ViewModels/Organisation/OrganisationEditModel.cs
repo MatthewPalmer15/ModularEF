@@ -8,6 +8,8 @@ namespace Modular.Core.ViewModels.Organisation
     public class OrganisationEditModel
     {
 
+        public Guid Id { get; set; }
+
         [Display(Name = "Name")]
         public string Name { get; set; }
 
