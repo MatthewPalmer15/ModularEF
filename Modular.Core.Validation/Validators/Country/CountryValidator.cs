@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Modular.Core.Entities;
 
-namespace Modular.Core.Validaton
+namespace Modular.Core.Validation
 {
     public class CountryValidator : AbstractValidator<Country>
     {

@@ -2,7 +2,7 @@
 using Modular.Core.Identity;
 using System.Text.RegularExpressions;
 
-namespace Modular.Core.Validaton
+namespace Modular.Core.Validation
 {
     public class IdentityValidator : AbstractValidator<ApplicationUser>
     {
