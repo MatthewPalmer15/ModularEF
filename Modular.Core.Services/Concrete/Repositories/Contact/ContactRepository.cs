@@ -1,8 +1,8 @@
-﻿using Modular.Core.Models.Entity;
-using Modular.Core.Services.Repositories.Abstract.Entity;
+﻿using Modular.Core.Entities;
+using Modular.Core.Services.Repositories.Abstract;
 using Newtonsoft.Json;
 
-namespace Modular.Core.Services.Repositories.Concrete.Entity
+namespace Modular.Core.Services.Repositories.Concrete
 {
     public class ContactRepository : IContactRepository
     {
@@ -28,7 +28,7 @@ namespace Modular.Core.Services.Repositories.Concrete.Entity
 
         #endregion
 
-        #region "  CRUD Methods  "
+        #region "  Methods  "
 
         public IQueryable<Contact> All()
         {
@@ -36,10 +36,10 @@ namespace Modular.Core.Services.Repositories.Concrete.Entity
             return query;
         }
 
-        public Contact? Get(Guid id)
+        public Contact? Get(Guid Id)
         {
             IQueryable<Contact> query = this.All();
-            query = query.Where(e => e.Id.Equals(id));
+            query = query.Where(e => e.Id.Equals(Id));
             return query.Count() > 0 ? query.Take(1).SingleOrDefault() : null;
         }
 

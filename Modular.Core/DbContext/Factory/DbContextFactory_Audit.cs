@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.DataEncryption;
-using Modular.Core.Models.Audit;
+using Modular.Core.Entities;
 using Newtonsoft.Json;
 
 namespace Modular.Core

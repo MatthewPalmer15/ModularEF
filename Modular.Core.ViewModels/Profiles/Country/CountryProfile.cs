@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Modular.Core.Models.Location;
+using Modular.Core.Entities;
 using Modular.Core.ViewModels.Country;
 
-namespace Modular.Core.Profiles.Location
+namespace Modular.Core.Profiles
 {
     public class CountryProfile : Profile
     {

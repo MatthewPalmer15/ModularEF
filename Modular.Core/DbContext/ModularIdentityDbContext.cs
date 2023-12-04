@@ -4,10 +4,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.DataEncryption;
 using Modular.Core.Identity;
 using Modular.Core.Interfaces;
-using Modular.Core.Models.Audit;
-using Modular.Core.Models.Config;
-using Modular.Core.Models.Entity;
-using Modular.Core.Models.Location;
+using Modular.Core.Entities;
 using Newtonsoft.Json;
 using System.Reflection.Emit;
 
@@ -51,7 +48,7 @@ namespace Modular.Core
 
         public virtual DbSet<Contact> Contacts { get; set; }
 
-        public virtual DbSet<Organisation> Organisations { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
 
         public virtual DbSet<Country> Countries { get; set; }
 
@@ -76,7 +73,7 @@ namespace Modular.Core
 
             //  Entity
             DbContextFactory.Contact.OnModelCreating(builder);
-            DbContextFactory.Organisation.OnModelCreating(builder);
+            DbContextFactory.Company.OnModelCreating(builder);
 
             //  Identity
             DbContextFactory.Identity.OnModelCreating(builder);

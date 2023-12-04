@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Modular.Core.Models.Config;
+using Modular.Core.Entities;
 
-namespace Modular.Core.Validation.Entity
+namespace Modular.Core.Validation
 {
     public class ConfigurationValidator : AbstractValidator<Configuration>
     {

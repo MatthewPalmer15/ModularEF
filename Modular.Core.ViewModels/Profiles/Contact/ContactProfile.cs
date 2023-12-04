@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Modular.Core.Models.Entity;
+using Modular.Core.Entities;
 using Modular.Core.ViewModels.Entity;
 
-namespace Modular.Core.Profiles.Entity
+namespace Modular.Core.Profiles
 {
     public class ContactProfile : Profile
     {

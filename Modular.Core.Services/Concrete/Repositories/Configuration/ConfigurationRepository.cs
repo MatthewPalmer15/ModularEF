@@ -1,8 +1,8 @@
-﻿using Modular.Core.Models.Config;
-using Modular.Core.Services.Repositories.Abstract.Config;
+﻿using Modular.Core.Entities;
+using Modular.Core.Services.Repositories.Abstract;
 using Newtonsoft.Json;
 
-namespace Modular.Core.Services.Repositories.Concrete.Config
+namespace Modular.Core.Services.Repositories.Concrete
 {
     public class ConfigurationRepository : IConfigurationRepository
     {
@@ -40,9 +40,9 @@ namespace Modular.Core.Services.Repositories.Concrete.Config
             return config != null ? config.Value : string.Empty;
         }
 
-        public Configuration? Get(Guid id)
+        public Configuration? Get(Guid Id)
         {
-            return _context.Configurations.Where(e => e.Id.Equals(id)).SingleOrDefault();
+            return _context.Configurations.Where(e => e.Id.Equals(Id)).SingleOrDefault();
         }
 
         public void Add(Configuration configuration)

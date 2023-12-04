@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Modular.Core.Models.Location;
+using Modular.Core.Entities;
 
-namespace Modular.Core.Validaton.Location
+namespace Modular.Core.Validaton
 {
     public class CountryValidator : AbstractValidator<Country>
     {
@@ -20,10 +20,7 @@ namespace Modular.Core.Validaton.Location
             RuleFor(e => e.Code)
                 .MaximumLength(4).WithMessage("Code must not exceed 2 characters.");
 
-
-
         }
-
 
     }
 }

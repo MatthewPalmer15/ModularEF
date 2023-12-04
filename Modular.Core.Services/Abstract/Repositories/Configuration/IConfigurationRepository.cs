@@ -1,7 +1,7 @@
 ﻿using Modular.Core.Interfaces;
-using Modular.Core.Models.Config;
+using Modular.Core.Entities;
 
-namespace Modular.Core.Services.Repositories.Abstract.Config
+namespace Modular.Core.Services.Repositories.Abstract
 {
     public interface IConfigurationRepository : IRepository<Configuration>, IDisposable
     {

@@ -2,7 +2,7 @@
 
 using Modular.Core.Interfaces;
 
-namespace Modular.Core.Models.Location
+namespace Modular.Core.Entities
 {
     public class Country : BaseEntity<Guid>, IAuditable
     {

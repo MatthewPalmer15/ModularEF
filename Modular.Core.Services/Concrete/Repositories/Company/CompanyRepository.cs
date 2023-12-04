@@ -1,15 +1,15 @@
-﻿using Modular.Core.Models.Location;
-using Modular.Core.Services.Repositories.Abstract.Location;
+﻿using Modular.Core.Entities;
+using Modular.Core.Services.Repositories.Abstract;
 using Newtonsoft.Json;
 
-namespace Modular.Core.Services.Repositories.Concrete.Location
+namespace Modular.Core.Services.Repositories.Concrete
 {
-    public class CountryRepository : ICountryRepository
+    public class CompanyRepository : ICompanyRepository
     {
 
         #region "  Constructors  "
 
-        public CountryRepository(ModularDbContext context)
+        public CompanyRepository(ModularDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -24,30 +24,30 @@ namespace Modular.Core.Services.Repositories.Concrete.Location
 
         #region "  Methods  "
 
-        public IQueryable<Country> All()
+        public IQueryable<Company> All()
         {
-            var query = from country in _context.Countries select country;
+            var query = from company in _context.Companies select company;
             return query;
         }
 
-        public Country? Get(Guid id)
+        public Company? Get(Guid Id)
         {
-            return _context.Countries.Where(e => e.Id.Equals(id)).SingleOrDefault();
+            return _context.Companies.Where(e => e.Id.Equals(Id)).SingleOrDefault();
         }
 
-        public void Add(Country country)
+        public void Add(Company company)
         {
-            _context.Countries.Add(country);
+            _context.Companies.Add(company);
         }
 
-        public void Update(Country country)
+        public void Update(Company company)
         {
-            _context.Countries.Update(country);
+            _context.Companies.Update(company);
         }
 
-        public void Delete(Country country)
+        public void Delete(Company company)
         {
-            _context.Countries.Remove(country);
+            _context.Companies.Remove(company);
         }
 
         public void SaveChanges()
@@ -74,24 +74,24 @@ namespace Modular.Core.Services.Repositories.Concrete.Location
             }
         }
 
-        public string SerializeToJson(Country country)
+        public string SerializeToJson(Company company)
         {
-            return JsonConvert.SerializeObject(country, Formatting.Indented);
+            return JsonConvert.SerializeObject(company, Formatting.Indented);
         }
 
-        public Country? DeserializeFromJson(string json)
+        public Company? DeserializeFromJson(string json)
         {
             try
             {
-                return JsonConvert.DeserializeObject<Country>(json);
+                return JsonConvert.DeserializeObject<Company>(json);
             }
             catch
             {
                 return null;
             }
         }
-
         #endregion
 
     }
 }
+

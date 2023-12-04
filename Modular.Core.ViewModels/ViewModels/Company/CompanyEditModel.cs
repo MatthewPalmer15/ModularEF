@@ -3,9 +3,9 @@
 using Modular.Core.Helpers.Types;
 using System.ComponentModel.DataAnnotations;
 
-namespace Modular.Core.ViewModels.Organisation
+namespace Modular.Core.ViewModels.Company
 {
-    public class OrganisationEditModel
+    public class CompanyEditModel
     {
 
         public Guid Id { get; set; }
@@ -21,7 +21,7 @@ namespace Modular.Core.ViewModels.Organisation
 
         [Display(Name = "Owner")]
         public Guid OwnerId { get; set; }
-        public IEnumerable<Modular.Core.Models.Entity.Contact>? Contacts { get; set; }
+        public IEnumerable<Entities.Contact>? Contacts { get; set; }
 
         [Display(Name = "Address Line 1")]
         public string AddressLine1 { get; set; }
@@ -40,7 +40,7 @@ namespace Modular.Core.ViewModels.Organisation
 
         [Display(Name = "Country")]
         public Guid? AddressCountryId { get; set; }
-        public IEnumerable<Modular.Core.Models.Location.Country>? Countries { get; set; }
+        public IEnumerable<Entities.Country>? Countries { get; set; }
 
         [Display(Name = "Email")]
         public string Email { get; set; }

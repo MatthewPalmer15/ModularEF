@@ -10,7 +10,7 @@ namespace Modular.Core
 
             internal static void OnModelCreating(ModelBuilder modelBuilder)
             {
-                modelBuilder.Entity<Models.Entity.Contact>(entity =>
+                modelBuilder.Entity<Entities.Contact>(entity =>
                 {
                     entity.ToTable("tblContact");
 
@@ -31,7 +31,7 @@ namespace Modular.Core
                     entity.Property(e => e.Title)
                           .HasColumnName("Title")
                           .HasColumnType("int")
-                          .HasDefaultValue(Models.Entity.Contact.TitleType.Unknown)
+                          .HasDefaultValue(Entities.Contact.TitleType.Unknown)
                           .IsRequired(false);
 
                     //  Forename
@@ -61,7 +61,7 @@ namespace Modular.Core
                     entity.Property(e => e.Gender)
                           .HasColumnName("Gender")
                           .HasColumnType("int")
-                          .HasDefaultValue(Models.Entity.Contact.GenderType.Unknown)
+                          .HasDefaultValue(Entities.Contact.GenderType.Unknown)
                           .IsRequired(false);
 
                     //  Address Line 1
@@ -113,7 +113,7 @@ namespace Modular.Core
 
                     entity.HasOne(e => e.AddressCountry)
                           .WithOne()
-                          .HasForeignKey<Models.Entity.Contact>(e => e.AddressCountryId);
+                          .HasForeignKey<Entities.Contact>(e => e.AddressCountryId);
 
                     //  Address Postcode
                     entity.Property(e => e.AddressPostcode)
@@ -148,15 +148,15 @@ namespace Modular.Core
                           .HasMaxLength(64);
 
                     //  Organisation
-                    entity.Property(e => e.OrganisationId)
-                          .HasColumnName("OrganisationID")
+                    entity.Property(e => e.CompanyId)
+                          .HasColumnName("CompanyID")
                           .HasColumnType("uniqueidentifier")
                           .HasDefaultValue(null)
                           .IsRequired(false);
 
-                    entity.HasOne(e => e.Organisation)
+                    entity.HasOne(e => e.Company)
                           .WithOne()
-                         .HasForeignKey<Models.Entity.Contact>(e => e.OrganisationId);
+                         .HasForeignKey<Entities.Contact>(e => e.CompanyId);
 
                     //  Is Verified
                     entity.Property(e => e.IsVerified)

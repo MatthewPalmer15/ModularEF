@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
-using Modular.Core.Models.Entity;
+using Modular.Core.Entities;
 using System.Text.RegularExpressions;
 
-namespace Modular.Core.Validation.Entity
+namespace Modular.Core.Validation
 {
     public class ContactValidator : AbstractValidator<Contact>
     {

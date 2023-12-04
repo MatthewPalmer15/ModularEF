@@ -1,17 +1,18 @@
 ﻿using AutoMapper;
+using Modular.Core.Entities;
 using Modular.Core.ViewModels.Configuration;
 
-namespace Modular.Core.Profiles.Configuration
+namespace Modular.Core.Profiles
 {
     public class ConfigurationProfile : Profile
     {
 
         public ConfigurationProfile() 
         {
-            CreateMap<Models.Config.Configuration, ConfigurationEditModel>();
-            CreateMap<Models.Config.Configuration, ConfigurationViewModel>();
-            CreateMap<ConfigurationEditModel, Models.Config.Configuration>();
-            CreateMap<ConfigurationViewModel, Models.Config.Configuration>();
+            CreateMap<Configuration, ConfigurationEditModel>();
+            CreateMap<Configuration, ConfigurationViewModel>();
+            CreateMap<ConfigurationEditModel, Configuration>();
+            CreateMap<ConfigurationViewModel, Configuration>();
         }
 
 

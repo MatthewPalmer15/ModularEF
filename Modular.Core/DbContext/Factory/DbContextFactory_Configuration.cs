@@ -11,7 +11,7 @@ namespace Modular.Core
 
             internal static void OnModelCreating(ModelBuilder modelBuilder)
             {
-                modelBuilder.Entity<Models.Config.Configuration>(entity =>
+                modelBuilder.Entity<Entities.Configuration>(entity =>
                 {
                     entity.ToTable("tblConfiguration");
 

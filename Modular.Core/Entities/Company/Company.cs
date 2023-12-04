@@ -1,12 +1,11 @@
 ﻿using Modular.Core.Helpers.Types;
 using Modular.Core.Interfaces;
-using Modular.Core.Models.Location;
 
 #nullable disable
 
-namespace Modular.Core.Models.Entity
+namespace Modular.Core.Entities
 {
-    public class Organisation : BaseEntity<Guid>, IAuditable
+    public class Company : BaseEntity<Guid>, IAuditable
     {
 
         public string Name { get; set; }

@@ -35,7 +35,7 @@ namespace Modular.Core.ViewModels.Entity
 
         [Display(Name = "Country")]
         public Guid? AddressCountryId { get; set; }
-        public IEnumerable<Modular.Core.Models.Location.Country>? Countries { get; set; }
+        public IEnumerable<Entities.Country>? Countries { get; set; }
 
         [Display(Name = "Postcode")]
         public string AddressPostcode { get; set; }
@@ -50,7 +50,7 @@ namespace Modular.Core.ViewModels.Entity
         public string Mobile { get; set; }
 
         public Guid? OrganisationId { get; set; }
-        public IEnumerable<Modular.Core.Models.Entity.Organisation>? Organisations { get; set; }
+        public IEnumerable<Entities.Company>? Companies { get; set; }
 
         [Display(Name = "Is Verified")]
         public bool IsVerified { get; set; }

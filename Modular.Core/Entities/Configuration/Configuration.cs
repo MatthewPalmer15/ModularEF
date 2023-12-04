@@ -1,9 +1,8 @@
-﻿
-#nullable disable
+﻿#nullable disable
 
 using Modular.Core.Interfaces;
 
-namespace Modular.Core.Models.Config
+namespace Modular.Core.Entities
 {
     public class Configuration : BaseEntity<Guid>, IAuditable
     {

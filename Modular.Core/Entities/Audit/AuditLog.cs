@@ -1,7 +1,6 @@
 ﻿#nullable disable
 
-
-namespace Modular.Core.Models.Audit
+namespace Modular.Core.Entities
 {
     public class AuditLog : BaseEntity<int>
     {

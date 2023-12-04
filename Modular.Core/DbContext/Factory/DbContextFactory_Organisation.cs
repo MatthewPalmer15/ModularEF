@@ -6,14 +6,14 @@ namespace Modular.Core
     internal static partial class DbContextFactory
     {
 
-        internal static class Organisation
+        internal static class Company
         {
 
             internal static void OnModelCreating(ModelBuilder modelBuilder)
             {
-                modelBuilder.Entity<Models.Entity.Organisation>(entity =>
+                modelBuilder.Entity<Entities.Company>(entity =>
                 {
-                    entity.ToTable("tblOrganisation");
+                    entity.ToTable("tblCompany");
 
                     //  ID
                     entity.HasKey(e => e.Id)
@@ -60,7 +60,7 @@ namespace Modular.Core
 
                     entity.HasOne(e => e.Owner)
                           .WithOne()
-                          .HasForeignKey<Models.Entity.Organisation>(e => e.OwnerId);
+                          .HasForeignKey<Entities.Company>(e => e.OwnerId);
 
                     entity.HasIndex(e => e.OwnerId)
                           .IsUnique(false);
@@ -114,7 +114,7 @@ namespace Modular.Core
 
                     entity.HasOne(e => e.AddressCountry)
                           .WithOne()
-                          .HasForeignKey<Models.Entity.Organisation>(e => e.AddressCountryId);
+                          .HasForeignKey<Entities.Company>(e => e.AddressCountryId);
 
                     //  Address Postcode
                     entity.Property(e => e.AddressPostcode)

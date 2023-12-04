@@ -1,11 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.DataEncryption;
+using Modular.Core.Entities;
 using Modular.Core.Interfaces;
-using Modular.Core.Models.Audit;
-using Modular.Core.Models.Config;
-using Modular.Core.Models.Entity;
-using Modular.Core.Models.Location;
 using Newtonsoft.Json;
 
 namespace Modular.Core
@@ -33,10 +30,6 @@ namespace Modular.Core
 
         #region "  Constants  "
 
-        internal static readonly byte[] EncryptionKey = new byte[32] { 218, 67, 67, 63, 204, 244, 241, 114, 106, 200, 253, 68, 254, 170, 233, 174, 241, 127, 130, 233, 16, 17, 217, 204, 18, 174, 7, 247, 196, 98, 133, 163 };
-
-        internal static readonly byte[] EncryptionIV = new byte[16] { 58, 191, 153, 193, 2, 157, 167, 89, 225, 55, 84, 168, 83, 75, 77, 242 };
-
         private readonly IEncryptionProvider _encryptionProvider;
 
         #endregion
@@ -51,7 +44,7 @@ namespace Modular.Core
 
         public virtual DbSet<Contact> Contacts { get; set; }
 
-        public virtual DbSet<Organisation> Organisations { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
 
         public virtual DbSet<Country> Countries { get; set; }
 
@@ -70,7 +63,7 @@ namespace Modular.Core
 
             //  Entity
             DbContextFactory.Contact.OnModelCreating(modelBuilder);
-            DbContextFactory.Organisation.OnModelCreating(modelBuilder);
+            DbContextFactory.Company.OnModelCreating(modelBuilder);
 
             //  Location
             DbContextFactory.Country.OnModelCreating(modelBuilder);

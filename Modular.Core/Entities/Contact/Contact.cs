@@ -1,9 +1,8 @@
 ﻿#nullable disable
 
 using Modular.Core.Interfaces;
-using Modular.Core.Models.Location;
 
-namespace Modular.Core.Models.Entity
+namespace Modular.Core.Entities
 {
     public class Contact : BaseEntity<Guid>, IAuditable
     {
@@ -60,9 +59,9 @@ namespace Modular.Core.Models.Entity
 
         public string Mobile { get; set; }
 
-        public Guid? OrganisationId { get; set; }
+        public Guid? CompanyId { get; set; }
 
-        public Organisation? Organisation { get; set; }
+        public Company? Company { get; set; }
 
         public bool IsVerified { get; set; }
 

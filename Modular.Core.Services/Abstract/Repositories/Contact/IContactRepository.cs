@@ -1,7 +1,7 @@
 ﻿using Modular.Core.Interfaces;
-using Modular.Core.Models.Entity;
+using Modular.Core.Entities;
 
-namespace Modular.Core.Services.Repositories.Abstract.Entity
+namespace Modular.Core.Services.Repositories.Abstract
 {
     public interface IContactRepository : IRepository<Contact>, IDisposable
     {

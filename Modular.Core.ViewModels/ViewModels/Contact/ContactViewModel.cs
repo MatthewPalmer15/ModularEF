@@ -1,13 +1,13 @@
 ﻿#nullable disable
 
-namespace Modular.Core.ViewModels.Entity
+namespace Modular.Core.ViewModels.Contact
 {
     public class ContactViewModel
     {
 
         public Guid Id { get; set; }
 
-        public Models.Entity.Contact.TitleType? Title { get; set; }
+        public Entities.Contact.TitleType? Title { get; set; }
 
         public string Forename { get; set; }
 
@@ -15,7 +15,7 @@ namespace Modular.Core.ViewModels.Entity
 
         public DateOnly DateOfBirth { get; set; }
 
-        public Models.Entity.Contact.GenderType? Gender { get; set; }
+        public Entities.Contact.GenderType? Gender { get; set; }
 
         public string AddressLine1 { get; set; }
 
@@ -29,7 +29,7 @@ namespace Modular.Core.ViewModels.Entity
 
         public Guid? AddressCountryId { get; set; }
 
-        public Models.Location.Country? AddressCountry { get; set; }
+        public Entities.Country? AddressCountry { get; set; }
 
         public string AddressPostcode { get; set; }
 
@@ -39,8 +39,9 @@ namespace Modular.Core.ViewModels.Entity
 
         public string Mobile { get; set; }
 
-        public Guid? OrganisationId { get; set; }
-        public Models.Entity.Organisation? Organisation { get; set; }
+        public Guid? CompanyId { get; set; }
+
+        public Entities.Company? Company { get; set; }
 
         public bool IsVerified { get; set; }
 
