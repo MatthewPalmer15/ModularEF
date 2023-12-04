@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace Modular.Core.ViewModels.Entity
+namespace Modular.Core.ViewModels.Contact
 {
     public class ContactEditModel
     {

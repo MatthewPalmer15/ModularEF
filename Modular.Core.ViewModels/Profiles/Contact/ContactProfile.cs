@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Modular.Core.Entities;
-using Modular.Core.ViewModels.Entity;
+using Modular.Core.ViewModels.Contact;
 
 namespace Modular.Core.Profiles
 {
