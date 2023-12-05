@@ -1,4 +1,5 @@
-﻿using Modular.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Modular.Core.Entities;
 using Modular.Core.Services.Repositories.Abstract;
 using Newtonsoft.Json;
 
@@ -41,6 +42,13 @@ namespace Modular.Core.Services.Repositories.Concrete
             IQueryable<Contact> query = this.All();
             query = query.Where(e => e.Id.Equals(Id));
             return query.Count() > 0 ? query.Take(1).SingleOrDefault() : null;
+        }
+
+        public List<Contact> Search(string searchTerm)
+        {
+            var contacts = All();
+            contacts = contacts.Where(x => EF.Functions.Like(searchTerm, x.Forename) || EF.Functions.Like(searchTerm, x.Surname));
+            return contacts.ToList();
         }
 
         public void Add(Contact contact)

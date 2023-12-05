@@ -1,4 +1,5 @@
-﻿using Modular.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Modular.Core.Entities;
 using Modular.Core.Services.Repositories.Abstract;
 using Newtonsoft.Json;
 
@@ -33,6 +34,13 @@ namespace Modular.Core.Services.Repositories.Concrete
         public Company? Get(Guid Id)
         {
             return _context.Companies.Where(e => e.Id.Equals(Id)).SingleOrDefault();
+        }
+
+        public List<Company> Search(string searchTerm)
+        {
+            var companies = All();
+            companies = companies.Where(x => EF.Functions.Like(searchTerm, x.Name));
+            return companies.ToList();
         }
 
         public void Add(Company company)

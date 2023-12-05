@@ -7,6 +7,8 @@
 
         T? Get(Guid Id);
 
+        List<T> Search(string searchTerm);
+
         void Add(T entity);
 
         void Update(T entity);

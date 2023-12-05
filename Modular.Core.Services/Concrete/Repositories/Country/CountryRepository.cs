@@ -1,4 +1,5 @@
-﻿using Modular.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Modular.Core.Entities;
 using Modular.Core.Services.Repositories.Abstract;
 using Newtonsoft.Json;
 
@@ -30,9 +31,16 @@ namespace Modular.Core.Services.Repositories.Concrete
             return query;
         }
 
-        public Country? Get(Guid id)
+        public Country? Get(Guid Id)
         {
-            return _context.Countries.Where(e => e.Id.Equals(id)).SingleOrDefault();
+            return _context.Countries.Where(e => e.Id.Equals(Id)).SingleOrDefault();
+        }
+
+        public List<Country> Search(string searchTerm)
+        {
+            var countries = All();
+            countries = countries.Where(x => EF.Functions.Like(searchTerm, x.Name));
+            return countries.ToList();
         }
 
         public void Add(Country country)

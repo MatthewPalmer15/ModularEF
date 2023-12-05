@@ -1,4 +1,5 @@
-﻿using Modular.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Modular.Core.Entities;
 using Modular.Core.Services.Repositories.Abstract;
 using Newtonsoft.Json;
 
@@ -43,6 +44,13 @@ namespace Modular.Core.Services.Repositories.Concrete
         public Configuration? Get(Guid Id)
         {
             return _context.Configurations.Where(e => e.Id.Equals(Id)).SingleOrDefault();
+        }
+
+        public List<Configuration> Search(string searchTerm)
+        {
+            var configurations = All();
+            configurations = configurations.Where(x => EF.Functions.Like(searchTerm, x.Key));
+            return configurations.ToList();
         }
 
         public void Add(Configuration configuration)
