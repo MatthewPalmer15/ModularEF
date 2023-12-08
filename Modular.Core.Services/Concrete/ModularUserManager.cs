@@ -1,15 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Modular.Core.Entities;
 using Modular.Core.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Modular.Core.Services.Identity
 {
@@ -27,7 +18,7 @@ namespace Modular.Core.Services.Identity
             UserManager = userManager;
             RoleManager = roleManager;
         }
-        
+
         /// <summary>
         /// Creates a new application user. Returns null if it was not successful.
         /// </summary>
@@ -51,7 +42,7 @@ namespace Modular.Core.Services.Identity
             {
                 foreach (string role in roles)
                 {
-                    await applicationUser.AssignRoleAsync(UserManager, RoleManager, role);
+                    await applicationUser.AssignRoleAsync(UserManager, RoleManager, role, true);
                 }
                 return applicationUser;
             }
@@ -60,6 +51,13 @@ namespace Modular.Core.Services.Identity
                 return null;
             }
         }
+
+        //public string GenerateApiToken()
+        //{
+        //    Guid UUID = Guid.NewGuid();
+        //    string apiToken = UUID.ToString().Replace("-", "");
+        //    return UUID.ToString();
+        //}
 
     }
 }

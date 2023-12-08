@@ -7,7 +7,7 @@ namespace Modular.Core.Profiles
     public class ConfigurationProfile : Profile
     {
 
-        public ConfigurationProfile() 
+        public ConfigurationProfile()
         {
             CreateMap<Configuration, ConfigurationEditModel>();
             CreateMap<Configuration, ConfigurationViewModel>();

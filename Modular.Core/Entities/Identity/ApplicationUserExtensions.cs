@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Options;
-using Modular.Core.Identity;
-using System.Reflection;
 using System.Security.Claims;
 
 namespace Modular.Core.Identity
@@ -41,6 +38,12 @@ namespace Modular.Core.Identity
             }
 
             return !isSuccessfulAssignments.Contains(false);
+        }
+
+        public static async Task<bool> RevokeRoleAsync(this ApplicationUser user, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, string roleName)
+        {
+            var result = await userManager.RemoveFromRoleAsync(user, roleName);
+            return result.Succeeded;
         }
 
 

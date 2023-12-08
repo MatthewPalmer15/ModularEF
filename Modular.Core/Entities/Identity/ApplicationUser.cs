@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Modular.Core.Interfaces;
 using Modular.Core.Entities;
+using Modular.Core.Interfaces;
 
 #nullable disable
 

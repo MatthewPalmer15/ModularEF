@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.DataEncryption;
 using Modular.Core.Entities;
 using Modular.Core.Interfaces;
-using Newtonsoft.Json;
 
 namespace Modular.Core
 {

@@ -7,7 +7,7 @@ namespace Modular.Core.Profiles
     public class CountryProfile : Profile
     {
 
-        public CountryProfile() 
+        public CountryProfile()
         {
 
             CreateMap<Country, CountryEditModel>();

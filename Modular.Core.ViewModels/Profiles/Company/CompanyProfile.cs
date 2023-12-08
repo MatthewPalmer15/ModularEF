@@ -7,7 +7,7 @@ namespace Modular.Core.Profiles
     public class CompanyProfile : Profile
     {
 
-        public CompanyProfile() 
+        public CompanyProfile()
         {
 
             CreateMap<Company, CompanyEditModel>();

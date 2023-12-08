@@ -7,7 +7,7 @@ namespace Modular.Core.Profiles
     public class ContactProfile : Profile
     {
 
-        public ContactProfile() 
+        public ContactProfile()
         {
 
             CreateMap<Contact, ContactEditModel>()

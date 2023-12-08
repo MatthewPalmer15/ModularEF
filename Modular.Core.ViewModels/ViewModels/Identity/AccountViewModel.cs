@@ -1,6 +1,5 @@
 ﻿#nullable disable
 
-using Modular.Core.Identity;
 using System.ComponentModel.DataAnnotations;
 
 namespace Modular.Core.ViewModels.Identity

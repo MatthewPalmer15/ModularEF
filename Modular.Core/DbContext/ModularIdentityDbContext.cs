@@ -2,11 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.DataEncryption;
+using Modular.Core.Entities;
 using Modular.Core.Identity;
 using Modular.Core.Interfaces;
-using Modular.Core.Entities;
-using Newtonsoft.Json;
-using System.Reflection.Emit;
 
 namespace Modular.Core
 {
