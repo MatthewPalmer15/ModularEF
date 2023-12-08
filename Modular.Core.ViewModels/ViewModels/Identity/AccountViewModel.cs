@@ -47,26 +47,20 @@ namespace Modular.Core.ViewModels.Identity
         [Display(Name = "Postcode")]
         public string AddressPostcode { get; set; }
 
-        [Display(Name = "Facebook")]
-        public string FacebookLink { get; set; }
-
-        [Display(Name = "Instagram")]
-        public string InstagramLink { get; set; }
-
-        [Display(Name = "Twitter")]
-        public string TwitterLink { get; set; }
-
-        [Display(Name = "LinkedIn")]
-        public string LinkedInLink { get; set; }
-
-        [Display(Name = "Website")]
-        public string WebsiteLink { get; set; }
-
-        public Guid ProfileId { get; set; }
-        public ApplicationUserProfile Profile { get; set; }
-
-        [Display(Name = "Organisation")]
-        public string OrganisationName { get; set; }
+        // [Display(Name = "Facebook")]
+        // public string FacebookLink { get; set; }
+        // 
+        // [Display(Name = "Instagram")]
+        // public string InstagramLink { get; set; }
+        // 
+        // [Display(Name = "Twitter")]
+        // public string TwitterLink { get; set; }
+        // 
+        // [Display(Name = "LinkedIn")]
+        // public string LinkedInLink { get; set; }
+        // 
+        // [Display(Name = "Website")]
+        // public string WebsiteLink { get; set; }
 
         public bool IsVerified { get; set; }
 

@@ -56,8 +56,6 @@ namespace Modular.Core
 
         public virtual DbSet<ApplicationRole> ApplicationRoles { get; set; }
 
-        public virtual DbSet<ApplicationUserProfile> ApplicationUserProfiles { get; set; }
-
         #endregion
 
         protected override void OnModelCreating(ModelBuilder builder)

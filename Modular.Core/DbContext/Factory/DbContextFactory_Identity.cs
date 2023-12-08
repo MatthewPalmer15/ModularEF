@@ -154,20 +154,6 @@ namespace Modular.Core
                           .HasColumnType("nvarchar(max)")
                           .IsRequired(false);
 
-                    //  Is Staff
-                    entity.Property(e => e.IsStaff)
-                          .HasColumnName("IsStaff")
-                          .HasColumnType("bit")
-                          .HasDefaultValue(false)
-                          .IsRequired(true);
-
-                    //  Is Admin
-                    entity.Property(e => e.IsAdmin)
-                          .HasColumnName("IsAdmin")
-                          .HasColumnType("bit")
-                          .HasDefaultValue(false)
-                          .IsRequired(true);
-
                     //  Contact
                     entity.Property(e => e.ContactId)
                           .HasColumnName("ContactID")
@@ -183,70 +169,53 @@ namespace Modular.Core
                     entity.HasIndex(e => e.ContactId)
                           .IsUnique(true);
 
-                    //  Contact
-                    entity.Property(e => e.ProfileId)
-                          .HasColumnName("ProfileID")
-                          .HasColumnType("uniqueidentifier")
-                          .HasDefaultValue(Guid.Empty)
-                          .IsRequired(true);
-
-                    entity.HasOne(e => e.Profile)
-                          .WithOne()
-                          .HasForeignKey<ApplicationUser>(e => e.ProfileId)
-                          .OnDelete(DeleteBehavior.Cascade);
-
-                    entity.HasIndex(e => e.ProfileId)
-                          .IsUnique(true);
-
                     entity.Navigation(e => e.Contact).AutoInclude();
-                    entity.Navigation(e => e.Profile).AutoInclude();
-
                 });
 
-                modelBuilder.Entity<ApplicationUserProfile>(entity =>
-                {
-                    entity.ToTable("tblApplicationUserProfile");
-
-                    //  Facebook Link
-                    entity.Property(e => e.FacebookLink)
-                          .HasColumnName("FacebookLink")
-                          .HasColumnType("nvarchar(2048)")
-                          .IsRequired(false)
-                          .HasDefaultValue(string.Empty)
-                          .HasMaxLength(2048);
-
-                    //  Instagram Link
-                    entity.Property(e => e.InstagramLink)
-                          .HasColumnName("InstagramLink")
-                          .HasColumnType("nvarchar(2048)")
-                          .IsRequired(false)
-                          .HasDefaultValue(string.Empty)
-                          .HasMaxLength(2048);
-
-                    //  Twitter Link
-                    entity.Property(e => e.TwitterLink)
-                          .HasColumnName("TwitterLink")
-                          .HasColumnType("nvarchar(2048)")
-                          .IsRequired(false)
-                          .HasDefaultValue(string.Empty)
-                          .HasMaxLength(2048);
-
-                    //  LinkedIn Link
-                    entity.Property(e => e.LinkedInLink)
-                          .HasColumnName("LinkedInLink")
-                          .HasColumnType("nvarchar(2048)")
-                          .IsRequired(false)
-                          .HasDefaultValue(string.Empty)
-                          .HasMaxLength(2048);
-
-                    //  Website Link
-                    entity.Property(e => e.WebsiteLink)
-                          .HasColumnName("WebsiteLink")
-                          .HasColumnType("nvarchar(2048)")
-                          .IsRequired(false)
-                          .HasDefaultValue(string.Empty)
-                          .HasMaxLength(2048);
-                });
+                // modelBuilder.Entity<ApplicationUserProfile>(entity =>
+                // {
+                //     entity.ToTable("tblApplicationUserProfile");
+                // 
+                //     //  Facebook Link
+                //     entity.Property(e => e.FacebookLink)
+                //           .HasColumnName("FacebookLink")
+                //           .HasColumnType("nvarchar(2048)")
+                //           .IsRequired(false)
+                //           .HasDefaultValue(string.Empty)
+                //           .HasMaxLength(2048);
+                // 
+                //     //  Instagram Link
+                //     entity.Property(e => e.InstagramLink)
+                //           .HasColumnName("InstagramLink")
+                //           .HasColumnType("nvarchar(2048)")
+                //           .IsRequired(false)
+                //           .HasDefaultValue(string.Empty)
+                //           .HasMaxLength(2048);
+                // 
+                //     //  Twitter Link
+                //     entity.Property(e => e.TwitterLink)
+                //           .HasColumnName("TwitterLink")
+                //           .HasColumnType("nvarchar(2048)")
+                //           .IsRequired(false)
+                //           .HasDefaultValue(string.Empty)
+                //           .HasMaxLength(2048);
+                // 
+                //     //  LinkedIn Link
+                //     entity.Property(e => e.LinkedInLink)
+                //           .HasColumnName("LinkedInLink")
+                //           .HasColumnType("nvarchar(2048)")
+                //           .IsRequired(false)
+                //           .HasDefaultValue(string.Empty)
+                //           .HasMaxLength(2048);
+                // 
+                //     //  Website Link
+                //     entity.Property(e => e.WebsiteLink)
+                //           .HasColumnName("WebsiteLink")
+                //           .HasColumnType("nvarchar(2048)")
+                //           .IsRequired(false)
+                //           .HasDefaultValue(string.Empty)
+                //           .HasMaxLength(2048);
+                // });
 
                 modelBuilder.Entity<ApplicationRole>(entity =>
                 {

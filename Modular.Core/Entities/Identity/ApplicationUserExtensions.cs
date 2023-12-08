@@ -40,7 +40,7 @@ namespace Modular.Core.Identity
                 isSuccessfulAssignments.Add(identityResult.Succeeded);
             }
 
-            return isSuccessfulAssignments.Contains(false);
+            return !isSuccessfulAssignments.Contains(false);
         }
 
 
@@ -107,7 +107,7 @@ namespace Modular.Core.Identity
 
             }
 
-            return isSuccessful.Contains(false);
+            return !isSuccessful.Contains(false);
         }
 
     }

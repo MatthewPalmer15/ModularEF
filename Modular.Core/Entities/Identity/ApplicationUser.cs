@@ -15,13 +15,5 @@ namespace Modular.Core.Identity
 
         public string ApiToken { get; set; }
 
-        public bool IsStaff { get; set; }
-
-        public bool IsAdmin { get; set; }
-
-        public Guid ProfileId { get; set; }
-
-        public virtual ApplicationUserProfile Profile { get; set; }
-
     }
 }
