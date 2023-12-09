@@ -21,7 +21,9 @@ namespace Modular.Core.Services.Identity
         /// <param name="password"></param>
         /// <param name="roles"></param>
         /// <returns></returns>
-        public Task<ApplicationUser?> CreateIdentityAsync(Contact contact, string username, string password, params string[] roles);
+        public Task<IdentityResult> CreateIdentityAsync(Contact contact, string username, string password, bool createIfNull, params string[] roles);
+
+        public Task<IdentityResult> AssignRolesAsync(ApplicationUser applicationUser, bool createIfNull, params string[] roles);
 
     }
 }

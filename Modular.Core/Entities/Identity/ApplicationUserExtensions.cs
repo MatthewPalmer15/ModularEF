@@ -7,43 +7,58 @@ namespace Modular.Core.Identity
     {
 
         //  Roles
-        public static async Task<bool> AssignRoleAsync(this ApplicationUser user, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, string roleName, bool createIfNull = false)
+        public static async Task<IdentityResult> AssignRoleAsync(this ApplicationUser user, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, string roleName, bool createIfNull = false)
         {
+            //  Find role, and create it if needed (and allowed).
             ApplicationRole? applicationRole = roleManager.FindByNameAsync(roleName).Result;
             if (applicationRole == null && createIfNull)
             {
                 ApplicationRole createdApplicationRole = new ApplicationRole { Name = roleName };
-                await roleManager.CreateAsync(createdApplicationRole);
+                var createRoleResult = await roleManager.CreateAsync(createdApplicationRole);
+                if (!createRoleResult.Succeeded)
+                {
+                    return IdentityResult.Failed(createRoleResult.Errors.ToArray());
+                }
             }
 
-            var identityResult = await userManager.AddToRoleAsync(user, roleName);
-            return identityResult.Succeeded;
+            var addRoleResult = await userManager.AddToRoleAsync(user, roleName);
+            if (!addRoleResult.Succeeded)
+            {
+                return IdentityResult.Failed(addRoleResult.Errors.ToArray());
+            }
+
+            return IdentityResult.Success;
         }
 
-        public static async Task<bool> AssignRolesAsync(this ApplicationUser user, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, string[] roleNames, bool createIfNull = false)
+        public static async Task<IdentityResult> AssignRolesAsync(this ApplicationUser user, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, string[] roleNames, bool createIfNull = false)
         {
-            List<bool> isSuccessfulAssignments = new List<bool>();
-
             foreach (string roleName in roleNames)
             {
                 ApplicationRole? applicationRole = roleManager.FindByNameAsync(roleName).Result;
                 if (applicationRole == null && createIfNull)
                 {
                     ApplicationRole createdApplicationRole = new ApplicationRole { Name = roleName };
-                    await roleManager.CreateAsync(createdApplicationRole);
+                    var createRoleResult = await roleManager.CreateAsync(createdApplicationRole);
+                    if (!createRoleResult.Succeeded)
+                    {
+                        return IdentityResult.Failed(createRoleResult.Errors.ToArray());
+                    }
                 }
 
-                var identityResult = await userManager.AddToRoleAsync(user, roleName);
-                isSuccessfulAssignments.Add(identityResult.Succeeded);
+                var addRoleResult = await userManager.AddToRoleAsync(user, roleName);
+                if (!addRoleResult.Succeeded)
+                {
+                    return IdentityResult.Failed(addRoleResult.Errors.ToArray());
+                }
             }
 
-            return !isSuccessfulAssignments.Contains(false);
+            return IdentityResult.Success;
         }
 
-        public static async Task<bool> RevokeRoleAsync(this ApplicationUser user, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, string roleName)
+        public static async Task<IdentityResult> RevokeRoleAsync(this ApplicationUser user, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, string roleName)
         {
             var result = await userManager.RemoveFromRoleAsync(user, roleName);
-            return result.Succeeded;
+            return result;
         }
 
 

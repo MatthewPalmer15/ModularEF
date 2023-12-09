@@ -27,7 +27,7 @@ namespace Modular.Core.Services.Identity
         /// <param name="password"></param>
         /// <param name="roles"></param>
         /// <returns></returns>
-        public async Task<ApplicationUser?> CreateIdentityAsync(Contact contact, string username, string password, params string[] roles)
+        public async Task<IdentityResult> CreateIdentityAsync(Contact contact, string username, string password, bool createIfNull, params string[] roles)
         {
             ApplicationUser applicationUser = new ApplicationUser()
             {
@@ -37,19 +37,36 @@ namespace Modular.Core.Services.Identity
                 Contact = contact,
             };
 
-            var result = await UserManager.CreateAsync(applicationUser, password);
-            if (result.Succeeded)
+            var createUserResult = await UserManager.CreateAsync(applicationUser, password);
+            if (!createUserResult.Succeeded)
             {
-                foreach (string role in roles)
+                return IdentityResult.Failed(createUserResult.Errors.ToArray());
+            }
+
+            foreach (string role in roles)
+            {
+                var createRoleResult = await applicationUser.AssignRoleAsync(UserManager, RoleManager, role, createIfNull);
+                if (!createRoleResult.Succeeded)
                 {
-                    await applicationUser.AssignRoleAsync(UserManager, RoleManager, role, true);
+                    return IdentityResult.Failed(createRoleResult.Errors.ToArray());
                 }
-                return applicationUser;
             }
-            else
+
+            return IdentityResult.Success;
+        }
+
+        public async Task<IdentityResult> AssignRolesAsync(ApplicationUser applicationUser, bool createIfNull, params string[] roles)
+        {
+            foreach (string role in roles)
             {
-                return null;
+                var result = await applicationUser.AssignRoleAsync(UserManager, RoleManager, role, createIfNull);
+                if (!result.Succeeded) 
+                {
+                    return IdentityResult.Failed(result.Errors.ToArray());
+                }
             }
+
+            return IdentityResult.Success;
         }
 
         //public string GenerateApiToken()
