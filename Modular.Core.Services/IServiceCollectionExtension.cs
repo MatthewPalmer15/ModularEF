@@ -1,17 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Modular.Core.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Identity;
-using Microsoft.AspNetCore.Identity;
-using Modular.Core.Services.Repositories.Abstract;
-using Modular.Core.Services.Repositories.Concrete;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Modular.Core.Services.Managers.Abstract;
 using Modular.Core.Services.Managers.Concrete;
+using Modular.Core.Services.Repositories.Abstract;
+using Modular.Core.Services.Repositories.Concrete;
 
 namespace Modular.Core.DependencyInjection
 {

@@ -1,14 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Modular.Core.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Identity;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Modular.Core.DependencyInjection
 {
@@ -43,7 +36,7 @@ namespace Modular.Core.DependencyInjection
                         break;
                 }
             });
-            
+
             //  Add Identity DB Context if needed
             switch (identityType)
             {
