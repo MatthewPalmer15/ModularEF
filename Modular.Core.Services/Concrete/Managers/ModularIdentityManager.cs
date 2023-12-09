@@ -1,24 +1,31 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Modular.Core.Entities;
 using Modular.Core.Identity;
+using Modular.Core.Services.Managers.Abstract;
 using System.Security.Claims;
 
-namespace Modular.Core.Services.Identity
+namespace Modular.Core.Services.Managers.Concrete
 {
 
     public class ModularIdentityManager : IModularIdentityManager
     {
 
+        #region "  Properties  "
         public UserManager<ApplicationUser> UserManager { get; }
 
         public RoleManager<ApplicationRole> RoleManager { get; }
 
+        #endregion
+
+        #region "  Constructors  "
 
         public ModularIdentityManager(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
             UserManager = userManager;
             RoleManager = roleManager;
         }
+
+        #endregion
 
         #region "  Users  "
 
