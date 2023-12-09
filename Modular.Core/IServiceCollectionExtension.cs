@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Identity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Modular.Core.DependencyInjection
 {
@@ -59,6 +60,25 @@ namespace Modular.Core.DependencyInjection
                                 break;
                         }
                     });
+
+                    services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+                    {
+                        options.Password.RequireUppercase = true;
+                        options.Password.RequireLowercase = true;
+                        options.Password.RequireNonAlphanumeric = false;
+                        options.Password.RequireDigit = true;
+                        options.Password.RequiredLength = 8;
+                        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                        options.Lockout.MaxFailedAccessAttempts = 5;
+                        options.Lockout.AllowedForNewUsers = true;
+
+                        // User settings.
+                        options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                        options.User.RequireUniqueEmail = true;
+
+                    }).AddEntityFrameworkStores<ModularIdentityDbContext>()
+                      .AddRoles<ApplicationRole>()
+                      .AddDefaultTokenProviders();
                     break;
 
                 default:
@@ -69,5 +89,6 @@ namespace Modular.Core.DependencyInjection
             return services;
 
         }
+
     }
 }
