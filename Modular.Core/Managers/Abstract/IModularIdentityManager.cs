@@ -3,7 +3,7 @@ using Modular.Core.Entities;
 using Modular.Core.Identity;
 using System.Security.Claims;
 
-namespace Modular.Core.Services.Managers.Abstract
+namespace Modular.Core.Identity
 {
 
     public interface IModularIdentityManager

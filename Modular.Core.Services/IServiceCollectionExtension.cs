@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Modular.Core.Services.Managers.Abstract;
-using Modular.Core.Services.Managers.Concrete;
 using Modular.Core.Services.Repositories.Abstract;
 using Modular.Core.Services.Repositories.Concrete;
 
@@ -17,7 +15,6 @@ namespace Modular.Core.DependencyInjection
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
 
-            services.AddScoped<IModularIdentityManager, ModularIdentityManager>();
 
             return services;
 

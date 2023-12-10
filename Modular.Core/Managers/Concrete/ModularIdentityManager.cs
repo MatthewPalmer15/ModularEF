@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Modular.Core.Entities;
-using Modular.Core.Identity;
-using Modular.Core.Services.Managers.Abstract;
 using System.Security.Claims;
 
-namespace Modular.Core.Services.Managers.Concrete
+namespace Modular.Core.Identity
 {
 
     public class ModularIdentityManager : IModularIdentityManager

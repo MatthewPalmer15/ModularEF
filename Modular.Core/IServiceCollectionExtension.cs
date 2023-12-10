@@ -21,38 +21,16 @@ namespace Modular.Core.DependencyInjection
     public static partial class ModularServiceCollectionExtension
     {
 
-        public static IServiceCollection AddModularCore(this IServiceCollection services, IdentityType identityType, DatabaseType databaseType, string? connectionString, string? migrationAssembly)
+        public static IServiceCollection AddModularCore(this IServiceCollection services, IdentityType identityType, Action<DbContextOptionsBuilder> dbContextOptionsBuilder)
         {
             //  Add regular DB Context.
-            services.AddDbContext<ModularDbContext>(options =>
-            {
-                switch (databaseType)
-                {
-                    case DatabaseType.SQLServer:
-                        options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssembly));
-                        break;
-
-                    default:
-                        break;
-                }
-            });
+            services.AddDbContext<ModularDbContext>(dbContextOptionsBuilder);
 
             //  Add Identity DB Context if needed
             switch (identityType)
             {
                 case IdentityType.IndividualAccounts:
-                    services.AddDbContext<ModularIdentityDbContext>(options =>
-                    {
-                        switch (databaseType)
-                        {
-                            case DatabaseType.SQLServer:
-                                options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssembly));
-                                break;
-
-                            default:
-                                break;
-                        }
-                    });
+                    services.AddDbContext<ModularIdentityDbContext>(dbContextOptionsBuilder);
 
                     services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
                     {
@@ -72,6 +50,8 @@ namespace Modular.Core.DependencyInjection
                     }).AddEntityFrameworkStores<ModularIdentityDbContext>()
                       .AddRoles<ApplicationRole>()
                       .AddDefaultTokenProviders();
+
+                    services.AddScoped<IModularIdentityManager, ModularIdentityManager>();
                     break;
 
                 default:
