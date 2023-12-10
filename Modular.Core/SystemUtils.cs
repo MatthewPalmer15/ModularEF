@@ -12,7 +12,7 @@ namespace Modular.Core
 
         internal static AesProvider GetEncryptionProvider()
         {
-            return new AesProvider(SystemUtils.EncryptionKey, SystemUtils.EncryptionIV);
+            return new AesProvider(EncryptionKey, EncryptionIV);
         }
 
     }

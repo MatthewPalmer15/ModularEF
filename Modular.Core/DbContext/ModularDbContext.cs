@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.DataEncryption;
 using Modular.Core.Entities;
 using Modular.Core.Interfaces;
+using System.Security.Claims;
 
 namespace Modular.Core
 {
@@ -13,6 +15,10 @@ namespace Modular.Core
     public class ModularDbContext : DbContext
     {
 
+        private readonly IEncryptionProvider _encryptionProvider;
+
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
         #region "  Constructors  "
 
         public ModularDbContext()
@@ -20,18 +26,14 @@ namespace Modular.Core
             _encryptionProvider = SystemUtils.GetEncryptionProvider();
         }
 
-        public ModularDbContext(DbContextOptions<ModularDbContext> options) : base(options)
+        public ModularDbContext(DbContextOptions<ModularDbContext> options, IHttpContextAccessor httpContextAccessor) : base(options)
         {
             _encryptionProvider = SystemUtils.GetEncryptionProvider();
+            _httpContextAccessor = httpContextAccessor;
         }
 
         #endregion
 
-        #region "  Constants  "
-
-        private readonly IEncryptionProvider _encryptionProvider;
-
-        #endregion
 
         #region "  DbSets  "
 
@@ -101,11 +103,14 @@ namespace Modular.Core
 
                 if (actionType != AuditEntry.ActionType.Unknown && entry.Entity is IAuditable)
                 {
+                    var currentUserID = new Guid(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? Guid.Empty.ToString());
+
                     AuditEntry auditEntry = new AuditEntry()
                     {
                         Id = Guid.NewGuid(),
                         Timestamp = DateTime.UtcNow,
                         Action = actionType,
+                        ApplicationUserId = currentUserID,
                         EntityId = entry.Properties.Single(p => p.Metadata.IsPrimaryKey()).CurrentValue?.ToString() ?? "",
                         EntityName = entry.Metadata.ClrType.Name,
                         EntityObject = entry.Properties.Select(p => new { p.Metadata.Name, p.CurrentValue }).ToDictionary(i => i.Name, i => i.CurrentValue),

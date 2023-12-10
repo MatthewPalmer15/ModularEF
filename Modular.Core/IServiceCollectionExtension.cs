@@ -12,12 +12,6 @@ namespace Modular.Core.DependencyInjection
         IndividualAccounts = 1,
     }
 
-    public enum DatabaseType
-    {
-        None = 0,
-        SQLServer = 1,
-    }
-
     public static partial class ModularServiceCollectionExtension
     {
 
@@ -58,9 +52,7 @@ namespace Modular.Core.DependencyInjection
                     break;
             }
 
-
             return services;
-
         }
 
     }
