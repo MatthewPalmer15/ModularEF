@@ -24,6 +24,7 @@ namespace Modular.Core
         public ModularDbContext()
         {
             _encryptionProvider = SystemUtils.GetEncryptionProvider();
+            _httpContextAccessor = new HttpContextAccessor();
         }
 
         public ModularDbContext(DbContextOptions<ModularDbContext> options, IHttpContextAccessor httpContextAccessor) : base(options)

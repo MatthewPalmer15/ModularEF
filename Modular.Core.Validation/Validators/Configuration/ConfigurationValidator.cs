@@ -27,7 +27,7 @@ namespace Modular.Core.Validation
         private bool IsKeyUnique(string key)
         {
             Configuration? configuration = _context.Configurations
-                    .Where(x => x.Key.Trim().ToUpper() == key.Trim().ToUpper())
+                    .Where(x => x.Key.Trim().Equals(key.Trim(), StringComparison.CurrentCultureIgnoreCase))
                     .SingleOrDefault();
 
             return configuration == null;
