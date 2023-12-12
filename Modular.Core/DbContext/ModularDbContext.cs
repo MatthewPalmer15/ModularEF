@@ -12,7 +12,7 @@ namespace Modular.Core
     /// <summary>
     /// Modular DB Context without ASP.NET Identity
     /// </summary>
-    public class ModularDbContext : DbContext
+    public class ModularDbContext : DbContext, IDbContext
     {
 
         private readonly IEncryptionProvider _encryptionProvider;
@@ -126,6 +126,9 @@ namespace Modular.Core
             return auditEntries;
         }
 
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) => 
+            await SaveChangesAsync(true, cancellationToken);
+        
         public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             List<AuditEntry> auditEntries = BeforeSaveChanges();
@@ -137,7 +140,7 @@ namespace Modular.Core
 
         }
 
-        public Task AfterSaveChangesAsync(List<AuditEntry> auditEntries)
+        private Task AfterSaveChangesAsync(List<AuditEntry> auditEntries)
         {
             if (auditEntries == null || auditEntries.Count == 0)
             {

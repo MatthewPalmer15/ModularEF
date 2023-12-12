@@ -7,11 +7,11 @@ namespace Modular.Core.Validation
     public class IdentityValidator : AbstractValidator<ApplicationUser>
     {
 
-        private readonly ModularIdentityDbContext _context;
+        private readonly IModularIdentityManager _identityManager;
 
-        public IdentityValidator(ModularIdentityDbContext context)
+        public IdentityValidator(IModularIdentityManager identityManager)
         {
-            _context = context;
+            _identityManager = identityManager;
 
             RuleFor(e => e.UserName)
                 .NotEmpty().WithMessage("Name is required")
@@ -35,20 +35,18 @@ namespace Modular.Core.Validation
 
         private bool IsUserNameUnique(string? userName)
         {
-            ApplicationUser? applicationUser = _context.ApplicationUsers
-                    .Where(x => x.UserName != null && x.UserName.Trim().ToUpper() == userName.Trim().ToUpper())
-                    .SingleOrDefault();
+            if (userName == null) return false;
 
+            ApplicationUser? applicationUser = _identityManager.UserManager.FindByNameAsync(userName).Result;
             return applicationUser == null;
         }
 
         private bool IsEmailUnique(string? email)
         {
-            ApplicationUser? applicationUser = _context.ApplicationUsers
-                    .Where(x => x.Email != null && x.Email.Trim().ToUpper() == email.Trim().ToUpper())
-                    .SingleOrDefault();
+            if (email == null) return false;
 
-            return applicationUser == null;
+            ApplicationUser? applicationUser = _identityManager.UserManager.FindByEmailAsync(email).Result;
+            return applicationUser != null;
         }
 
 

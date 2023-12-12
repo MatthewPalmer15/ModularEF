@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Modular.Core.Entities;
+using Modular.Core.Interfaces;
 using Modular.Core.Services.Repositories.Abstract;
 using Newtonsoft.Json;
 
@@ -10,7 +11,7 @@ namespace Modular.Core.Services.Repositories.Concrete
 
         #region "  Constructors  "
 
-        public CountryRepository(ModularDbContext context)
+        public CountryRepository(IDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -19,7 +20,7 @@ namespace Modular.Core.Services.Repositories.Concrete
 
         #region "  Variables  "
 
-        private readonly ModularDbContext _context;
+        private readonly IDbContext _context;
 
         #endregion
 

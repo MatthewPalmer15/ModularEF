@@ -1,14 +1,15 @@
 ﻿using FluentValidation;
 using Modular.Core.Entities;
+using Modular.Core.Interfaces;
 
 namespace Modular.Core.Validation
 {
     public class ConfigurationValidator : AbstractValidator<Configuration>
     {
 
-        private readonly ModularDbContext _context;
+        private readonly IDbContext _context;
 
-        public ConfigurationValidator(ModularDbContext context)
+        public ConfigurationValidator(IDbContext context)
         {
             _context = context;
 
