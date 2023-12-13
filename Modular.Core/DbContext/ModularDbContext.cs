@@ -73,6 +73,8 @@ namespace Modular.Core
             modelBuilder.UseEncryption(_encryptionProvider);
         }
 
+        #region "  Save Methods  "
+
         private List<AuditEntry> BeforeSaveChanges()
         {
             ChangeTracker.DetectChanges();
@@ -127,9 +129,19 @@ namespace Modular.Core
             return auditEntries;
         }
 
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) => 
+        public override int SaveChanges() => SaveChanges(acceptAllChangesOnSuccess: true);
+
+        public override int SaveChanges(bool acceptAllChangesOnSuccess)
+        {
+            List<AuditEntry> auditEntries = BeforeSaveChanges();
+            var result = base.SaveChanges(acceptAllChangesOnSuccess);
+            AfterSaveChangesAsync(auditEntries);
+            return result;
+        }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
             await SaveChangesAsync(true, cancellationToken);
-        
+
         public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             List<AuditEntry> auditEntries = BeforeSaveChanges();
@@ -170,5 +182,7 @@ namespace Modular.Core
             AuditEntries.AddRange(auditEntries);
             return SaveChangesAsync();
         }
+
+        #endregion
     }
 }

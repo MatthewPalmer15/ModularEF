@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Modular.Core.Entities;
-using Modular.Core.Identity;
 using System.Security.Claims;
 
 namespace Modular.Core.Identity

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.DataEncryption;
+﻿using Microsoft.EntityFrameworkCore;
 using Modular.Core.Entities;
 
 namespace Modular.Core.Interfaces
