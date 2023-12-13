@@ -2,7 +2,7 @@
 using Modular.Core.Entities;
 using Modular.Core.Interfaces;
 
-namespace Modular.Core.Validation
+namespace Modular.Core.Services.Validation
 {
     public class ConfigurationValidator : AbstractValidator<Configuration>
     {

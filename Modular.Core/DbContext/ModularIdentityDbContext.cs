@@ -14,7 +14,7 @@ namespace Modular.Core
     /// <summary>
     /// Modular DB Context with ASP.NET Identity
     /// </summary>
-    public class ModularIdentityDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
+    public class ModularIdentityDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>, IDbContext
     {
 
         private readonly IEncryptionProvider _encryptionProvider;
@@ -27,6 +27,7 @@ namespace Modular.Core
         public ModularIdentityDbContext()
         {
             _encryptionProvider = SystemUtils.GetEncryptionProvider();
+            _httpContextAccessor = new HttpContextAccessor();
         }
 
         public ModularIdentityDbContext(DbContextOptions<ModularIdentityDbContext> options, IHttpContextAccessor httpContextAccessor) : base(options)
@@ -130,6 +131,9 @@ namespace Modular.Core
             }
             return auditEntries;
         }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
+            await SaveChangesAsync(true, cancellationToken);
 
         public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {

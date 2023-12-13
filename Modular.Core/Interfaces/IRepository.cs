@@ -1,27 +1,51 @@
-﻿namespace Modular.Core.Interfaces
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Modular.Core.Helpers;
+
+namespace Modular.Core.Interfaces
 {
     public interface IRepository<T> where T : class
     {
 
-        IQueryable<T> All();
+        // Properties
+        public int Count { get; }
 
-        T? Get(Guid Id);
-
-        List<T> Search(string searchTerm);
-
-        void Add(T entity);
-
-        void Update(T entity);
-
-        void Delete(T entity);
-
-        Task<bool> SaveAsync();
-
-        string SerializeToJson(T entity);
-
-        T? DeserializeFromJson(string json);
+        public IEntityType EntityType { get; }
 
 
+        // Methods
+        public IQueryable<T> GetAll();
+
+        public T? Get(Guid id);
+
+        public List<T> Search(string searchTerm);
+
+        public ModelResult Add(T entity);
+
+        public Task<ModelResult> AddAsync(T entity);
+
+        public ModelResult AddRange(IList<T> entities);
+
+        public Task<ModelResult> AddRangeAsync(IList<T> entities);
+
+        public ModelResult Update(T entity);
+
+        public ModelResult UpdateRange(IList<T> entities);
+
+        public void Delete(T entity);
+
+        public void DeleteRange(IList<T> entities);
+
+        public int SaveChanges();
+
+        public Task<int> SaveChangesAsync();
+
+        public string SerializeToJson(T entity);
+
+        public string SerializeListToJson(IList<T> entities);
+
+        public T? DeserializeFromJson(string json);
+
+        public List<T>? DeserializeListFromJson(string json);
 
     }
 }

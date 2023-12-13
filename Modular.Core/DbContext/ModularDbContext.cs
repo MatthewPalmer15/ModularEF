@@ -12,7 +12,7 @@ namespace Modular.Core
     /// <summary>
     /// Modular DB Context without ASP.NET Identity
     /// </summary>
-    public class ModularDbContext : DbContext
+    public class ModularDbContext : DbContext, IDbContext
     {
 
         private readonly IEncryptionProvider _encryptionProvider;
@@ -24,6 +24,7 @@ namespace Modular.Core
         public ModularDbContext()
         {
             _encryptionProvider = SystemUtils.GetEncryptionProvider();
+            _httpContextAccessor = new HttpContextAccessor();
         }
 
         public ModularDbContext(DbContextOptions<ModularDbContext> options, IHttpContextAccessor httpContextAccessor) : base(options)
@@ -71,6 +72,8 @@ namespace Modular.Core
 
             modelBuilder.UseEncryption(_encryptionProvider);
         }
+
+        #region "  Save Methods  "
 
         private List<AuditEntry> BeforeSaveChanges()
         {
@@ -126,6 +129,19 @@ namespace Modular.Core
             return auditEntries;
         }
 
+        public override int SaveChanges() => SaveChanges(acceptAllChangesOnSuccess: true);
+
+        public override int SaveChanges(bool acceptAllChangesOnSuccess)
+        {
+            List<AuditEntry> auditEntries = BeforeSaveChanges();
+            var result = base.SaveChanges(acceptAllChangesOnSuccess);
+            AfterSaveChangesAsync(auditEntries);
+            return result;
+        }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
+            await SaveChangesAsync(true, cancellationToken);
+
         public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             List<AuditEntry> auditEntries = BeforeSaveChanges();
@@ -137,7 +153,7 @@ namespace Modular.Core
 
         }
 
-        public Task AfterSaveChangesAsync(List<AuditEntry> auditEntries)
+        private Task AfterSaveChangesAsync(List<AuditEntry> auditEntries)
         {
             if (auditEntries == null || auditEntries.Count == 0)
             {
@@ -166,5 +182,7 @@ namespace Modular.Core
             AuditEntries.AddRange(auditEntries);
             return SaveChangesAsync();
         }
+
+        #endregion
     }
 }

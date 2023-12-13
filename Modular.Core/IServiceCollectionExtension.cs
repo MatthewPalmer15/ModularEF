@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Modular.Core.Identity;
+using Modular.Core.Interfaces;
 
 namespace Modular.Core.DependencyInjection
 {
@@ -17,14 +18,12 @@ namespace Modular.Core.DependencyInjection
 
         public static IServiceCollection AddModularCore(this IServiceCollection services, IdentityType identityType, Action<DbContextOptionsBuilder> dbContextOptionsBuilder)
         {
-            //  Add regular DB Context.
-            services.AddDbContext<ModularDbContext>(dbContextOptionsBuilder);
-
             //  Add Identity DB Context if needed
             switch (identityType)
             {
                 case IdentityType.IndividualAccounts:
                     services.AddDbContext<ModularIdentityDbContext>(dbContextOptionsBuilder);
+                    services.AddScoped<IDbContext, ModularIdentityDbContext>();
 
                     services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
                     {
@@ -49,6 +48,10 @@ namespace Modular.Core.DependencyInjection
                     break;
 
                 default:
+                    //  Add regular DB Context.
+                    services.AddDbContext<ModularDbContext>(dbContextOptionsBuilder);
+                    services.AddScoped<IDbContext, ModularDbContext>();
+
                     break;
             }
 
