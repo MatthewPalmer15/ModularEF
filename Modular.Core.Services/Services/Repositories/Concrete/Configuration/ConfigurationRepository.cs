@@ -48,6 +48,14 @@ namespace Modular.Core.Services.Repositories.Concrete
             }
         }
 
+        public DbSet<Configuration> DbSet
+        {
+            get
+            {
+                return _context.Configurations;
+            }
+        }
+
         /// <summary>
         /// Validates a configuration synchronously.
         /// </summary>
@@ -164,10 +172,14 @@ namespace Modular.Core.Services.Repositories.Concrete
         /// </summary>
         /// <param name="searchTerm"></param>
         /// <returns></returns>
-        public List<Configuration> Search(string searchTerm)
+        public List<Configuration> Search(string? searchTerm = null)
         {
             var configurations = this.GetAll();
-            configurations = configurations.Where(x => EF.Functions.Like(searchTerm, x.Key));
+            if (searchTerm != null)
+            {
+                configurations = configurations.Where(x => EF.Functions.Like(searchTerm, x.Key));
+            }
+
             return configurations.ToList();
         }
 

@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 using Modular.Core.Entities;
 using Modular.Core.Helpers;
 using Modular.Core.Interfaces;
@@ -45,6 +46,14 @@ namespace Modular.Core.Services.Repositories.Concrete
             get
             {
                 return _context.Contacts.EntityType;
+            }
+        }
+
+        public DbSet<Contact> DbSet
+        {
+            get
+            {
+                return _context.Contacts;
             }
         }
 
@@ -143,10 +152,14 @@ namespace Modular.Core.Services.Repositories.Concrete
         /// </summary>
         /// <param name="searchTerm"></param>
         /// <returns></returns>
-        public List<Contact> Search(string searchTerm)
+        public List<Contact> Search(string? searchTerm = null)
         {
             var contacts = this.GetAll();
-            contacts = contacts.Where(x => EF.Functions.Like(searchTerm, x.Forename) || EF.Functions.Like(searchTerm, x.Surname));
+            if (searchTerm != null)
+            {
+                contacts = contacts.Where(x => EF.Functions.Like(searchTerm, x.Forename) || EF.Functions.Like(searchTerm, x.Surname));
+            }
+
             return contacts.ToList();
         }
 

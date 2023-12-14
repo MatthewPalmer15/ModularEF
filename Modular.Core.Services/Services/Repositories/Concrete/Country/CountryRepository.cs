@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 using Modular.Core.Entities;
 using Modular.Core.Helpers;
 using Modular.Core.Interfaces;
@@ -46,6 +47,14 @@ namespace Modular.Core.Services.Repositories.Concrete
             get
             {
                 return _context.Countries.EntityType;
+            }
+        }
+
+        public DbSet<Country> DbSet
+        {
+            get
+            {
+                return _context.Countries;
             }
         }
 
@@ -144,10 +153,14 @@ namespace Modular.Core.Services.Repositories.Concrete
         /// </summary>
         /// <param name="searchTerm"></param>
         /// <returns></returns>
-        public List<Country> Search(string searchTerm)
+        public List<Country> Search(string? searchTerm = null)
         {
             var countries = this.GetAll();
-            countries = countries.Where(x => EF.Functions.Like(searchTerm, x.Name));
+            if (searchTerm != null)
+            {
+                countries = countries.Where(x => EF.Functions.Like(searchTerm, x.Name));
+            }
+
             return countries.ToList();
         }
 

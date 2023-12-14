@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Modular.Core.Helpers;
 
 namespace Modular.Core.Interfaces
@@ -11,6 +12,7 @@ namespace Modular.Core.Interfaces
 
         public IEntityType EntityType { get; }
 
+        public DbSet<T> DbSet { get; }
 
         // Methods
 
@@ -26,7 +28,7 @@ namespace Modular.Core.Interfaces
 
         public T? Get(Guid id);
 
-        public List<T> Search(string searchTerm);
+        public List<T> Search(string? searchTerm = null);
 
         public List<T> Search(Func<T, bool> predicate);
 

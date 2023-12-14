@@ -48,11 +48,11 @@ namespace Modular.Core.Services.Repositories.Concrete
             }
         }
 
-        public DbSet<Configuration> Configurations
+        public DbSet<Company> DbSet
         {
             get
             {
-                return _context.Configurations;
+                return _context.Companies;
             }
         }
 
@@ -151,10 +151,14 @@ namespace Modular.Core.Services.Repositories.Concrete
         /// </summary>
         /// <param name="searchTerm"></param>
         /// <returns></returns>
-        public List<Company> Search(string searchTerm)
+        public List<Company> Search(string? searchTerm = null)
         {
             var companies = this.GetAll();
-            companies = companies.Where(x => EF.Functions.Like(searchTerm, x.Name));
+            if(searchTerm != null)
+            {
+                companies = companies.Where(x => EF.Functions.Like(searchTerm, x.Name));
+            }
+
             return companies.ToList();
         }
 
