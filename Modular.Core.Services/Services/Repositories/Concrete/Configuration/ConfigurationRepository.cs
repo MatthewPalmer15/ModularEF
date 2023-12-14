@@ -172,6 +172,18 @@ namespace Modular.Core.Services.Repositories.Concrete
         }
 
         /// <summary>
+        /// Search all configurations using a predicate.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public List<Configuration> Search(Func<Configuration, bool> predicate)
+        {
+            IQueryable<Configuration> configurations = this.GetAll();
+            configurations = configurations.Where(predicate).AsQueryable();
+            return configurations.ToList();
+        }
+
+        /// <summary>
         /// Adds a configuration synchronously.
         /// </summary>
         /// <param name="configuration"></param>

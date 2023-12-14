@@ -152,6 +152,18 @@ namespace Modular.Core.Services.Repositories.Concrete
         }
 
         /// <summary>
+        /// Search all countries using a predicate.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public List<Country> Search(Func<Country, bool> predicate)
+        {
+            IQueryable<Country> countries = this.GetAll();
+            countries = countries.Where(predicate).AsQueryable();
+            return countries.ToList();
+        }
+
+        /// <summary>
         /// Adds a country synchronously.
         /// </summary>
         /// <param name="country"></param>

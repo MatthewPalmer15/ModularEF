@@ -48,6 +48,14 @@ namespace Modular.Core.Services.Repositories.Concrete
             }
         }
 
+        public DbSet<Configuration> Configurations
+        {
+            get
+            {
+                return _context.Configurations;
+            }
+        }
+
         /// <summary>
         /// Validates a company synchronously.
         /// </summary>
@@ -147,6 +155,18 @@ namespace Modular.Core.Services.Repositories.Concrete
         {
             var companies = this.GetAll();
             companies = companies.Where(x => EF.Functions.Like(searchTerm, x.Name));
+            return companies.ToList();
+        }
+
+        /// <summary>
+        /// Search all countries using a predicate.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public List<Company> Search(Func<Company, bool> predicate)
+        {
+            IQueryable<Company> companies = this.GetAll();
+            companies = companies.Where(predicate).AsQueryable();
             return companies.ToList();
         }
 

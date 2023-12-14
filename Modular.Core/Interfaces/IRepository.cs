@@ -28,6 +28,8 @@ namespace Modular.Core.Interfaces
 
         public List<T> Search(string searchTerm);
 
+        public List<T> Search(Func<T, bool> predicate);
+
         public ModelResult Add(T entity);
 
         public Task<ModelResult> AddAsync(T entity);

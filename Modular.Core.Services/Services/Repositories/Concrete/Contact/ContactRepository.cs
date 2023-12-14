@@ -151,6 +151,18 @@ namespace Modular.Core.Services.Repositories.Concrete
         }
 
         /// <summary>
+        /// Search all contacts using a predicate.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public List<Contact> Search(Func<Contact, bool> predicate)
+        {
+            IQueryable<Contact> contacts = this.GetAll();
+            contacts = contacts.Where(predicate).AsQueryable();
+            return contacts.ToList();
+        }
+
+        /// <summary>
         /// Adds a contact synchronously.
         /// </summary>
         /// <param name="contact"></param>
