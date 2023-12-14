@@ -49,7 +49,7 @@ namespace Modular.Core.Services.Repositories.Concrete
         }
 
         /// <summary>
-        /// Validates a configuration based on its values synchronously.
+        /// Validates a configuration synchronously.
         /// </summary>
         /// <param name="configuration"></param>
         /// <returns></returns>
@@ -67,7 +67,7 @@ namespace Modular.Core.Services.Repositories.Concrete
         }
 
         /// <summary>
-        /// Validates a configuration based on its values asynchronously.
+        /// Validates a configuration asynchronously.
         /// </summary>
         /// <param name="configuration"></param>
         /// <returns></returns>
@@ -82,6 +82,44 @@ namespace Modular.Core.Services.Repositories.Concrete
             {
                 return ModelResult.Failed(result.Errors.ToArray());
             }
+        }
+
+        /// <summary>
+        /// Validates multiple configurations synchronously.
+        /// </summary>
+        /// <param name="configurations"></param>
+        /// <returns></returns>
+        public ModelResult ValidateRange(IList<Configuration> configurations)
+        {
+            foreach (var configuration in configurations)
+            {
+                var result = _validator.Validate(configuration);
+                if (!result.IsValid)
+                {
+                    return ModelResult.Failed(result.Errors.ToArray());
+                }
+            }
+
+            return ModelResult.Success();
+        }
+
+        /// <summary>
+        /// Validates multiple configurations asynchronously.
+        /// </summary>
+        /// <param name="configurations"></param>
+        /// <returns></returns>
+        public async Task<ModelResult> ValidateRangeAsync(IList<Configuration> configurations)
+        {
+            foreach (var configuration in configurations)
+            {
+                var result = await _validator.ValidateAsync(configuration);
+                if (!result.IsValid)
+                {
+                    return ModelResult.Failed(result.Errors.ToArray());
+                }
+            }
+
+            return ModelResult.Success();
         }
 
         /// <summary>
