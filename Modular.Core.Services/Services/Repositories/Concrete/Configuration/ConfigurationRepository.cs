@@ -49,6 +49,42 @@ namespace Modular.Core.Services.Repositories.Concrete
         }
 
         /// <summary>
+        /// Validates a configuration based on its values synchronously.
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        public ModelResult Validate(Configuration configuration)
+        {
+            var result = _validator.Validate(configuration);
+            if (result.IsValid)
+            {
+                return ModelResult.Success();
+            }
+            else
+            {
+                return ModelResult.Failed(result.Errors.ToArray());
+            }
+        }
+
+        /// <summary>
+        /// Validates a configuration based on its values asynchronously.
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        public async Task<ModelResult> ValidateAsync(Configuration configuration)
+        {
+            var result = await _validator.ValidateAsync(configuration);
+            if (result.IsValid)
+            {
+                return ModelResult.Success();
+            }
+            else
+            {
+                return ModelResult.Failed(result.Errors.ToArray());
+            }
+        }
+
+        /// <summary>
         /// Gets all configurations.
         /// </summary>
         /// <returns></returns>
