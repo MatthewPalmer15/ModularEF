@@ -13,6 +13,15 @@ namespace Modular.Core.Interfaces
 
 
         // Methods
+
+        public ModelResult Validate(T entity);
+
+        public Task<ModelResult> ValidateAsync(T entity);
+
+        public ModelResult ValidateRange(IList<T> entities);
+
+        public Task<ModelResult> ValidateRangeAsync(IList<T> entities);
+
         public IQueryable<T> GetAll();
 
         public T? Get(Guid id);

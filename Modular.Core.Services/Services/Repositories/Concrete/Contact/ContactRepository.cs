@@ -49,6 +49,76 @@ namespace Modular.Core.Services.Repositories.Concrete
         }
 
         /// <summary>
+        /// Validates a contact synchronously.
+        /// </summary>
+        /// <param name="contact"></param>
+        /// <returns></returns>
+        public ModelResult Validate(Contact contact)
+        {
+            var result = _validator.Validate(contact);
+            if (!result.IsValid)
+            {
+                return ModelResult.Failed(result.Errors.ToArray());
+            }
+
+            return ModelResult.Success();
+        }
+
+        /// <summary>
+        /// Validates a contact asynchronously.
+        /// </summary>
+        /// <param name="contact"></param>
+        /// <returns></returns>
+        public async Task<ModelResult> ValidateAsync(Contact contact)
+        {
+            var result = await _validator.ValidateAsync(contact);
+            if (!result.IsValid)
+            {
+                return ModelResult.Failed(result.Errors.ToArray());
+            }
+
+            return ModelResult.Success();
+        }
+
+        /// <summary>
+        /// Validates multiple contacts synchronously.
+        /// </summary>
+        /// <param name="contacts"></param>
+        /// <returns></returns>
+        public ModelResult ValidateRange(IList<Contact> contacts)
+        {
+            foreach (var contact in contacts)
+            {
+                var result = _validator.Validate(contact);
+                if (!result.IsValid)
+                {
+                    return ModelResult.Failed(result.Errors.ToArray());
+                }
+            }
+
+            return ModelResult.Success();
+        }
+
+        /// <summary>
+        /// Validates multiple contacts asynchronously.
+        /// </summary>
+        /// <param name="contacts"></param>
+        /// <returns></returns>
+        public async Task<ModelResult> ValidateRangeAsync(IList<Contact> contacts)
+        {
+            foreach (var contact in contacts)
+            {
+                var result = await _validator.ValidateAsync(contact);
+                if (!result.IsValid)
+                {
+                    return ModelResult.Failed(result.Errors.ToArray());
+                }
+            }
+
+            return ModelResult.Success();
+        }
+
+        /// <summary>
         /// Gets all contacts.
         /// </summary>
         /// <returns></returns>

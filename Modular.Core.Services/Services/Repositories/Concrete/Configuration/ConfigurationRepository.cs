@@ -56,14 +56,12 @@ namespace Modular.Core.Services.Repositories.Concrete
         public ModelResult Validate(Configuration configuration)
         {
             var result = _validator.Validate(configuration);
-            if (result.IsValid)
-            {
-                return ModelResult.Success();
-            }
-            else
+            if (!result.IsValid)
             {
                 return ModelResult.Failed(result.Errors.ToArray());
             }
+
+            return ModelResult.Success();
         }
 
         /// <summary>

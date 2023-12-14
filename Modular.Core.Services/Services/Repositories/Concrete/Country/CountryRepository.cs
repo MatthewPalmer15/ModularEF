@@ -7,6 +7,7 @@ using Modular.Core.Interfaces;
 using Modular.Core.Services.Repositories.Abstract;
 using Modular.Core.Services.Validation;
 using Newtonsoft.Json;
+using System.Diagnostics.Metrics;
 
 namespace Modular.Core.Services.Repositories.Concrete
 {
@@ -46,6 +47,76 @@ namespace Modular.Core.Services.Repositories.Concrete
             {
                 return _context.Countries.EntityType;
             }
+        }
+
+        /// <summary>
+        /// Validates a country synchronously.
+        /// </summary>
+        /// <param name="country"></param>
+        /// <returns></returns>
+        public ModelResult Validate(Country country)
+        {
+            var result = _validator.Validate(country);
+            if (!result.IsValid)
+            {
+                return ModelResult.Failed(result.Errors.ToArray());
+            }
+
+            return ModelResult.Success();
+        }
+
+        /// <summary>
+        /// Validates a country asynchronously.
+        /// </summary>
+        /// <param name="country"></param>
+        /// <returns></returns>
+        public async Task<ModelResult> ValidateAsync(Country country)
+        {
+            var result = await _validator.ValidateAsync(country);
+            if (!result.IsValid)
+            {
+                return ModelResult.Failed(result.Errors.ToArray());
+            }
+
+            return ModelResult.Success();
+        }
+
+        /// <summary>
+        /// Validates multiple countries synchronously.
+        /// </summary>
+        /// <param name="countries"></param>
+        /// <returns></returns>
+        public ModelResult ValidateRange(IList<Country> countries)
+        {
+            foreach (var country in countries)
+            {
+                var result = _validator.Validate(country);
+                if (!result.IsValid)
+                {
+                    return ModelResult.Failed(result.Errors.ToArray());
+                }
+            }
+
+            return ModelResult.Success();
+        }
+
+        /// <summary>
+        /// Validates multiple countries asynchronously.
+        /// </summary>
+        /// <param name="countries"></param>
+        /// <returns></returns>
+        public async Task<ModelResult> ValidateRangeAsync(IList<Country> countries)
+        {
+            foreach (var country in countries)
+            {
+                var result = await _validator.ValidateAsync(country);
+                if (!result.IsValid)
+                {
+                    return ModelResult.Failed(result.Errors.ToArray());
+                }
+            }
+
+            return ModelResult.Success();
         }
 
         /// <summary>

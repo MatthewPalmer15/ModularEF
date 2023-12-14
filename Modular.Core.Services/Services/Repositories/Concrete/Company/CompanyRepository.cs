@@ -49,6 +49,76 @@ namespace Modular.Core.Services.Repositories.Concrete
         }
 
         /// <summary>
+        /// Validates a company synchronously.
+        /// </summary>
+        /// <param name="company"></param>
+        /// <returns></returns>
+        public ModelResult Validate(Company company)
+        {
+            var result = _validator.Validate(company);
+            if (!result.IsValid)
+            {
+                return ModelResult.Failed(result.Errors.ToArray());
+            }
+
+            return ModelResult.Success();
+        }
+
+        /// <summary>
+        /// Validates a company asynchronously.
+        /// </summary>
+        /// <param name="company"></param>
+        /// <returns></returns>
+        public async Task<ModelResult> ValidateAsync(Company company)
+        {
+            var result = await _validator.ValidateAsync(company);
+            if (!result.IsValid)
+            {
+                return ModelResult.Failed(result.Errors.ToArray());
+            }
+
+            return ModelResult.Success();
+        }
+
+        /// <summary>
+        /// Validates multiple companies synchronously.
+        /// </summary>
+        /// <param name="companies"></param>
+        /// <returns></returns>
+        public ModelResult ValidateRange(IList<Company> companies)
+        {
+            foreach (var company in companies)
+            {
+                var result = _validator.Validate(company);
+                if (!result.IsValid)
+                {
+                    return ModelResult.Failed(result.Errors.ToArray());
+                }
+            }
+
+            return ModelResult.Success();
+        }
+
+        /// <summary>
+        /// Validates multiple companies asynchronously.
+        /// </summary>
+        /// <param name="companies"></param>
+        /// <returns></returns>
+        public async Task<ModelResult> ValidateRangeAsync(IList<Company> companies)
+        {
+            foreach (var company in companies)
+            {
+                var result = await _validator.ValidateAsync(company);
+                if (!result.IsValid)
+                {
+                    return ModelResult.Failed(result.Errors.ToArray());
+                }
+            }
+
+            return ModelResult.Success();
+        }
+
+        /// <summary>
         /// Gets all companies.
         /// </summary>
         /// <returns></returns>
