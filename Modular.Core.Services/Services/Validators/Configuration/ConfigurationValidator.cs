@@ -16,7 +16,7 @@ namespace Modular.Core.Services.Validation
             RuleFor(e => e.Key)
                 .NotNull().WithMessage("Key is required")
                 .NotEmpty().WithMessage("Key is required")
-                .Must(IsKeyUnique).WithMessage("Key is already used. Please enter a unique key.)");
+                .Must((configuration, key) => IsKeyUnique(key, configuration.Id)).WithMessage("Key is already used. Please enter a unique key.");
 
 
             RuleFor(e => e.Value)
@@ -24,11 +24,10 @@ namespace Modular.Core.Services.Validation
                 .NotEmpty().WithMessage("Value is required");
         }
 
-        private bool IsKeyUnique(string key)
+        private bool IsKeyUnique(string key, Guid configurationId)
         {
             Configuration? configuration = _context.Configurations
-                    .Where(x => x.Key.Trim().Equals(key.Trim(), StringComparison.CurrentCultureIgnoreCase))
-                    .SingleOrDefault();
+                    .SingleOrDefault(x => x.Key.Trim() == key.Trim() && x.Id != configurationId);
 
             return configuration == null;
         }
