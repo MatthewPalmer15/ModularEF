@@ -74,14 +74,12 @@ namespace Modular.Core.Services.Repositories.Concrete
         public async Task<ModelResult> ValidateAsync(Configuration configuration)
         {
             var result = await _validator.ValidateAsync(configuration);
-            if (result.IsValid)
-            {
-                return ModelResult.Success();
-            }
-            else
+            if (!result.IsValid)
             {
                 return ModelResult.Failed(result.Errors.ToArray());
             }
+
+            return ModelResult.Success();
         }
 
         /// <summary>
