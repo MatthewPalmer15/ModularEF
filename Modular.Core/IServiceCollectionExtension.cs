@@ -18,6 +18,8 @@ namespace Modular.Core.DependencyInjection
 
         public static IServiceCollection AddModularCore(this IServiceCollection services, IdentityType identityType, Action<DbContextOptionsBuilder> dbContextOptionsBuilder)
         {
+            services.AddHttpContextAccessor();
+
             //  Add Identity DB Context if needed
             switch (identityType)
             {
