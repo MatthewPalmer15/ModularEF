@@ -4,7 +4,7 @@ using Modular.Core.Helpers;
 
 namespace Modular.Core.Interfaces
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<TModel> where TModel : class
     {
 
         // Properties
@@ -12,53 +12,53 @@ namespace Modular.Core.Interfaces
 
         public IEntityType EntityType { get; }
 
-        public DbSet<T> DbSet { get; }
+        public DbSet<TModel> DbSet { get; }
 
         // Methods
 
-        public ModelResult Validate(T entity);
+        public ModelResult Validate(TModel entity);
 
-        public Task<ModelResult> ValidateAsync(T entity);
+        public Task<ModelResult> ValidateAsync(TModel entity);
 
-        public ModelResult ValidateRange(IList<T> entities);
+        public ModelResult ValidateRange(IList<TModel> entities);
 
-        public Task<ModelResult> ValidateRangeAsync(IList<T> entities);
+        public Task<ModelResult> ValidateRangeAsync(IList<TModel> entities);
 
-        public IQueryable<T> GetAll();
+        public IQueryable<TModel> GetAll();
 
-        public T? Get(Guid id);
+        public TModel? Get(Guid id);
 
-        public List<T> Search(string? searchTerm = null);
+        public List<TModel> Search(string? searchTerm = null);
 
-        public List<T> Search(Func<T, bool> predicate);
+        public List<TModel> Search(Func<TModel, bool> predicate);
 
-        public ModelResult Add(T entity);
+        public ModelResult Add(TModel entity);
 
-        public Task<ModelResult> AddAsync(T entity);
+        public Task<ModelResult> AddAsync(TModel entity);
 
-        public ModelResult AddRange(IList<T> entities);
+        public ModelResult AddRange(IList<TModel> entities);
 
-        public Task<ModelResult> AddRangeAsync(IList<T> entities);
+        public Task<ModelResult> AddRangeAsync(IList<TModel> entities);
 
-        public ModelResult Update(T entity);
+        public ModelResult Update(TModel entity);
 
-        public ModelResult UpdateRange(IList<T> entities);
+        public ModelResult UpdateRange(IList<TModel> entities);
 
-        public void Delete(T entity);
+        public void Delete(TModel entity);
 
-        public void DeleteRange(IList<T> entities);
+        public void DeleteRange(IList<TModel> entities);
 
         public int SaveChanges();
 
         public Task<int> SaveChangesAsync();
 
-        public string SerializeToJson(T entity);
+        public string SerializeToJson(TModel entity);
 
-        public string SerializeListToJson(IList<T> entities);
+        public string SerializeListToJson(IList<TModel> entities);
 
-        public T? DeserializeFromJson(string json);
+        public TModel? DeserializeFromJson(string json);
 
-        public List<T>? DeserializeListFromJson(string json);
+        public List<TModel>? DeserializeListFromJson(string json);
 
     }
 }
