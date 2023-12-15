@@ -66,7 +66,7 @@ namespace Modular.Core.Services.Repositories.Concrete
             var result = _validator.Validate(configuration);
             if (!result.IsValid)
             {
-                return ModelResult.Failed(result.Errors.ToArray());
+                return ModelResult.Failed(result.Errors);
             }
 
             return ModelResult.Success();
@@ -82,7 +82,7 @@ namespace Modular.Core.Services.Repositories.Concrete
             var result = await _validator.ValidateAsync(configuration);
             if (!result.IsValid)
             {
-                return ModelResult.Failed(result.Errors.ToArray());
+                return ModelResult.Failed(result.Errors);
             }
 
             return ModelResult.Success();
@@ -100,7 +100,7 @@ namespace Modular.Core.Services.Repositories.Concrete
                 var result = _validator.Validate(configuration);
                 if (!result.IsValid)
                 {
-                    return ModelResult.Failed(result.Errors.ToArray());
+                    return ModelResult.Failed(result.Errors);
                 }
             }
 
@@ -119,7 +119,7 @@ namespace Modular.Core.Services.Repositories.Concrete
                 var result = await _validator.ValidateAsync(configuration);
                 if (!result.IsValid)
                 {
-                    return ModelResult.Failed(result.Errors.ToArray());
+                    return ModelResult.Failed(result.Errors);
                 }
             }
 

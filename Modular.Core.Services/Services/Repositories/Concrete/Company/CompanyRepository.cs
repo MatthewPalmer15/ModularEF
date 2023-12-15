@@ -100,7 +100,7 @@ namespace Modular.Core.Services.Repositories.Concrete
                 var result = _validator.Validate(company);
                 if (!result.IsValid)
                 {
-                    return ModelResult.Failed(result.Errors.ToArray());
+                    return ModelResult.Failed(result.Errors);
                 }
             }
 
@@ -119,7 +119,7 @@ namespace Modular.Core.Services.Repositories.Concrete
                 var result = await _validator.ValidateAsync(company);
                 if (!result.IsValid)
                 {
-                    return ModelResult.Failed(result.Errors.ToArray());
+                    return ModelResult.Failed(result.Errors);
                 }
             }
 
@@ -154,7 +154,7 @@ namespace Modular.Core.Services.Repositories.Concrete
         public List<Company> Search(string? searchTerm = null)
         {
             var companies = this.GetAll();
-            if(searchTerm != null)
+            if (searchTerm != null)
             {
                 companies = companies.Where(x => EF.Functions.Like(searchTerm, x.Name));
             }
@@ -189,7 +189,7 @@ namespace Modular.Core.Services.Repositories.Concrete
             }
             else
             {
-                return ModelResult.Failed(result.Errors.ToArray());
+                return ModelResult.Failed(result.Errors);
             }
         }
 
@@ -208,7 +208,7 @@ namespace Modular.Core.Services.Repositories.Concrete
             }
             else
             {
-                return ModelResult.Failed(result.Errors.ToArray());
+                return ModelResult.Failed(result.Errors);
             }
         }
 

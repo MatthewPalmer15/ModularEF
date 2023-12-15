@@ -5,7 +5,11 @@ namespace Modular.Core.Helpers
     public class ModelResult
     {
 
-        private ModelResult() { }
+        private ModelResult(bool isValid, List<ModelError>? errors = null)
+        {
+            this.IsValid = isValid;
+            this.Errors = errors ?? new List<ModelError>();
+        }
 
         public bool IsValid { get; private set; }
 
@@ -14,33 +18,18 @@ namespace Modular.Core.Helpers
 
         public static ModelResult Success()
         {
-            ModelResult result = new ModelResult()
-            {
-                IsValid = true,
-                Errors = new List<ModelError>()
-            };
-            return result;
+            return new ModelResult(true);
         }
 
-        public static ModelResult Failed(ModelError[] errors) 
+        public static ModelResult Failed(IList<ModelError> errors)
         {
-            ModelResult result = new ModelResult()
-            {
-                IsValid = false,
-                Errors = errors.ToList()
-            };
-            return result;
+            return new ModelResult(false, errors.ToList());
         }
 
-        public static ModelResult Failed(ValidationFailure[] errors) 
+        public static ModelResult Failed(IList<ValidationFailure> errors)
         {
-            ModelResult result = new ModelResult()
-            {
-                IsValid = false,
-                Errors = new List<ModelError>()
-            };
-
-            foreach(var error in errors)
+            ModelResult result = new ModelResult(false);
+            foreach (var error in errors)
             {
                 result.Errors.Add(new ModelError { PropertyName = error.PropertyName, Description = error.ErrorMessage, Code = error.ErrorCode });
             }
@@ -54,7 +43,19 @@ namespace Modular.Core.Helpers
     public class ModelError
     {
 
-        public ModelError() { }
+        public ModelError()
+        {
+            this.PropertyName = string.Empty;
+            this.Description = string.Empty;
+            this.Code = string.Empty;
+        }
+
+        public ModelError(string propertyName, string description, string? code)
+        {
+            this.PropertyName = propertyName;
+            this.Description = description;
+            this.Code = code;
+        }
 
         public string PropertyName { get; set; }
 

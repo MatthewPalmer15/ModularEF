@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 using Modular.Core.Entities;
 using Modular.Core.Helpers;
 using Modular.Core.Interfaces;
@@ -67,7 +66,7 @@ namespace Modular.Core.Services.Repositories.Concrete
             var result = _validator.Validate(contact);
             if (!result.IsValid)
             {
-                return ModelResult.Failed(result.Errors.ToArray());
+                return ModelResult.Failed(result.Errors);
             }
 
             return ModelResult.Success();
@@ -83,7 +82,7 @@ namespace Modular.Core.Services.Repositories.Concrete
             var result = await _validator.ValidateAsync(contact);
             if (!result.IsValid)
             {
-                return ModelResult.Failed(result.Errors.ToArray());
+                return ModelResult.Failed(result.Errors);
             }
 
             return ModelResult.Success();
@@ -101,7 +100,7 @@ namespace Modular.Core.Services.Repositories.Concrete
                 var result = _validator.Validate(contact);
                 if (!result.IsValid)
                 {
-                    return ModelResult.Failed(result.Errors.ToArray());
+                    return ModelResult.Failed(result.Errors);
                 }
             }
 
@@ -120,7 +119,7 @@ namespace Modular.Core.Services.Repositories.Concrete
                 var result = await _validator.ValidateAsync(contact);
                 if (!result.IsValid)
                 {
-                    return ModelResult.Failed(result.Errors.ToArray());
+                    return ModelResult.Failed(result.Errors);
                 }
             }
 
