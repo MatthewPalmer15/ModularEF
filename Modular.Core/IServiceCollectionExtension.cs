@@ -7,7 +7,7 @@ using Modular.Core.Interfaces;
 namespace Modular.Core.DependencyInjection
 {
 
-    public enum IdentityType
+    public enum AuthenticationType
     {
         None = 0,
         IndividualAccounts = 1,
@@ -16,14 +16,22 @@ namespace Modular.Core.DependencyInjection
     public static partial class ModularServiceCollectionExtension
     {
 
-        public static IServiceCollection AddModularCore(this IServiceCollection services, IdentityType identityType, Action<DbContextOptionsBuilder> dbContextOptionsBuilder)
+        /// <summary>
+        /// Add Core Component of Modular to Services.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="authenticationType">What authentication takes place.</param>
+        /// <param name="isCodeFirstDatabase">If database and tables should be created using migrations.</param>
+        /// <param name="dbContextOptionsBuilder">Database Context options.</param>
+        /// <returns></returns>
+        public static IServiceCollection AddModularCore(this IServiceCollection services, AuthenticationType authenticationType, bool isCodeFirstDatabase, Action<DbContextOptionsBuilder> dbContextOptionsBuilder)
         {
             services.AddHttpContextAccessor();
 
             //  Add Identity DB Context if needed
-            switch (identityType)
+            switch (authenticationType)
             {
-                case IdentityType.IndividualAccounts:
+                case AuthenticationType.IndividualAccounts:
                     services.AddDbContext<ModularIdentityDbContext>(dbContextOptionsBuilder);
                     services.AddScoped<IDbContext, ModularIdentityDbContext>();
 
@@ -57,7 +65,36 @@ namespace Modular.Core.DependencyInjection
                     break;
             }
 
+            //  Create database and migrate if db is codefirst.
+            if (isCodeFirstDatabase) RunDatabaseMigrations(services, authenticationType);
+
             return services;
+        }
+
+        internal static void RunDatabaseMigrations(IServiceCollection services, AuthenticationType authenticationType)
+        {
+            using (var scope = services.BuildServiceProvider().CreateScope())
+            {
+                switch (authenticationType)
+                {
+                    case AuthenticationType.IndividualAccounts:
+                        var dbIdentityContext = scope.ServiceProvider.GetRequiredService<ModularIdentityDbContext>();
+                        dbIdentityContext.Database.EnsureCreated();
+
+                        // Apply pending migrations
+                        if (dbIdentityContext.Database.GetPendingMigrations().Any()) dbIdentityContext.Database.Migrate();
+                        break;
+
+                    default:
+                        var dbContext = scope.ServiceProvider.GetRequiredService<ModularDbContext>();
+                        dbContext.Database.EnsureCreated();
+
+                        // Apply pending migrations
+                        if (dbContext.Database.GetPendingMigrations().Any()) dbContext.Database.Migrate();
+                        break;
+                }
+
+            }
         }
 
     }
