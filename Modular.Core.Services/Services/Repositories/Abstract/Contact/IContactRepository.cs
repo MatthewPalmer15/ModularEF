@@ -7,7 +7,5 @@ namespace Modular.Core.Services.Repositories.Abstract
     {
         public Contact New(string forename, string surname, string email);
 
-        public Contact New(Func<Contact, bool> predicate);
-
     }
 }

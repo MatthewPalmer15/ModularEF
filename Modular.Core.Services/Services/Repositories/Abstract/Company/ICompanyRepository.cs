@@ -5,5 +5,6 @@ namespace Modular.Core.Services.Repositories.Abstract
 {
     public interface ICompanyRepository : IRepository<Company>, IDisposable
     {
+
     }
 }

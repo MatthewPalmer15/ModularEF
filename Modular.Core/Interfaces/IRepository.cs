@@ -16,6 +16,8 @@ namespace Modular.Core.Interfaces
 
         // Methods
 
+        public TModel New();
+
         public ModelResult Validate(TModel entity);
 
         public Task<ModelResult> ValidateAsync(TModel entity);

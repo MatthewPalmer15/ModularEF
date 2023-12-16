@@ -57,15 +57,27 @@ namespace Modular.Core.Services.Repositories.Concrete
             }
         }
 
+        /// <summary>
+        /// Creates a new contact. This does not save to the database.
+        /// </summary>
+        /// <returns></returns>
+        public Contact New()
+        {
+            return new Contact();
+        }
+
+        /// <summary>
+        /// Creates a new contact. This does not save to the database.
+        /// </summary>
+        /// <returns></returns>
         public Contact New(string forename, string surname, string email)
         {
-            Contact contact = new Contact()
+            return new Contact()
             {
                 Forename = forename,
                 Surname = surname,
                 Email = email
             };
-            return contact;
         }
 
         /// <summary>

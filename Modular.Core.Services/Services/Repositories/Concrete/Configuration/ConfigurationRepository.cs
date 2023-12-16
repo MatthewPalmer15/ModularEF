@@ -57,6 +57,28 @@ namespace Modular.Core.Services.Repositories.Concrete
         }
 
         /// <summary>
+        /// Creates a new configuration. This does not save to the database.
+        /// </summary>
+        /// <returns></returns>
+        public Configuration New()
+        {
+            return new Configuration();
+        }
+
+        /// <summary>
+        /// Creates a new configuration. This does not save to the database.
+        /// </summary>
+        /// <returns></returns>
+        public Configuration New(string key, string value)
+        {
+            return new Configuration() 
+            { 
+                Key = key, 
+                Value = value 
+            };
+        }
+
+        /// <summary>
         /// Validates a configuration synchronously.
         /// </summary>
         /// <param name="configuration"></param>

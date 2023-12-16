@@ -57,6 +57,29 @@ namespace Modular.Core.Services.Repositories.Concrete
         }
 
         /// <summary>
+        /// Creates a new country. This does not save to the database.
+        /// </summary>
+        /// <returns></returns>
+        public Country New()
+        {
+            return new Country();
+        }
+
+        /// <summary>
+        /// Creates a new country. This does not save to the database.
+        /// </summary>
+        /// <returns></returns>
+        public Country New(string name, string description, string code)
+        {
+            return new Country()
+            {
+                Name = name,
+                Description = description,
+                Code = code
+            };
+        }
+
+        /// <summary>
         /// Validates a country synchronously.
         /// </summary>
         /// <param name="country"></param>

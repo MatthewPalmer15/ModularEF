@@ -57,6 +57,15 @@ namespace Modular.Core.Services.Repositories.Concrete
         }
 
         /// <summary>
+        /// Creates a new company. This does not save to the database.
+        /// </summary>
+        /// <returns></returns>
+        public Company New()
+        {
+            return new Company();
+        }
+
+        /// <summary>
         /// Validates a company synchronously.
         /// </summary>
         /// <param name="company"></param>
