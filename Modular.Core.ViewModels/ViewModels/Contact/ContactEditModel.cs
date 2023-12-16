@@ -7,8 +7,6 @@ namespace Modular.Core.ViewModels.Contact
     public class ContactEditModel
     {
 
-        public Guid Id { get; set; }
-
         [Display(Name = "Forename")]
         public string Forename { get; set; }
 
@@ -19,35 +17,35 @@ namespace Modular.Core.ViewModels.Contact
         public DateOnly DateOfBirth { get; set; }
 
         [Display(Name = "Address Line 1")]
-        public string AddressLine1 { get; set; }
+        public string? AddressLine1 { get; set; }
 
         [Display(Name = "Address Line 2")]
-        public string AddressLine2 { get; set; }
+        public string? AddressLine2 { get; set; }
 
         [Display(Name = "Address Line 3")]
-        public string AddressLine3 { get; set; }
+        public string? AddressLine3 { get; set; }
 
         [Display(Name = "City")]
-        public string AddressCity { get; set; }
+        public string? AddressCity { get; set; }
 
         [Display(Name = "County")]
-        public string AddressCounty { get; set; }
+        public string? AddressCounty { get; set; }
 
         [Display(Name = "Country")]
         public Guid? AddressCountryId { get; set; }
         public IEnumerable<Entities.Country>? Countries { get; set; }
 
         [Display(Name = "Postcode")]
-        public string AddressPostcode { get; set; }
+        public string? AddressPostcode { get; set; }
 
         [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Display(Name = "Phone")]
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
 
         [Display(Name = "Mobile")]
-        public string Mobile { get; set; }
+        public string? Mobile { get; set; }
 
         public Guid? OrganisationId { get; set; }
         public IEnumerable<Entities.Company>? Companies { get; set; }

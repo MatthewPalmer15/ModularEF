@@ -1,7 +1,7 @@
-﻿using Modular.Core.Helpers.Types;
-using Modular.Core.Interfaces;
+﻿#nullable disable
 
-#nullable disable
+using Modular.Core.Helpers.Types;
+using Modular.Core.Interfaces;
 
 namespace Modular.Core.Entities
 {
@@ -10,9 +10,9 @@ namespace Modular.Core.Entities
 
         public string Name { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
-        public string RegistrationNumber { get; set; }
+        public string? RegistrationNumber { get; set; }
 
         public Guid OwnerId { get; set; }
 
@@ -20,9 +20,9 @@ namespace Modular.Core.Entities
 
         public string AddressLine1 { get; set; }
 
-        public string AddressLine2 { get; set; }
+        public string? AddressLine2 { get; set; }
 
-        public string AddressLine3 { get; set; }
+        public string? AddressLine3 { get; set; }
 
         public string AddressCity { get; set; }
 
@@ -30,7 +30,7 @@ namespace Modular.Core.Entities
 
         public Guid? AddressCountryId { get; set; }
 
-        public virtual Country AddressCountry { get; set; }
+        public Country? AddressCountry { get; set; }
 
         public string AddressPostcode { get; set; }
 
@@ -38,7 +38,7 @@ namespace Modular.Core.Entities
 
         public string Phone { get; set; }
 
-        public string Website { get; set; }
+        public string? Website { get; set; }
 
         public StatusType Status { get; set; }
 

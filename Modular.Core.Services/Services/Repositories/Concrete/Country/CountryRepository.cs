@@ -69,7 +69,7 @@ namespace Modular.Core.Services.Repositories.Concrete
         /// Creates a new country. This does not save to the database.
         /// </summary>
         /// <returns></returns>
-        public Country New(string name, string description, string code)
+        public Country New(string name, string? description = null, string? code = null)
         {
             return new Country()
             {
