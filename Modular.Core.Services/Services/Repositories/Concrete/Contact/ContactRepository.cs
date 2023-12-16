@@ -7,6 +7,7 @@ using Modular.Core.Interfaces;
 using Modular.Core.Services.Repositories.Abstract;
 using Modular.Core.Services.Validation;
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace Modular.Core.Services.Repositories.Concrete
 {
@@ -54,6 +55,17 @@ namespace Modular.Core.Services.Repositories.Concrete
             {
                 return _context.Contacts;
             }
+        }
+
+        public Contact New(string forename, string surname, string email)
+        {
+            Contact contact = new Contact()
+            {
+                Forename = forename,
+                Surname = surname,
+                Email = email
+            };
+            return contact;
         }
 
         /// <summary>

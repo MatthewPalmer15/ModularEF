@@ -12,6 +12,7 @@ namespace Modular.Core.Identity
 
         RoleManager<ApplicationRole> RoleManager { get; }
 
+        SignInManager<ApplicationUser> SignInManager { get; }
 
         public Task<IdentityResult> CreateIdentityAsync(Contact contact, string username, string password, bool createIfNull, params string[] roles);
 

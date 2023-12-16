@@ -13,14 +13,17 @@ namespace Modular.Core.Identity
 
         public RoleManager<ApplicationRole> RoleManager { get; }
 
+        public SignInManager<ApplicationUser> SignInManager { get; }
+
         #endregion
 
         #region "  Constructors  "
 
-        public ModularIdentityManager(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
+        public ModularIdentityManager(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, SignInManager<ApplicationUser> signInManager)
         {
             UserManager = userManager;
             RoleManager = roleManager;
+            SignInManager = signInManager;
         }
 
         #endregion
