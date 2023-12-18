@@ -6,7 +6,7 @@
     <Authors>Matthew Palmer</Authors>
     <Product>Modular.Core</Product>
     <Copyright>2023 © Matthew Palmer</Copyright>
-    <Version>1.0.0.0</Version>
+    <Version>2024.1.1</Version>
   </PropertyGroup>
   <PropertyGroup>
     <NoWarn>IDE0090,IDE0063,IDE0066</NoWarn>
