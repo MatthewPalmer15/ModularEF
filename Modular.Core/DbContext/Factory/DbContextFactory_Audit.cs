@@ -23,10 +23,7 @@ namespace Modular.Core
                     );
                 });
 
-                // modelBuilder.Entity<AuditLog>(entity =>
-                // {
-                //     entity.ToTable("tblAuditLog");
-                // });
+                modelBuilder.Ignore<AuditLog>();
 
             }
 

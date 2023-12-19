@@ -1,4 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<AssemblyTitle>Modular.Services</AssemblyTitle>
+		<Company>Matthew Palmer</Company>
+		<Authors>Matthew Palmer</Authors>
+		<Product>Modular.Core</Product>
+		<Copyright>2023 © Matthew Palmer</Copyright>
+		<Version>2024.1.1</Version>
+	</PropertyGroup>
+	
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
