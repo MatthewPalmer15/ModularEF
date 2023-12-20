@@ -1,6 +1,4 @@
 ﻿using System.Net.Http.Headers;
-using System;
-using Microsoft.Extensions.Configuration;
 
 namespace Modular.Core.Api
 {
@@ -10,10 +8,15 @@ namespace Modular.Core.Api
 
         private readonly HttpClient _httpClient;
 
-        public ApiService(IConfiguration configuration) 
+        public ApiService(string? baseUrl = null) 
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri(configuration["API_BASE_URL"] ?? "");
+
+            if (baseUrl != null)
+            {
+                _httpClient.BaseAddress = new Uri(baseUrl);
+            }
+
             _httpClient.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
         }
