@@ -26,6 +26,7 @@ namespace Modular.Core.DependencyInjection
             services.AddScoped<IValidator<Company>, CompanyValidator>();
             services.AddScoped<IValidator<Country>, CountryValidator>();
             services.AddScoped<IValidator<ApplicationUser>, IdentityValidator>();
+            services.AddScoped<IValidator<Invoice>, InvoiceValidator>();
 
             return services;
 
