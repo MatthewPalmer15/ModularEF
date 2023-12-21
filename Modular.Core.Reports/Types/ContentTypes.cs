@@ -68,11 +68,5 @@ namespace Modular.Core.Reporting
 
         public readonly static string Xml = "application/xml";
 
-
-
-
-
-
-
     }
 }
