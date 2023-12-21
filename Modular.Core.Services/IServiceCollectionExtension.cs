@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using Modular.Core.Entities;
+using Modular.Core.Entities.Concrete;
 using Modular.Core.Identity;
 using Modular.Core.Services.Repositories.Abstract;
 using Modular.Core.Services.Repositories.Concrete;

@@ -10,7 +10,7 @@ namespace Modular.Core
 
             internal static void OnModelCreating(ModelBuilder modelBuilder)
             {
-                modelBuilder.Entity<Entities.Contact>(entity =>
+                modelBuilder.Entity<Entities.Concrete.Contact>(entity =>
                 {
                     entity.ToTable("tblContact");
 
@@ -31,7 +31,7 @@ namespace Modular.Core
                     entity.Property(e => e.Title)
                           .HasColumnName("Title")
                           .HasColumnType("int")
-                          .HasDefaultValue(Entities.Contact.TitleType.Unknown)
+                          .HasDefaultValue(Entities.Abstract.IContact.TitleType.Unknown)
                           .IsRequired(false);
 
                     //  Forename
@@ -61,7 +61,7 @@ namespace Modular.Core
                     entity.Property(e => e.Gender)
                           .HasColumnName("Gender")
                           .HasColumnType("int")
-                          .HasDefaultValue(Entities.Contact.GenderType.Unknown)
+                          .HasDefaultValue(Entities.Abstract.IContact.GenderType.Unknown)
                           .IsRequired(false);
 
                     //  Address Line 1
@@ -113,7 +113,7 @@ namespace Modular.Core
 
                     entity.HasOne(e => e.AddressCountry)
                           .WithOne()
-                          .HasForeignKey<Entities.Contact>(e => e.AddressCountryId);
+                          .HasForeignKey< Entities.Concrete.Contact >(e => e.AddressCountryId);
 
                     //  Address Postcode
                     entity.Property(e => e.AddressPostcode)
@@ -156,7 +156,7 @@ namespace Modular.Core
 
                     entity.HasOne(e => e.Company)
                           .WithOne()
-                         .HasForeignKey<Entities.Contact>(e => e.CompanyId);
+                         .HasForeignKey< Entities.Concrete.Contact >(e => e.CompanyId);
 
                     //  Is Verified
                     entity.Property(e => e.IsVerified)

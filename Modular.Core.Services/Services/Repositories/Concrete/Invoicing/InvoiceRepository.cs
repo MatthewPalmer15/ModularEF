@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Modular.Core.Entities;
+using Modular.Core.Entities.Concrete;
 using Modular.Core.Helpers;
 using Modular.Core.Interfaces;
 using Modular.Core.Services.Repositories.Abstract;

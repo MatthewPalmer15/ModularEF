@@ -21,7 +21,7 @@ namespace Modular.Core.ViewModels.Company
 
         [Display(Name = "Owner")]
         public Guid OwnerId { get; set; }
-        public IEnumerable<Entities.Contact>? Contacts { get; set; }
+        public IEnumerable<Entities.Concrete.Contact>? Contacts { get; set; }
 
         [Display(Name = "Address Line 1")]
         public string AddressLine1 { get; set; }
@@ -40,7 +40,7 @@ namespace Modular.Core.ViewModels.Company
 
         [Display(Name = "Country")]
         public Guid? AddressCountryId { get; set; }
-        public IEnumerable<Entities.Country>? Countries { get; set; }
+        public IEnumerable<Entities.Concrete.Country>? Countries { get; set; }
 
         [Display(Name = "Email")]
         public string Email { get; set; }

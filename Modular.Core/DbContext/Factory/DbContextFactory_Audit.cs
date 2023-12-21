@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Modular.Core.Entities;
+using Modular.Core.Entities.Concrete;
 using Newtonsoft.Json;
 
 namespace Modular.Core

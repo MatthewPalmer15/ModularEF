@@ -3,7 +3,7 @@
 using Modular.Core.Entities.Abstract;
 using Modular.Core.Interfaces;
 
-namespace Modular.Core.Entities
+namespace Modular.Core.Entities.Concrete
 {
     public class Country : BaseEntity<Guid>, ICountry, IAuditable
     {

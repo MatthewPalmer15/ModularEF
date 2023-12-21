@@ -2,7 +2,7 @@
 
 using Modular.Core.Interfaces;
 
-namespace Modular.Core.Entities
+namespace Modular.Core.Entities.Abstract
 {
     public interface IAuditLog : IBaseEntity<int>
     {

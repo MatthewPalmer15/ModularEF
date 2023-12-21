@@ -1,14 +1,34 @@
 ﻿#nullable disable
 
-using Modular.Core.Entities.Abstract;
+using Modular.Core.Entities.Concrete;
 using Modular.Core.Interfaces;
 
-namespace Modular.Core.Entities.Concrete
+namespace Modular.Core.Entities.Abstract
 {
-    public class Contact : BaseEntity<Guid>, IContact, IAuditable
+    public interface IContact : IBaseEntity<Guid>
     {
 
-        public IContact.TitleType? Title { get; set; }
+        public enum GenderType
+        {
+            Unknown = 0,
+            Male = 1,
+            Female = 2,
+            Other = 3,
+            PreferNotToSay = 4
+
+        }
+
+        public enum TitleType
+        {
+            Unknown = 0,
+            Mr = 1,
+            Mrs = 2,
+            Ms = 3,
+            Miss = 4,
+            Dr = 5
+        }
+
+        public TitleType? Title { get; set; }
 
         public string Forename { get; set; }
 
@@ -16,7 +36,7 @@ namespace Modular.Core.Entities.Concrete
 
         public DateTime DateOfBirth { get; set; }
 
-        public IContact.GenderType? Gender { get; set; }
+        public GenderType? Gender { get; set; }
 
         public string? AddressLine1 { get; set; }
 

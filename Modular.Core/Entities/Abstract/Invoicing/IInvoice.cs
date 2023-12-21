@@ -1,14 +1,21 @@
 ﻿#nullable disable
 
-using Modular.Core.Entities.Abstract;
 using Modular.Core.Interfaces;
 
-namespace Modular.Core.Entities.Concrete
+namespace Modular.Core.Entities.Abstract
 {
-    public class Invoice : BaseEntity<Guid>, IInvoice, IAuditable
+    public interface IInvoice : IBaseEntity<Guid>
     {
 
-        public IInvoice.InvoiceType Type { get; set; }   
+        public enum InvoiceType
+        {
+            Unknown = 0,
+            Invoice = 1,
+            Receipt = 2,
+            Quote = 3
+        }
+
+        public InvoiceType Type { get; set; }   
         
         public int InvoiceNumber { get; set; }
 
@@ -20,7 +27,7 @@ namespace Modular.Core.Entities.Concrete
 
         public DateOnly DueDate { get; set; }
 
-        public decimal SubTotal => Items.Sum(x => x.TotalNet);
+        public decimal SubTotal { get; }
 
         public decimal DiscountTotal => Items.Sum(x => x.Discount);
 

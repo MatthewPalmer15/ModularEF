@@ -1,12 +1,12 @@
 ﻿#nullable disable
 
-using Modular.Core.Entities.Abstract;
+using Modular.Core.Entities.Concrete;
 using Modular.Core.Helpers.Types;
 using Modular.Core.Interfaces;
 
-namespace Modular.Core.Entities.Concrete
+namespace Modular.Core.Entities.Abstract
 {
-    public class Company : BaseEntity<Guid>, ICompany, IAuditable
+    public interface ICompany : IBaseEntity<Guid>
     {
 
         public string Name { get; set; }

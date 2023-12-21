@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Modular.Core.Entities;
+using Modular.Core.Entities.Concrete;
 using Modular.Core.ViewModels.Configuration;
 
 namespace Modular.Core.Profiles

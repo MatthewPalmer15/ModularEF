@@ -1,8 +1,10 @@
 ﻿#nullable disable
 
-namespace Modular.Core.Entities
+using Modular.Core.Entities.Abstract;
+
+namespace Modular.Core.Entities.Concrete
 {
-    public class AuditLog : BaseEntity<int>
+    public class AuditLog : BaseEntity<int>, IAuditLog
     {
 
         public DateTime Timestamp { get; set; }

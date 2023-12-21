@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Modular.Core.Entities;
+using Modular.Core.Entities.Concrete;
 using System.Text.RegularExpressions;
 
 namespace Modular.Core.Services.Validation

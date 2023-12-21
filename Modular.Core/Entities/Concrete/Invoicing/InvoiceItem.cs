@@ -1,8 +1,11 @@
 ﻿#nullable disable
 
-namespace Modular.Core.Entities
+using Modular.Core.Entities.Abstract;
+using Modular.Core.Interfaces;
+
+namespace Modular.Core.Entities.Concrete
 {
-    public class InvoiceItem : BaseEntity<Guid>
+    public class InvoiceItem : BaseEntity<Guid>, IInvoiceItem, IAuditable
     {
 
         public Guid InvoiceId { get; set; }

@@ -2,7 +2,7 @@
 
 using Modular.Core.Interfaces;
 
-namespace Modular.Core.Entities
+namespace Modular.Core.Entities.Concrete
 {
     public class Configuration : BaseEntity<Guid>, IAuditable
     {

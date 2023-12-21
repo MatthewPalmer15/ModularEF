@@ -1,5 +1,5 @@
 ﻿using DevExpress.XtraReports.UI;
-using Modular.Core.Entities;
+using Modular.Core.Entities.Concrete;
 
 namespace Modular.Core.Reporting
 {

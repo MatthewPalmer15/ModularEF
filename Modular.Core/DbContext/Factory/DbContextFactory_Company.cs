@@ -11,7 +11,7 @@ namespace Modular.Core
 
             internal static void OnModelCreating(ModelBuilder modelBuilder)
             {
-                modelBuilder.Entity<Entities.Company>(entity =>
+                modelBuilder.Entity<Entities.Concrete.Company>(entity =>
                 {
                     entity.ToTable("tblCompany");
 
@@ -60,7 +60,7 @@ namespace Modular.Core
 
                     entity.HasOne(e => e.Owner)
                           .WithOne()
-                          .HasForeignKey<Entities.Company>(e => e.OwnerId);
+                          .HasForeignKey<Entities.Concrete.Company>(e => e.OwnerId);
 
                     entity.HasIndex(e => e.OwnerId)
                           .IsUnique(false);
@@ -114,7 +114,7 @@ namespace Modular.Core
 
                     entity.HasOne(e => e.AddressCountry)
                           .WithOne()
-                          .HasForeignKey<Entities.Company>(e => e.AddressCountryId);
+                          .HasForeignKey<Entities.Concrete.Company>(e => e.AddressCountryId);
 
                     //  Address Postcode
                     entity.Property(e => e.AddressPostcode)

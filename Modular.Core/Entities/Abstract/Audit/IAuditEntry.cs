@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Modular.Core.Interfaces;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Modular.Core.Entities
+namespace Modular.Core.Entities.Abstract
 {
     public interface IAuditEntry : IBaseEntity<Guid>
     {

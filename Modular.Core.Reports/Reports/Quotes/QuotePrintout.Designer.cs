@@ -234,7 +234,7 @@
             // 
             // dsInvoice
             // 
-            this.dsInvoice.DataSource = typeof(global::Modular.Core.Entities.Invoice);
+            this.dsInvoice.DataSource = typeof(global::Modular.Core.Entities.Concrete.Invoice);
             this.dsInvoice.Name = "dsInvoice";
             // 
             // DetailReport

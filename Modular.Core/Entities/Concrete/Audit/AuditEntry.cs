@@ -1,26 +1,19 @@
 ﻿#nullable disable
 
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Modular.Core.Entities.Abstract;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Modular.Core.Entities
+namespace Modular.Core.Entities.Concrete
 {
-    public class AuditEntry : BaseEntity<Guid>
+    public class AuditEntry : BaseEntity<Guid>, IAuditEntry
     {
-
-        public enum ActionType
-        {
-            Unknown,
-            Create,
-            Update,
-            Delete
-        }
 
         public DateTime Timestamp { get; set; }
 
         public Guid ApplicationUserId { get; set; }
 
-        public ActionType Action { get; set; }
+        public IAuditEntry.ActionType Action { get; set; }
 
         public string EntityId { get; set; }
 

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Modular.Core.Entities;
+using Modular.Core.Entities.Concrete;
 using Modular.Core.Interfaces;
 
 #nullable disable

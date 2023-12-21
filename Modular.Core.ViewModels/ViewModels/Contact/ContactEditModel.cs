@@ -33,7 +33,7 @@ namespace Modular.Core.ViewModels.Contact
 
         [Display(Name = "Country")]
         public Guid? AddressCountryId { get; set; }
-        public IEnumerable<Entities.Country>? Countries { get; set; }
+        public IEnumerable<Entities.Concrete.Country>? Countries { get; set; }
 
         [Display(Name = "Postcode")]
         public string? AddressPostcode { get; set; }
@@ -48,7 +48,7 @@ namespace Modular.Core.ViewModels.Contact
         public string? Mobile { get; set; }
 
         public Guid? OrganisationId { get; set; }
-        public IEnumerable<Entities.Company>? Companies { get; set; }
+        public IEnumerable<Entities.Concrete.Company>? Companies { get; set; }
 
         [Display(Name = "Is Verified")]
         public bool IsVerified { get; set; }
