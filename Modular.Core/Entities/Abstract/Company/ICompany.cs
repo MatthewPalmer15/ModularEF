@@ -41,7 +41,5 @@ namespace Modular.Core.Entities.Abstract
 
         public string? Website { get; set; }
 
-        public StatusType Status { get; set; }
-
     }
 }

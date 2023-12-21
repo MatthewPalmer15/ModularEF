@@ -149,13 +149,6 @@ namespace Modular.Core
                           .HasDefaultValue(string.Empty)
                           .HasMaxLength(2048);
 
-                    //  Status
-                    entity.Property(e => e.Status)
-                          .HasColumnName("Status")
-                          .HasColumnType("int")
-                          .HasDefaultValue(StatusType.Unknown)
-                          .IsRequired(true);
-
                 });
 
             }

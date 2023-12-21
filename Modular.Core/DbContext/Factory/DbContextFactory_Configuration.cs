@@ -35,6 +35,13 @@ namespace Modular.Core
                           .HasDefaultValue(DateTime.Now)
                           .IsRequired(true);
 
+                    //  Status
+                    entity.Property(e => e.Status)
+                          .HasColumnName("Status")
+                          .HasColumnType("int")
+                          .HasDefaultValue(BaseEntity<Guid>.StatusType.Unknown)
+                          .IsRequired(true);
+
                     //  Key
                     entity.Property(x => x.Key)
                           .HasColumnName("Key")

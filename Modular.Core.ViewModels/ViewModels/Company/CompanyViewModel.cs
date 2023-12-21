@@ -53,8 +53,5 @@ namespace Modular.Core.ViewModels.Company
         [Display(Name = "Website")]
         public string Website { get; set; }
 
-        [Display(Name = "Status")]
-        public StatusType Status { get; set; }
-
     }
 }

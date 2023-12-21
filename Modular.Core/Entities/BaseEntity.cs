@@ -8,35 +8,25 @@ namespace Modular.Core
     public class BaseEntity<T> : IBaseEntity<T>
     {
 
-        public BaseEntity()
+        public enum StatusType
         {
-            SetDefaultValues();
+            Unknown = 0,
+            Active = 1,
+            Inactive = 2,
+            Cancelled = 3,
+            Flagged = 50,
+            Deleted = 100,
         }
-
-        #region "  Properties  "
 
         public T Id { get; set; }
 
         public DateTime Created { get; set; }
 
-        #endregion
+        public StatusType Status { get; set; }
 
-        #region "  Methods  "
+        public bool IsFlagged => Status == StatusType.Flagged;
 
-        private void SetDefaultValues()
-        {
-            PropertyInfo[] properties = this.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            foreach (PropertyInfo property in properties)
-            {
-                if (property.CanWrite)
-                {
-                    object? defaultValue = property.PropertyType.IsValueType ? Activator.CreateInstance(property.PropertyType) : null;
-                    property.SetValue(this, defaultValue);
-                }
-            }
-        }
-
-        #endregion
+        public bool IsDeleted => Status == StatusType.Deleted;
 
     }
 }
