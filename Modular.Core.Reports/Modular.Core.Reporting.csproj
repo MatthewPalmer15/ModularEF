@@ -1,6 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
+	<PropertyGroup>
+		<AssemblyTitle>Modular.Core.Reporting</AssemblyTitle>
+		<AssemblyDescription>Reporting library for Modular</AssemblyDescription>
+		<Company>Matthew Palmer</Company>
+		<Authors>Matthew Palmer</Authors>
+		<Product>Modular.Core.Reporting</Product>
+		<Copyright>2023 © Matthew Palmer</Copyright>
+		<Version>2024.1.1</Version>
+	</PropertyGroup>
+
+	<PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
