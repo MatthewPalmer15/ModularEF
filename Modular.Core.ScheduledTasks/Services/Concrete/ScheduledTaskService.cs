@@ -15,10 +15,12 @@ namespace Modular.Core.ScheduledTasks.Concrete
         {
             _invoiceRepository = invoiceRepository;
 
-            RecurringJob.AddOrUpdate("convertQuote", () => ConvertQuote(), Cron.Daily());
+            RecurringJob.AddOrUpdate("convertQuote", () => ConvertQuoteAsync(), Cron.Daily());
         }
 
-        public async Task ConvertQuote()
+        #region "  Tasks  "
+
+        public async Task ConvertQuoteAsync()
         {
             List<Invoice> invoices = _invoiceRepository.Search(x => x.Type == IInvoice.InvoiceType.Quote && x.Payments.Count > 0);
             foreach (Invoice invoice in invoices)
@@ -27,6 +29,8 @@ namespace Modular.Core.ScheduledTasks.Concrete
             }
             await _invoiceRepository.SaveChangesAsync();
         }
+
+        #endregion
 
     }
 }

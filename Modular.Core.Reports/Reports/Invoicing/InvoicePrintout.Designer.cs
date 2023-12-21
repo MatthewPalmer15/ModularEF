@@ -84,7 +84,7 @@
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 51.04167F;
+            this.BottomMargin.HeightF = 14.79142F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // Detail
@@ -211,7 +211,7 @@
             this.xrLabel7,
             this.xrLabel6,
             this.xrLabel5});
-            this.Detail2.HeightF = 183.5419F;
+            this.Detail2.HeightF = 188.9586F;
             this.Detail2.Name = "Detail2";
             // 
             // xrLabel12
@@ -588,7 +588,7 @@
             this.dsInvoice});
             this.DataSource = this.dsInvoice;
             this.Font = new DevExpress.Drawing.DXFont("Arial", 9.75F);
-            this.Margins = new DevExpress.Drawing.DXMargins(44F, 47F, 51.04167F, 51.04167F);
+            this.Margins = new DevExpress.Drawing.DXMargins(44F, 47F, 51.04167F, 14.79142F);
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.TableRowEven});
             this.Version = "23.2";
