@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.Core.ViewModels", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.Core.Api", "Modular.Core.Api\Modular.Core.Api.csproj", "{3F61537A-0809-4BAB-B062-22355402F55C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modular.Core.Reports", "Modular.Core.Reports\Modular.Core.Reports.csproj", "{CAEB280D-43DE-4DB9-A8CF-20DFB5C4A018}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.Core.Reporting", "Modular.Core.Reports\Modular.Core.Reporting.csproj", "{CAEB280D-43DE-4DB9-A8CF-20DFB5C4A018}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

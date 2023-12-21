@@ -1,4 +1,4 @@
-﻿namespace Modular.Core.Reports.Reports
+﻿namespace Modular.Core.Reporting
 {
     public partial class ReceiptPrintout : DevExpress.XtraReports.UI.XtraReport
     {

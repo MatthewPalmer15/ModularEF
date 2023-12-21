@@ -1,5 +1,5 @@
-﻿namespace Modular.Core.Reports.Reports
-{
+﻿namespace Modular.Core.Reporting
+{ 
     partial class InvoicePrintout
     {
         /// <summary>

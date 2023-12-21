@@ -1,7 +1,4 @@
-﻿using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
-using Modular.Core.Entities;
-using Modular.Core.Identity;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace Modular.Core.DependencyInjection
 {

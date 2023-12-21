@@ -1,8 +1,7 @@
 ﻿using DevExpress.XtraReports.UI;
-using Modular.Core.Reports.Reports;
 using Modular.Core.Entities;
 
-namespace Modular.Core.Reports
+namespace Modular.Core.Reporting
 {
     public static partial class DocumentGenerator
     {

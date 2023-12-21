@@ -14,4 +14,10 @@
     <ProjectReference Include="..\Modular.Core\Modular.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Reports\Receipt\ReceiptPrintout.cs">
+      <SubType>XtraReport</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

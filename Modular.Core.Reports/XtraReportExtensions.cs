@@ -1,6 +1,6 @@
 ﻿using DevExpress.XtraReports.UI;
 
-namespace Modular.Core.Reports
+namespace Modular.Core.Reporting
 {
     internal static class XtraReportExtensions
     {
