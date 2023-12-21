@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.Core.Api", "Modular
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.Core.Reporting", "Modular.Core.Reports\Modular.Core.Reporting.csproj", "{CAEB280D-43DE-4DB9-A8CF-20DFB5C4A018}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modular.Core.ScheduledTasks", "Modular.Core.ScheduledTasks\Modular.Core.ScheduledTasks.csproj", "{C3D72AF1-5C97-4631-8AA4-63EDA335D917}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{CAEB280D-43DE-4DB9-A8CF-20DFB5C4A018}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAEB280D-43DE-4DB9-A8CF-20DFB5C4A018}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAEB280D-43DE-4DB9-A8CF-20DFB5C4A018}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3D72AF1-5C97-4631-8AA4-63EDA335D917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3D72AF1-5C97-4631-8AA4-63EDA335D917}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3D72AF1-5C97-4631-8AA4-63EDA335D917}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3D72AF1-5C97-4631-8AA4-63EDA335D917}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
