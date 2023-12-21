@@ -1,10 +1,11 @@
 ﻿#nullable disable
 
+using Modular.Core.Entities.Abstract;
 using Modular.Core.Interfaces;
 
 namespace Modular.Core.Entities
 {
-    public class Country : BaseEntity<Guid>, IAuditable
+    public class Country : BaseEntity<Guid>, ICountry, IAuditable
     {
 
         public string Name { get; set; }
