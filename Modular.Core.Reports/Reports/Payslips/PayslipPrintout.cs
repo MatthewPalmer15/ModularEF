@@ -4,7 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 
-namespace Modular.Core.Reporting.Reports.Payslips
+namespace Modular.Core.Reporting
 {
     public partial class PayslipPrintout : DevExpress.XtraReports.UI.XtraReport
     {

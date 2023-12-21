@@ -35,6 +35,23 @@ namespace Modular.Core.Reporting
                 return rpt.ConvertToBytes();
             }
 
+            public async static Task<byte[]> DownloadReceiptAsync(Invoice invoice)
+            {
+                XtraReport rpt = await GenerateReceiptAsync(invoice);
+                return await rpt.ConvertToBytesAsync();
+            }
+
+            public static void PrintReceipt(Invoice invoice, string? printerName = "")
+            {
+                XtraReport rpt = GenerateReceipt(invoice);
+                rpt.Print(printerName);
+            }
+
+            public async static Task PrintReceiptAsync(Invoice invoice, string? printerName = "")
+            {
+                XtraReport rpt = await GenerateReceiptAsync(invoice);
+                await rpt.PrintAsync(printerName);
+            }
 
         }
 

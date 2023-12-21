@@ -25,6 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Reports\Payslips\PayslipPrintout.cs">
+      <SubType>XtraReport</SubType>
+    </Compile>
     <Compile Update="Reports\Receipt\ReceiptPrintout.cs">
       <SubType>XtraReport</SubType>
     </Compile>
