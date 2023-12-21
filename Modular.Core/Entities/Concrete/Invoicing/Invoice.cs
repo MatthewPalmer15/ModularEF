@@ -8,8 +8,8 @@ namespace Modular.Core.Entities.Concrete
     public class Invoice : BaseEntity<Guid>, IInvoice, IAuditable
     {
 
-        public IInvoice.InvoiceType Type { get; set; }   
-        
+        public IInvoice.InvoiceType Type { get; set; }
+
         public int InvoiceNumber { get; set; }
 
         public List<IInvoiceItem> Items { get; set; }

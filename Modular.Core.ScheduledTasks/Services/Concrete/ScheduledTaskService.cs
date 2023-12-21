@@ -1,8 +1,8 @@
 ﻿using Hangfire;
-using Modular.Core.Services.Repositories.Abstract;
 using Modular.Core.Entities.Abstract;
 using Modular.Core.Entities.Concrete;
 using Modular.Core.ScheduledTasks.Abstract;
+using Modular.Core.Services.Repositories.Abstract;
 
 namespace Modular.Core.ScheduledTasks.Concrete
 {

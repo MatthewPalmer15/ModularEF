@@ -8,7 +8,7 @@ namespace Modular.Core.Api
 
         private readonly HttpClient _httpClient;
 
-        public ApiService(string? baseUrl = null) 
+        public ApiService(string? baseUrl = null)
         {
             _httpClient = new HttpClient();
 

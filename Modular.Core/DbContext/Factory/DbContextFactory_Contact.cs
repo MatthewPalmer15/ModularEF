@@ -113,7 +113,7 @@ namespace Modular.Core
 
                     entity.HasOne(e => e.AddressCountry)
                           .WithOne()
-                          .HasForeignKey< Entities.Concrete.Contact >(e => e.AddressCountryId);
+                          .HasForeignKey<Entities.Concrete.Contact>(e => e.AddressCountryId);
 
                     //  Address Postcode
                     entity.Property(e => e.AddressPostcode)
@@ -156,7 +156,7 @@ namespace Modular.Core
 
                     entity.HasOne(e => e.Company)
                           .WithOne()
-                         .HasForeignKey< Entities.Concrete.Contact >(e => e.CompanyId);
+                         .HasForeignKey<Entities.Concrete.Contact>(e => e.CompanyId);
 
                     //  Is Verified
                     entity.Property(e => e.IsVerified)

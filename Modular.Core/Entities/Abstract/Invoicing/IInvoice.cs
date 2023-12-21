@@ -15,8 +15,8 @@ namespace Modular.Core.Entities.Abstract
             Quote = 3
         }
 
-        public InvoiceType Type { get; set; }   
-        
+        public InvoiceType Type { get; set; }
+
         public int InvoiceNumber { get; set; }
 
         public List<IInvoiceItem> Items { get; set; }

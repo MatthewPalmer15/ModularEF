@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Modular.Core.Entities.Concrete;
-using Modular.Core.Helpers;
 using Modular.Core.Interfaces;
 using Modular.Core.Services.Repositories.Abstract;
 using Modular.Core.Services.Validation;
@@ -71,10 +70,10 @@ namespace Modular.Core.Services.Repositories.Concrete
         /// <returns></returns>
         public Configuration New(string key, string value)
         {
-            return new Configuration() 
-            { 
-                Key = key, 
-                Value = value 
+            return new Configuration()
+            {
+                Key = key,
+                Value = value
             };
         }
 
