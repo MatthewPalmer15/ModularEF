@@ -51,6 +51,8 @@ namespace Modular.Core
         public virtual DbSet<Company> Companies { get; set; }
 
         public virtual DbSet<Country> Countries { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+
 
         #endregion
 

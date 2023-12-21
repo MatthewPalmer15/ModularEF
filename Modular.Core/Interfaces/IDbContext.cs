@@ -18,6 +18,8 @@ namespace Modular.Core.Interfaces
 
         public DbSet<Country> Countries { get; set; }
 
+        public DbSet<Invoice> Invoices { get; set; }
+
 
 
         public int SaveChanges();

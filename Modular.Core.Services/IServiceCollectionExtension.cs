@@ -17,7 +17,7 @@ namespace Modular.Core.DependencyInjection
             services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
-            services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<IInvoiceRepository, CountryRepository>();
 
 
             services.AddScoped<IValidator<Configuration>, ConfigurationValidator>();

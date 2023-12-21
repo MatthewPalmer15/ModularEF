@@ -35,7 +35,6 @@ namespace Modular.Core
 
         #endregion
 
-
         #region "  DbSets  "
 
         public virtual DbSet<AuditEntry> AuditEntries { get; set; }
@@ -49,6 +48,8 @@ namespace Modular.Core
         public virtual DbSet<Company> Companies { get; set; }
 
         public virtual DbSet<Country> Countries { get; set; }
+
+        public DbSet<Invoice> Invoices { get; set; }
 
         #endregion
 
@@ -66,6 +67,9 @@ namespace Modular.Core
             //  Entity
             DbContextFactory.Contact.OnModelCreating(modelBuilder);
             DbContextFactory.Company.OnModelCreating(modelBuilder);
+
+            //  Invoicing
+            DbContextFactory.Invoicing.OnModelCreating(modelBuilder);
 
             //  Location
             DbContextFactory.Country.OnModelCreating(modelBuilder);
