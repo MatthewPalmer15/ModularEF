@@ -11,7 +11,7 @@ namespace Modular.Core
 
             internal static void OnModelCreating(ModelBuilder modelBuilder)
             {
-                modelBuilder.Entity<Entities.Configuration>(entity =>
+                modelBuilder.Entity<Entities.Concrete.Configuration>(entity =>
                 {
                     entity.ToTable("tblConfiguration");
 
@@ -33,6 +33,13 @@ namespace Modular.Core
                           .HasColumnName("Created")
                           .HasColumnType("datetime")
                           .HasDefaultValue(DateTime.Now)
+                          .IsRequired(true);
+
+                    //  Status
+                    entity.Property(e => e.Status)
+                          .HasColumnName("Status")
+                          .HasColumnType("int")
+                          .HasDefaultValue(BaseEntity<Guid>.StatusType.Unknown)
                           .IsRequired(true);
 
                     //  Key

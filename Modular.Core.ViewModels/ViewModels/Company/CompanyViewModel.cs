@@ -1,6 +1,5 @@
 ﻿#nullable disable
 
-using Modular.Core.Helpers.Types;
 using System.ComponentModel.DataAnnotations;
 
 namespace Modular.Core.ViewModels.Company
@@ -22,7 +21,7 @@ namespace Modular.Core.ViewModels.Company
         [Display(Name = "Owner")]
         public Guid OwnerId { get; set; }
 
-        public Entities.Contact Owner { get; set; }
+        public Entities.Concrete.Contact Owner { get; set; }
 
         [Display(Name = "Address Line 1")]
         public string AddressLine1 { get; set; }
@@ -42,7 +41,7 @@ namespace Modular.Core.ViewModels.Company
         [Display(Name = "Country")]
         public Guid? AddressCountryId { get; set; }
 
-        public Entities.Country? AddressCountry { get; set; }
+        public Entities.Concrete.Country? AddressCountry { get; set; }
 
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -52,9 +51,6 @@ namespace Modular.Core.ViewModels.Company
 
         [Display(Name = "Website")]
         public string Website { get; set; }
-
-        [Display(Name = "Status")]
-        public StatusType Status { get; set; }
 
     }
 }

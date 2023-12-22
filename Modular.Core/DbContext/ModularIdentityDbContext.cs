@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.DataEncryption;
-using Modular.Core.Entities;
+using Modular.Core.Entities.Abstract;
+using Modular.Core.Entities.Concrete;
 using Modular.Core.Identity;
 using Modular.Core.Interfaces;
 using System.Security.Claims;
@@ -88,28 +89,28 @@ namespace Modular.Core
             foreach (EntityEntry entry in ChangeTracker.Entries())
             {
 
-                AuditEntry.ActionType actionType;
+                IAuditEntry.ActionType actionType;
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        actionType = AuditEntry.ActionType.Create;
+                        actionType = IAuditEntry.ActionType.Create;
                         break;
 
                     case EntityState.Modified:
-                        actionType = AuditEntry.ActionType.Update;
+                        actionType = IAuditEntry.ActionType.Update;
                         break;
 
                     case EntityState.Deleted:
-                        actionType = AuditEntry.ActionType.Delete;
+                        actionType = IAuditEntry.ActionType.Delete;
                         break;
 
                     default:
-                        actionType = AuditEntry.ActionType.Unknown;
+                        actionType = IAuditEntry.ActionType.Unknown;
                         break;
 
                 }
 
-                if (actionType != AuditEntry.ActionType.Unknown && entry.Entity is IAuditable)
+                if (actionType != IAuditEntry.ActionType.Unknown && entry.Entity is IAuditable)
                 {
                     var currentUserID = new Guid(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? Guid.Empty.ToString());
 

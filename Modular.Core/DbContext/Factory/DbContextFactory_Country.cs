@@ -10,7 +10,7 @@ namespace Modular.Core
 
             internal static void OnModelCreating(ModelBuilder modelBuilder)
             {
-                modelBuilder.Entity<Entities.Country>(entity =>
+                modelBuilder.Entity<Entities.Concrete.Country>(entity =>
                 {
                     entity.ToTable("tblCountry");
 

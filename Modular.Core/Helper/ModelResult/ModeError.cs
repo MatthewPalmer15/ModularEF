@@ -1,6 +1,4 @@
-﻿using FluentValidation.Results;
-
-namespace Modular.Core
+﻿namespace Modular.Core
 {
 
     public class ModelError

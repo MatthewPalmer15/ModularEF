@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<AssemblyTitle>Modular.Core.Reporting</AssemblyTitle>
+		<AssemblyDescription>Reporting library for Modular</AssemblyDescription>
+		<Company>Matthew Palmer</Company>
+		<Authors>Matthew Palmer</Authors>
+		<Product>Modular.Core.Reporting</Product>
+		<Copyright>2023 © Matthew Palmer</Copyright>
+		<Version>2024.1.1</Version>
+	</PropertyGroup>
+
+	<PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Reporting.Core" Version="23.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modular.Core\Modular.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Reports\Payslips\PayslipPrintout.cs">
+      <SubType>XtraReport</SubType>
+    </Compile>
+    <Compile Update="Reports\Receipt\ReceiptPrintout.cs">
+      <SubType>XtraReport</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>
