@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Modular.Core.Identity;
 using Modular.Core.Interfaces;
+using Serilog.Sinks.MSSqlServer;
+using Serilog;
+using Microsoft.Extensions.Logging;
 
 namespace Modular.Core.DependencyInjection
 {
@@ -95,6 +99,37 @@ namespace Modular.Core.DependencyInjection
                 }
 
             }
+        }
+
+        public static WebApplicationBuilder? AddModularLogging(this WebApplicationBuilder builder, string connectionString)
+        {
+
+            var columnOptions = new ColumnOptions();
+            columnOptions.Store.Remove(StandardColumn.MessageTemplate);
+            columnOptions.Store.Remove(StandardColumn.Properties);
+            //  Configure Serilog to log to Microsoft SQL Server.
+            var logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(builder.Configuration)
+                .WriteTo.MSSqlServer(
+                    connectionString,
+                    sinkOptions: new MSSqlServerSinkOptions
+                    {
+                        TableName = "tblAuditLog",
+                        AutoCreateSqlTable = true,
+                        BatchPostingLimit = 10,
+                        BatchPeriod = TimeSpan.FromSeconds(5),
+                        SchemaName = "dbo",
+                    },
+                    columnOptions: columnOptions
+                )
+                .Enrich.FromLogContext()
+                .CreateLogger();
+
+            builder.Logging.ClearProviders();
+            builder.Logging.AddSerilog(logger);
+            builder.Host.UseSerilog(logger);
+
+            return builder;
         }
 
     }

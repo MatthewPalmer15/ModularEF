@@ -20,5 +20,6 @@ namespace Modular.Core.DependencyInjection
 
             return services;
         }
+
     }
 }
