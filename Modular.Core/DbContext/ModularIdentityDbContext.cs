@@ -7,6 +7,7 @@ using Modular.Core.Entities.Abstract;
 using Modular.Core.Entities.Concrete;
 using Modular.Core.Identity;
 using Modular.Core.Interfaces;
+using System.Reflection.Emit;
 using System.Security.Claims;
 
 namespace Modular.Core
@@ -52,6 +53,7 @@ namespace Modular.Core
         public virtual DbSet<Company> Companies { get; set; }
 
         public virtual DbSet<Country> Countries { get; set; }
+
         public DbSet<Invoice> Invoices { get; set; }
 
 
@@ -74,6 +76,9 @@ namespace Modular.Core
 
             //  Identity
             DbContextFactory.Identity.OnModelCreating(builder);
+
+            //  Invoicing
+            DbContextFactory.Invoicing.OnModelCreating(builder);
 
             //  Location
             DbContextFactory.Country.OnModelCreating(builder);

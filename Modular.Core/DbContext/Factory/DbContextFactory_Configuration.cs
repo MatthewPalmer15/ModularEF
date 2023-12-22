@@ -25,6 +25,7 @@ namespace Modular.Core
                     entity.Property(e => e.Id)
                           .HasColumnName("ID")
                           .HasColumnType("uniqueidentifier")
+                          .HasColumnOrder(1)
                           .ValueGeneratedOnAdd()
                           .IsRequired(true);
 
@@ -32,20 +33,15 @@ namespace Modular.Core
                     entity.Property(e => e.Created)
                           .HasColumnName("Created")
                           .HasColumnType("datetime")
+                          .HasColumnOrder(2)
                           .HasDefaultValue(DateTime.Now)
-                          .IsRequired(true);
-
-                    //  Status
-                    entity.Property(e => e.Status)
-                          .HasColumnName("Status")
-                          .HasColumnType("int")
-                          .HasDefaultValue(BaseEntity<Guid>.StatusType.Unknown)
                           .IsRequired(true);
 
                     //  Key
                     entity.Property(x => x.Key)
                           .HasColumnName("Key")
                           .HasColumnType("nvarchar(128)")
+                          .HasColumnOrder(3)
                           .IsRequired(true)
                           .HasMaxLength(128);
 
@@ -56,8 +52,17 @@ namespace Modular.Core
                     entity.Property(x => x.Value)
                           .HasColumnName("Value")
                           .HasColumnType("nvarchar(max)")
+                          .HasColumnOrder(4)
                           .IsRequired(true)
                           .IsEncrypted();
+
+                    //  Status
+                    entity.Property(e => e.Status)
+                          .HasColumnName("Status")
+                          .HasColumnType("int")
+                          .HasColumnOrder(5)
+                          .HasDefaultValue(BaseEntity<Guid>.StatusType.Active)
+                          .IsRequired(true);
 
                 });
             }
