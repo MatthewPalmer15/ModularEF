@@ -3,6 +3,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Modular.Core.Entities.Concrete;
 using Modular.Core.Identity;
+using Modular.Core.Services.EmailSender.Abstract;
+using Modular.Core.Services.EmailSender.Concrete;
 using Modular.Core.Services.Repositories.Abstract;
 using Modular.Core.Services.Repositories.Concrete;
 using Modular.Core.Services.Validation;
@@ -39,6 +41,8 @@ namespace Modular.Core.DependencyInjection
                     emailSettings["Password"]           // Password
 
                 );
+
+            services.AddScoped<IEmailSenderService, EmailSenderService>();
 
             return services;
 

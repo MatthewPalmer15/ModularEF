@@ -6,11 +6,9 @@ namespace Modular.Core.Services.EmailSender.Concrete
     public class EmailSenderService : IEmailSenderService
     {
 
-        private readonly IFluentEmail _fluentEmail;
-
-        public EmailSenderService(IFluentEmail fluentEmail)
+        public EmailSenderService()
         {
-            _fluentEmail = fluentEmail ?? throw new ArgumentNullException(nameof(fluentEmail));
+            //_fluentEmail = fluentEmail ?? throw new ArgumentNullException(nameof(fluentEmail));
         }
 
         public bool SendEmail(Email email)
