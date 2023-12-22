@@ -61,7 +61,7 @@ namespace Modular.Core
                           .HasColumnName("Status")
                           .HasColumnType("int")
                           .HasColumnOrder(5)
-                          .HasDefaultValue(BaseEntity<Guid>.StatusType.Active)
+                          .HasDefaultValue(StatusType.Active)
                           .IsRequired(true);
 
                 });

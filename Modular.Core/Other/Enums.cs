@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Modular.Core.Helpers.Types
+namespace Modular.Core
 {
 
     public enum ResponseType
@@ -22,6 +22,16 @@ namespace Modular.Core.Helpers.Types
 
         [Display(Name = "Not Selected")]
         NotSelected = 5
+    }
+
+    public enum StatusType
+    {
+        Unknown = 0,
+        Active = 1,
+        Inactive = 2,
+        Cancelled = 3,
+        Flagged = 50,
+        Deleted = 100,
     }
 
 }
