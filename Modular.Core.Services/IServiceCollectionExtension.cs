@@ -14,7 +14,7 @@ namespace Modular.Core.DependencyInjection
     public static partial class ModularServiceCollectionExtension
     {
 
-        public static IServiceCollection AddModularServices(this IServiceCollection services, IConfigurationManager configurationManager)
+        public static IServiceCollection AddModularServices(this IServiceCollection services)
         {
             //  Configure Services.
             services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
@@ -31,21 +31,50 @@ namespace Modular.Core.DependencyInjection
             services.AddScoped<IValidator<ApplicationUser>, IdentityValidator>();
             services.AddScoped<IValidator<Invoice>, InvoiceValidator>();
 
-            var emailSettings = configurationManager.GetSection("EmailSettings");
+            return services;
 
-            services.AddFluentEmail(emailSettings["DefaultFromEmail"])
-                .AddSmtpSender(
-                    emailSettings["Host"],              // Host
-                    int.Parse(emailSettings["Port"]),   // Port
-                    emailSettings["Username"],          // Username
-                    emailSettings["Password"]           // Password
+        }
 
-                );
+        public static IServiceCollection AddModularEmailSender(this IServiceCollection services, string defaultFromEmail, string host, int port, string? username = null, string? password = null)
+        {
+            if (username == null || password == null)
+            {
+                services.AddFluentEmail(defaultFromEmail)
+                        .AddSmtpSender(host, port, username, password);
+            }
+            else
+            {
+                services.AddFluentEmail(defaultFromEmail)
+                        .AddSmtpSender(host, port);
+            }
 
             services.AddScoped<IEmailSenderService, EmailSenderService>();
 
             return services;
-
         }
+
+        public static IServiceCollection AddModularEmailSender(this IServiceCollection services, IConfigurationManager configurationManager)
+        {
+            var emailSettings = configurationManager.GetSection("EmailSettings");
+
+            string? username = emailSettings["Username"];
+            string? password = emailSettings["Password"];
+
+            if (username == null || password == null)
+            {
+                services.AddFluentEmail(emailSettings["DefaultFromEmail"])
+                        .AddSmtpSender(emailSettings["DefaultFromEmail"], int.Parse(emailSettings["Port"] ?? ""), username, password);
+            }
+            else
+            {
+                services.AddFluentEmail(emailSettings["DefaultFromEmail"])
+                        .AddSmtpSender(emailSettings["DefaultFromEmail"], int.Parse(emailSettings["Port"] ?? ""));
+            }
+
+            services.AddScoped<IEmailSenderService, EmailSenderService>();
+
+            return services;
+        }
+
     }
 }
