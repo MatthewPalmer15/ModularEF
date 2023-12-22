@@ -1,7 +1,6 @@
 ﻿#nullable disable
 
 using Modular.Core.Entities.Abstract;
-using Modular.Core.Helpers.Types;
 using Modular.Core.Interfaces;
 
 namespace Modular.Core.Entities.Concrete

@@ -1,7 +1,6 @@
 ﻿#nullable disable
 
 using Modular.Core.Interfaces;
-using System.Reflection;
 
 namespace Modular.Core
 {

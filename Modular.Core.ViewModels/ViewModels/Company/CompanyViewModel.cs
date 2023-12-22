@@ -1,6 +1,5 @@
 ﻿#nullable disable
 
-using Modular.Core.Helpers.Types;
 using System.ComponentModel.DataAnnotations;
 
 namespace Modular.Core.ViewModels.Company

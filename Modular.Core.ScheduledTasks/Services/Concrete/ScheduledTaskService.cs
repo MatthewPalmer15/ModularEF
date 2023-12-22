@@ -1,8 +1,5 @@
 ﻿using Hangfire;
-using Modular.Core.Entities.Abstract;
-using Modular.Core.Entities.Concrete;
 using Modular.Core.ScheduledTasks.Abstract;
-using Modular.Core.Services.Repositories.Abstract;
 using System.Linq.Expressions;
 
 namespace Modular.Core.ScheduledTasks.Concrete
