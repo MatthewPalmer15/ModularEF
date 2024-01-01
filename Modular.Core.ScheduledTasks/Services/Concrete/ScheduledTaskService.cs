@@ -1,5 +1,7 @@
 ﻿using Hangfire;
+using Modular.Core.Entities.Concrete;
 using Modular.Core.ScheduledTasks.Abstract;
+using Modular.Core.Services.Repositories.Abstract;
 using System.Linq.Expressions;
 
 namespace Modular.Core.ScheduledTasks.Concrete
@@ -7,8 +9,11 @@ namespace Modular.Core.ScheduledTasks.Concrete
     public class ScheduledTaskService : IScheduledTaskService
     {
 
-        public ScheduledTaskService()
+        private readonly IScheduledTaskRepository _repository;
+
+        public ScheduledTaskService(IScheduledTaskRepository repository)
         {
+            _repository = repository;
         }
 
         /// <summary>
@@ -17,7 +22,9 @@ namespace Modular.Core.ScheduledTasks.Concrete
         /// <param name="methodCall"></param>
         public void AddBackgroundJob(Expression<Action> methodCall)
         {
-            BackgroundJob.Enqueue(methodCall);
+            string jobId = BackgroundJob.Enqueue(methodCall);
+            _repository.Add(new ScheduledTask(jobId, Entities.Abstract.IScheduledTask.StatusType.Completed));
+
         }
 
         /// <summary>
@@ -27,17 +34,23 @@ namespace Modular.Core.ScheduledTasks.Concrete
         /// <param name="delay"></param>
         public void AddBackgroundJob(Expression<Action> methodCall, TimeSpan delay)
         {
-            BackgroundJob.Schedule(methodCall, delay);
+            string jobId = BackgroundJob.Schedule(methodCall, delay);
+            _repository.Add(new ScheduledTask(jobId, Entities.Abstract.IScheduledTask.StatusType.Completed));
+
         }
 
         /// <summary>
         /// Continue background job after one job is completed.
         /// </summary>
         /// <param name="methodCall"></param>
-        /// <param name="jobId"></param>
-        public void ContinueBackgroundJob(Expression<Action> methodCall, string jobId)
+        /// <param name="parentJobId"></param>
+        public void ContinueBackgroundJob(Expression<Action> methodCall, string parentJobId)
         {
-            BackgroundJob.ContinueJobWith(jobId, methodCall);
+            bool isParentTaskExist = _repository.Exists(parentJobId);
+            if (isParentTaskExist)
+            {
+                BackgroundJob.ContinueJobWith(parentJobId, methodCall);
+            }
         }
 
         /// <summary>
