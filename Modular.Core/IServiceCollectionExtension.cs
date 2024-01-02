@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Modular.Core.Identity;
 using Modular.Core.Interfaces;
-using Serilog.Sinks.MSSqlServer;
 using Serilog;
-using Microsoft.Extensions.Logging;
+using Serilog.Sinks.MSSqlServer;
 
 namespace Modular.Core.DependencyInjection
 {

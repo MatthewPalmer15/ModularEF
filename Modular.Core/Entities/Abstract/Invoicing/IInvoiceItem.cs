@@ -1,6 +1,4 @@
-﻿#nullable disable
-
-using Modular.Core.Interfaces;
+﻿using Modular.Core.Interfaces;
 
 namespace Modular.Core.Entities.Abstract
 {
