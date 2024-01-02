@@ -3,6 +3,8 @@ using Modular.Core.Entities.Concrete;
 using Modular.Core.ScheduledTasks.Abstract;
 using Modular.Core.Services.Repositories.Abstract;
 using System.Linq.Expressions;
+using Modular.Core.Entities.Abstract;
+using Hangfire.Storage;
 
 namespace Modular.Core.ScheduledTasks.Concrete
 {
@@ -14,6 +16,21 @@ namespace Modular.Core.ScheduledTasks.Concrete
         public ScheduledTaskService(IScheduledTaskRepository repository)
         {
             _repository = repository;
+
+            RecurringJob.AddOrUpdate("CheckJobStatus", () => CheckJobStatus(), Cron.Minutely);
+        }
+
+        private void CheckJobStatus()
+        {
+            IStorageConnection connection = JobStorage.Current.GetConnection();
+
+            var tasks = _repository.Search(x => x.Status is not IScheduledTask.StatusType.Unknown and not IScheduledTask.StatusType.Unknown);
+            foreach(var task in tasks)
+            {
+                JobData jobData = connection.GetJobData(task.JobId);
+                task.Status = ScheduledTaskUtils.ConvertStatusToEnum(jobData.State);
+            }
+            _repository.SaveChanges();
         }
 
         /// <summary>
@@ -23,7 +40,7 @@ namespace Modular.Core.ScheduledTasks.Concrete
         public void AddBackgroundJob(Expression<Action> methodCall)
         {
             string jobId = BackgroundJob.Enqueue(methodCall);
-            _repository.Add(new ScheduledTask(jobId, Entities.Abstract.IScheduledTask.StatusType.Completed));
+            _repository.Add(new ScheduledTask(jobId, IScheduledTask.StatusType.Awaiting));
 
         }
 
@@ -35,7 +52,7 @@ namespace Modular.Core.ScheduledTasks.Concrete
         public void AddBackgroundJob(Expression<Action> methodCall, TimeSpan delay)
         {
             string jobId = BackgroundJob.Schedule(methodCall, delay);
-            _repository.Add(new ScheduledTask(jobId, Entities.Abstract.IScheduledTask.StatusType.Completed));
+            _repository.Add(new ScheduledTask(jobId, IScheduledTask.StatusType.Scheduled));
 
         }
 
@@ -49,7 +66,8 @@ namespace Modular.Core.ScheduledTasks.Concrete
             bool isParentTaskExist = _repository.Exists(parentJobId);
             if (isParentTaskExist)
             {
-                BackgroundJob.ContinueJobWith(parentJobId, methodCall);
+                string jobId = BackgroundJob.ContinueJobWith(parentJobId, methodCall);
+                _repository.Add(new ScheduledTask(jobId, IScheduledTask.StatusType.Awaiting));
             }
         }
 
