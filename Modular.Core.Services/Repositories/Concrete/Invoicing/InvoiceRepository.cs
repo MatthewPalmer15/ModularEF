@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Modular.Core.Entities.Concrete;
 using Modular.Core.Interfaces;
 using Modular.Core.Services.Repositories.Abstract;
+using Modular.Core.Services.Validation;
 using Newtonsoft.Json;
 
 namespace Modular.Core.Services.Repositories.Concrete
@@ -18,6 +19,7 @@ namespace Modular.Core.Services.Repositories.Concrete
         public InvoiceRepository(IDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+            _validator = new InvoiceValidator();
         }
 
         public InvoiceRepository(IDbContext context, IValidator<Invoice> validator)

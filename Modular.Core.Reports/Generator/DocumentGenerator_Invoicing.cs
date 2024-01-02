@@ -16,8 +16,10 @@ namespace Modular.Core.Reporting
             /// <returns></returns>
             public static XtraReport GenerateInvoice(Invoice invoice)
             {
-                XtraReport rpt = new InvoicePrintout();
-                rpt.DataSource = invoice;
+                XtraReport rpt = new InvoicePrintout
+                {
+                    DataSource = new Invoice[] { invoice }
+                };
                 rpt.CreateDocument();
                 return rpt;
             }
@@ -29,8 +31,10 @@ namespace Modular.Core.Reporting
             /// <returns></returns>
             public async static Task<XtraReport> GenerateInvoiceAsync(Invoice invoice)
             {
-                XtraReport rpt = new InvoicePrintout();
-                rpt.DataSource = new Invoice[] { invoice };
+                XtraReport rpt = new InvoicePrintout
+                {
+                    DataSource = new Invoice[] { invoice }
+                };
                 await rpt.CreateDocumentAsync();
                 return rpt;
             }

@@ -20,7 +20,7 @@ namespace Modular.Core.Interfaces
 
         public DbSet<Invoice> Invoices { get; set; }
 
-
+        public Guid CurrentUserId { get; }
 
         public int SaveChanges();
 
