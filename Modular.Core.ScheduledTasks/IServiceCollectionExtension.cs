@@ -1,5 +1,8 @@
 ﻿using Hangfire;
 using Microsoft.Extensions.DependencyInjection;
+using Modular.Core.Services;
+using Modular.Core.Services.Repositories.Abstract;
+using Modular.Core.Services.Repositories.Concrete;
 
 namespace Modular.Core.DependencyInjection
 {
@@ -17,6 +20,9 @@ namespace Modular.Core.DependencyInjection
             );
 
             services.AddHangfireServer();
+
+            services.AddScoped<IScheduledTaskRepository, ScheduledTaskRepository>();
+            services.AddScoped<IScheduledTaskService, ScheduledTaskService>();
 
             return services;
         }

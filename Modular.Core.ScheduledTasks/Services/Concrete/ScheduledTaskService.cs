@@ -1,14 +1,36 @@
 ﻿using Hangfire;
+using Modular.Core.Entities.Concrete;
 using Modular.Core.ScheduledTasks.Abstract;
+using Modular.Core.Services.Repositories.Abstract;
 using System.Linq.Expressions;
+using Modular.Core.Entities.Abstract;
+using Hangfire.Storage;
 
-namespace Modular.Core.ScheduledTasks.Concrete
+namespace Modular.Core.Services
 {
     public class ScheduledTaskService : IScheduledTaskService
     {
 
-        public ScheduledTaskService()
+        private readonly IScheduledTaskRepository _repository;
+
+        public ScheduledTaskService(IScheduledTaskRepository repository)
         {
+            _repository = repository;
+
+            RecurringJob.AddOrUpdate("CheckJobStatus", () => CheckJobStatus(), Cron.Minutely);
+        }
+
+        private void CheckJobStatus()
+        {
+            IStorageConnection connection = JobStorage.Current.GetConnection();
+
+            var tasks = _repository.Search(x => x.Status is not IScheduledTask.StatusType.Unknown and not IScheduledTask.StatusType.Unknown);
+            foreach(var task in tasks)
+            {
+                JobData jobData = connection.GetJobData(task.JobId);
+                task.Status = ScheduledTaskUtils.ConvertStatusToEnum(jobData.State);
+            }
+            _repository.SaveChanges();
         }
 
         /// <summary>
@@ -17,7 +39,9 @@ namespace Modular.Core.ScheduledTasks.Concrete
         /// <param name="methodCall"></param>
         public void AddBackgroundJob(Expression<Action> methodCall)
         {
-            BackgroundJob.Enqueue(methodCall);
+            string jobId = BackgroundJob.Enqueue(methodCall);
+            _repository.Add(new ScheduledTask(jobId, IScheduledTask.StatusType.Awaiting));
+
         }
 
         /// <summary>
@@ -27,17 +51,24 @@ namespace Modular.Core.ScheduledTasks.Concrete
         /// <param name="delay"></param>
         public void AddBackgroundJob(Expression<Action> methodCall, TimeSpan delay)
         {
-            BackgroundJob.Schedule(methodCall, delay);
+            string jobId = BackgroundJob.Schedule(methodCall, delay);
+            _repository.Add(new ScheduledTask(jobId, IScheduledTask.StatusType.Scheduled));
+
         }
 
         /// <summary>
         /// Continue background job after one job is completed.
         /// </summary>
         /// <param name="methodCall"></param>
-        /// <param name="jobId"></param>
-        public void ContinueBackgroundJob(Expression<Action> methodCall, string jobId)
+        /// <param name="parentJobId"></param>
+        public void ContinueBackgroundJob(Expression<Action> methodCall, string parentJobId)
         {
-            BackgroundJob.ContinueJobWith(jobId, methodCall);
+            bool isParentTaskExist = _repository.Exists(parentJobId);
+            if (isParentTaskExist)
+            {
+                string jobId = BackgroundJob.ContinueJobWith(parentJobId, methodCall);
+                _repository.Add(new ScheduledTask(jobId, IScheduledTask.StatusType.Awaiting));
+            }
         }
 
         /// <summary>
@@ -77,6 +108,7 @@ namespace Modular.Core.ScheduledTasks.Concrete
         public void AddRecurringJob(string jobId, Expression<Func<Task>> jobAction, string cronExpression)
         {
             RecurringJob.AddOrUpdate(jobId, jobAction, cronExpression);
+            _repository.Add(new ScheduledTask(jobId, IScheduledTask.StatusType.Awaiting));
         }
 
         /// <summary>

@@ -1,7 +1,7 @@
 ﻿
 using System.Linq.Expressions;
 
-namespace Modular.Core.ScheduledTasks.Abstract
+namespace Modular.Core.Services
 {
     public interface IScheduledTaskService
     {
@@ -10,7 +10,7 @@ namespace Modular.Core.ScheduledTasks.Abstract
 
         public void AddBackgroundJob(Expression<Action> methodCall, TimeSpan delay);
 
-        public void ContinueBackgroundJob(Expression<Action> methodCall, string jobId);
+        public void ContinueBackgroundJob(Expression<Action> methodCall, string parentJobId);
 
         public void DeleteBackgroundJob(string jobId);
 
