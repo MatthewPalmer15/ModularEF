@@ -1,10 +1,10 @@
 ﻿using Hangfire;
 using Modular.Core.Entities.Concrete;
-using Modular.Core.ScheduledTasks.Abstract;
 using Modular.Core.Services.Repositories.Abstract;
 using System.Linq.Expressions;
 using Modular.Core.Entities.Abstract;
 using Hangfire.Storage;
+using Modular.Core.ScheduledTasks;
 
 namespace Modular.Core.Services
 {
