@@ -1,7 +1,7 @@
 ﻿
 using System.Linq.Expressions;
 
-namespace Modular.Core.ScheduledTasks.Abstract
+namespace Modular.Core.Services
 {
     public interface IScheduledTaskService
     {

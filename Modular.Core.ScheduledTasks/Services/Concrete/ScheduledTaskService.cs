@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using Modular.Core.Entities.Abstract;
 using Hangfire.Storage;
 
-namespace Modular.Core.ScheduledTasks.Concrete
+namespace Modular.Core.Services
 {
     public class ScheduledTaskService : IScheduledTaskService
     {
@@ -108,6 +108,7 @@ namespace Modular.Core.ScheduledTasks.Concrete
         public void AddRecurringJob(string jobId, Expression<Func<Task>> jobAction, string cronExpression)
         {
             RecurringJob.AddOrUpdate(jobId, jobAction, cronExpression);
+            _repository.Add(new ScheduledTask(jobId, IScheduledTask.StatusType.Awaiting));
         }
 
         /// <summary>
